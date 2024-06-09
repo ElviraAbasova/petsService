@@ -1,0 +1,141 @@
+#hero{
+    background-color: #d5def5;
+    position: relative;
+   
+    .container{
+        height: 70rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+       
+        position: relative;
+        padding-top: 9rem;
+        .image{
+            bottom: -21rem;
+            left: 0;
+            position: absolute;
+            max-width: 40rem;
+            img{
+                width: 100%;
+            }
+        }
+        .leftSide{
+          
+            padding-right: 5rem;
+            h2{
+                font-size: 5rem;
+                font-style: italic;
+            }
+            button{
+                margin-top: 2rem;
+                background-color: #2f89b3;
+                border: 0;
+                padding: 1.5rem;
+                font-size: 2rem;
+                border-radius: 2rem;
+                color: white;
+            }
+
+        }
+       
+
+    }
+   .arrow{
+    margin: 1rem;
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    top: 50%;
+   }
+   .arrow:hover{
+    background-color: #2f89b3;
+    color: white;
+   }
+   .right{
+    right: 0;
+   }
+}
+
+
+@media only screen and (max-width: 992px) {
+    #hero{
+        .container{
+           justify-content: center;
+           .image{
+            max-width: 35rem;
+            left: 30%;
+            bottom: -18.5rem;
+            
+           }
+           .leftSide{
+            padding: 0;
+            padding-bottom: 15rem;
+            h2{
+                font-size: 4.5rem;
+            }
+            
+           }
+         
+        }
+    }
+}
+@media only screen and (max-width: 576px) {
+    #hero{
+        .container{
+           
+           .image{
+            max-width: 30rem;
+            left: 30%;
+            bottom: -16rem;
+            
+           }
+           .leftSide{
+        
+            h2{
+                font-size: 3.5rem;
+            }
+            button{
+                padding: 1rem;
+                font-size: 1.5rem;
+                
+
+            }
+            
+           }
+         
+        }
+        .arrow{
+            width: 3.5rem;
+            height: 3.5rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #hero{
+        .container{
+            height: 50rem;
+            padding-top: 25rem;
+           
+            .image{
+                display: none;
+            }
+            .leftSide{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                button{
+                    width: 10rem;
+                }
+            }
+        }
+    }
+
+}
