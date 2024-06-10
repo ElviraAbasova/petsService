@@ -1,45 +1,53 @@
 #hero{
-    background-color: #d5def5;
+    
     position: relative;
-   
+    background-size: cover;
+    height: 90rem;
+    background-color: #ebeefc;
     .container{
-        height: 70rem;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-       
-        position: relative;
-        padding-top: 9rem;
-        .image{
-            bottom: -21rem;
-            left: 0;
-            position: absolute;
-            max-width: 40rem;
-            img{
-                width: 100%;
-            }
-        }
-        .leftSide{
-          
-            padding-right: 5rem;
-            h2{
-                font-size: 5rem;
+        .content{
+            padding-right: 60rem;
+            padding-top: 30rem;
+            font-size: 3.5rem;
+            p{
+                margin-top: 3rem;
+                color: white;
+                font-size: 2.5rem;
                 font-style: italic;
             }
-            button{
-                margin-top: 2rem;
-                background-color: #2f89b3;
-                border: 0;
-                padding: 1.5rem;
-                font-size: 2rem;
-                border-radius: 2rem;
-                color: white;
-            }
-
         }
        
-
+       .dogs{
+        position: absolute;
+        top: 30rem;
+        right: 5%;
+        max-width: 60rem;
+        z-index: 1;
+        img{
+            width: 100%;
+        }
+       }
+       .meal{
+        position: absolute;
+        top: 30rem;
+        right: 6%;
+        max-width: 60rem;
+        z-index: 2;
+        img{
+            width: 100%;
+        }
+       }
+       .back{
+        position: absolute;
+        bottom: -6px;
+        right: 0;
+        max-width: 100rem;
+        img{
+            width: 100%;
+        }
+       }
     }
+    
    .arrow{
     margin: 1rem;
     position: absolute;
@@ -54,7 +62,7 @@
     top: 50%;
    }
    .arrow:hover{
-    background-color: #2f89b3;
+    background-color: #8D19E8;
     color: white;
    }
    .right{
@@ -62,52 +70,154 @@
    }
 }
 
+#categories{
+    padding-top: 3rem;
+    .container{
+        .title{
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h3{
+                font-size: 3rem;
+               
+            }
+            img{
+                margin-left: 1rem;
+                width: 2rem;
+            }
+
+        }
+        .sections{
+            margin-top: 3rem;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(6,1fr);
+            .section{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                background-color: #ebeefc;
+                padding: 1.5rem;
+                border-radius: 2rem;
+                
+                h4{
+                    font-size: 1.4rem;
+                    color: #696969;
+                }
+            }
+            .section:hover{
+                transform: scale(1.1);
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                
+            }
+        }
+       
+    }
+}
 
 @media only screen and (max-width: 992px) {
     #hero{
         .container{
-           justify-content: center;
-           .image{
-            max-width: 35rem;
-            left: 30%;
-            bottom: -18.5rem;
-            
-           }
-           .leftSide{
-            padding: 0;
-            padding-bottom: 15rem;
-            h2{
-                font-size: 4.5rem;
-            }
-            
-           }
+            .dogs{
+             
+                top: 40rem;
+                right: 5%;
+                max-width: 50rem;
+               
+               }
+               .meal{
+               
+                top: 40rem;
+                right: 6%;
+                max-width: 50rem;
+              
+               }
+               .back{
+             
+                bottom: -6px;
+                right: 0;
+                max-width: 70rem;
+               
+               }
+               .content{
+                text-align: center;
+                padding-right: 0rem;
+                padding-top: 20rem;
+                font-size: 3.5rem;
+                p{
+                    margin-top: 3rem;
+                    color: white;
+                    font-size: 2.5rem;
+                    font-style: italic;
+                }
+
+               }
+      
          
         }
     }
 }
+@media only screen and (max-width: 768px) {
+    #categories{
+        .container{
+            .title{
+                
+                h3{
+                    font-size: 2.5rem;
+                }
+            }
+            .sections{
+                grid-template-columns: repeat(3,1fr);
+                
+            }
+        }
+    }
+
+}
 @media only screen and (max-width: 576px) {
     #hero{
         .container{
-           
-           .image{
-            max-width: 30rem;
-            left: 30%;
-            bottom: -16rem;
-            
-           }
-           .leftSide{
-        
-            h2{
-                font-size: 3.5rem;
-            }
-            button{
-                padding: 1rem;
-                font-size: 1.5rem;
+            .dogs{
+             
+                top: 55rem;
+                right: 5%;
+                max-width: 40rem;
+               
+               }
+               .meal{
+               
+                top: 55rem;
+                right: 6%;
+                max-width: 40rem;
+              
+               }
+               .back{
+             
+                bottom: -6px;
+                right: 0;
+                max-width: 70rem;
+               
+               }
+               .content{
+                text-align: center;
+                padding:0 1rem;
+                padding-top: 20rem;
+                font-size: 3rem;
                 
+                p{
+                    margin-top: 3rem;
+                    color: white;
+                    font-size: 2rem;
+                    font-style: italic;
+                    
+                }
 
-            }
-            
-           }
+               }
+      
+           
+          
          
         }
         .arrow{
@@ -118,24 +228,66 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 375px) {
     #hero{
         .container{
-            height: 50rem;
-            padding-top: 25rem;
-           
-            .image{
-                display: none;
-            }
-            .leftSide{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                button{
-                    width: 10rem;
+            .dogs{
+             
+                top: 65rem;
+                right: 4%;
+                max-width: 30rem;
+               
+               }
+               .meal{
+               
+                top: 65rem;
+                right: 4%;
+                max-width: 30rem;
+              
+               }
+               .back{
+             
+                bottom: -6px;
+                right: 0;
+                max-width: 50rem;
+               
+               }
+               .content{
+               
+                padding-top: 30rem;
+                font-size: 2rem;
+                p{
+                    margin-top: 3rem;
+                    color: white;
+                    font-size: 1.5rem;
+                    font-style: italic;
                 }
+
+               }
+      
+         
+        }
+    }
+    #categories{
+        .container{
+            .title{
+                
+                h3{
+                    font-size: 2rem;
+                }
+                img{
+                    width: 1.5rem;
+                }
+            }
+            .sections{
+                padding: 0 1.5rem;
+                grid-template-columns: repeat(1,1fr);
+                
             }
         }
     }
+
+
+    
 
 }

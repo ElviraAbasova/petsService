@@ -1,8 +1,8 @@
 nav{
     position: fixed;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 2;
+    min-width: 100%;
+    background-color: #8D19E8;
+    z-index: 3;
     .container{
         display: flex;
         align-items: center;
@@ -20,13 +20,12 @@ nav{
             gap: 2rem;
             .link{
                 font-size: 1.4rem;
-                color: black;
+                color: white;
                 text-decoration: none;
                 font-weight: 600;
             }
             .link:hover{
                 color: #fda403;
-
             }
         }
         .searchBar{
@@ -74,13 +73,13 @@ nav{
                 }
                 
                 .like:hover{
-                    color: #eb2632;
+                    color: rgb(205, 150, 244);
                 }
                 .shop:hover{
-                    color: #42b883;
+                    color: rgb(205, 150, 244);
                 }
                 .user:hover{
-                    color: #2e79ba;
+                    color: rgb(205, 150, 244);
                 }
             }
          

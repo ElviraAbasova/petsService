@@ -6,17 +6,20 @@ const Hero = () => {
   return (
     <section id='hero'>
         <div className="container">
-        <div className="image">
-            <img src="src/assets/images/pngwing.com (31).png" alt="" />
-        </div>
-        <div className="leftSide">
-            <h2>
-                Best Food For Your Pet
-            </h2>
-            <button>Shop Now</button>
-
-        </div>
-   
+          <div className="content">
+            <h2>Best Foods For Your Pets</h2>
+            <p>Help your dog maintain a healthier weight with </p>
+          </div>
+          <div className="meal">
+            <img src="src/assets/images/rev_home2_01.png" alt="" />
+          </div>
+          <div className="dogs">
+            <img src="src/assets/images/rev_home2_2.png" alt="" />
+          </div>
+          <div className="back">
+            <img src="src/assets/images/home-n1-s-11.png" alt="" />
+          </div>
+       
         </div>
         <div className="arrow left">
         <FontAwesomeIcon icon={faChevronLeft} />
