@@ -1,3 +1,11 @@
+import meal from "../../../assets/images/rev_home2_01.png"
+import dogs from "../../../assets/images/rev_home2_2.png"
+import back1 from "../../../assets/images/home-n1-s-11.png"
+import cat from "../../../assets/images/rev_home7_16.png"
+import back2 from "../../../assets/images/rev_home7_15.png"
+import dog from "../../../assets/images/rev_home3 (1).png"
+import back3 from "../../../assets/images/rev_home3_6.png"
+
 import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -5,6 +13,8 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
+
 
 const Hero = () => {
   const slides = [
@@ -18,9 +28,9 @@ const Hero = () => {
           </Link>
         </>
       ),
-      mealImg: "src/assets/images/rev_home2_01.png",
-      dogsImg: "src/assets/images/rev_home2_2.png",
-      backImg: "src/assets/images/home-n1-s-11.png",
+      mealImg: meal,
+      dogsImg: dogs,
+      backImg: back1,
       color: "#ebeefc",
     },
     {
@@ -33,8 +43,8 @@ const Hero = () => {
           </Link>
         </>
       ),
-      dogsImg: "src/assets/images/rev_home7_16.png",
-      backImg: "src/assets/images/rev_home7_15.png",
+      dogsImg: cat,
+      backImg: back2,
       color: "#F6E2E4",
     },
     {
@@ -47,8 +57,8 @@ const Hero = () => {
           </Link>
         </>
       ),
-      dogsImg: "src/assets/images/rev_home3 (1).png",
-      backImg: "src/assets/images/rev_home3_6.png",
+      dogsImg: dog,
+      backImg: back3,
       color: "#E3F5FD",
     },
   ];

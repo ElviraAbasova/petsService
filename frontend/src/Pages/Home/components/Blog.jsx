@@ -1,3 +1,7 @@
+import paw from "../../../assets/images/pngwing.com (29).png"
+import main from "../../../assets/images/home-n2-bg9.png"
+
+
 import React from "react";
 const Blog = () => {
   return (
@@ -5,11 +9,11 @@ const Blog = () => {
       <div className="container">
         <div className="title">
           <h3>Pets Gallery</h3>
-          <img src="src/assets/images/pngwing.com (29).png" alt="" />
+          <img src={paw} alt="" />
         </div>
         <div className="top">
           <div className="leftSide">
-            <img src="src/assets/images/home-n2-bg9.png" alt="about" />
+            <img src={main} alt="about" />
           </div>
           <div className="rightSide">
             <h5>About Us</h5>

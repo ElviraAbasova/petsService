@@ -81,7 +81,7 @@
       font-size: 2rem;
       top: 50%;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.5s ease;
     }
   
     .arrow:hover {
@@ -406,16 +406,16 @@
 
             }
             .card:nth-child(1){
-                background-image: url("src/assets/images/home-n2-bg1.jpg");
+                background-image: url("../../assets/images/home-n2-bg1.jpg");
             }
             .card:nth-child(2){
-                background-image: url("src/assets/images/home-n2-bg2.jpg");
+                background-image: url("../../assets/images/home-n2-bg2.jpg");
             }
             .card:nth-child(3){
-                background-image: url("src/assets/images/home-n2-bg3.jpg");
+                background-image: url("../../assets/images/home-n2-bg3.jpg");
             }
             .card:nth-child(4){
-                background-image: url("src/assets/images/home-n2-bg4.jpg");
+                background-image: url("../../assets/images/home-n2-bg4.jpg");
             }
         }
     }
@@ -503,13 +503,14 @@
         justify-content: center;
         font-size: 2rem;
         border-radius: 50%;
+        z-index: 3;
     }
     .toTop:hover{
         background-color: #8D19E8;
     }
 }
 #about{
-    background-image: url("src/assets/images/p-b-8.jpg");
+    background-image: url("../../assets/images/p-b-8.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     .container{
@@ -609,7 +610,7 @@
                 }
             }
             .bottom{
-                margin-top: 5rem;
+                margin: 5rem 0;
                 display: flex;
                 position: relative;
                 
@@ -636,20 +637,20 @@
                 }
                 .image:nth-child(1){
                     
-                    background-image: url("src/assets/images/3715f20b5cf42cfd2f6759a4cd6b2312.jpg");
+                    background-image: url("../../assets/images/3715f20b5cf42cfd2f6759a4cd6b2312.jpg");
                 }
                
                 .image:nth-child(3){
                     
-                    background-image: url("src/assets/images/b328936a87db3ce763de560e3bc3ccb3.jpg");
+                    background-image: url("../../assets/images/b328936a87db3ce763de560e3bc3ccb3.jpg");
                 }
                 .image:nth-child(2){
                     
-                    background-image: url("src/assets/images/b20d5116fcdecd9d83d5e815c3bc5578.jpg");
+                    background-image: url("../../assets/images/b20d5116fcdecd9d83d5e815c3bc5578.jpg");
                 }
                 .image:nth-child(4){
                     
-                    background-image: url("src/assets/images/b-p-1.jpg");
+                    background-image: url("../../assets/images/b-p-1.jpg");
                 }
                 .image:nth-child(5){
                    
@@ -1124,6 +1125,12 @@
             }
            
          
+        }
+        .toTop{
+           
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.4rem;
         }
 
     }

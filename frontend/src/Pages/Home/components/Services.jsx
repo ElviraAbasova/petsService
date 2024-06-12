@@ -1,3 +1,8 @@
+import paw from "../../../assets/images/pngwing.com (29).png"
+import shop from "../../../assets/images/pet-shop_6245247.png"
+import veterinary from "../../../assets/images/international-cat-day_13563284.png"
+import grooming from "../../../assets/images/hairdresser_9152547.png"
+
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react';
@@ -16,12 +21,12 @@ const Services = () => {
       <div className="container">
         <div className="title">
           <h3>Our Services</h3>
-          <img src="src/assets/images/pngwing.com (29).png" alt="" />
+          <img src={paw} alt="paw" />
         </div>
         <div className="services">
           <div className="service">
             <div className="icon">
-              <img src="src/assets/images/pet-shop_6245247.png" alt="shop" />
+              <img src={shop} alt="shop" />
             </div>
             <h2>Pet Shop</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi.</p>
@@ -29,7 +34,7 @@ const Services = () => {
           </div>
           <div className="service">
             <div className="icon">
-              <img src="src/assets/images/international-cat-day_13563284.png" alt="veterinary" />
+              <img src={veterinary} alt="veterinary" />
             </div>
             <h2>Veterinary</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi.</p>
@@ -37,7 +42,7 @@ const Services = () => {
           </div>
           <div className="service">
             <div className="icon">
-              <img src="src/assets/images/hairdresser_9152547.png" alt="shop" />
+              <img src={grooming} alt="grooming" />
             </div>
             <h2>Grooming</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi.</p>

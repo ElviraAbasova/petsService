@@ -1,3 +1,4 @@
+import paw from "../../../assets/images/pngwing.com (29).png"
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +9,7 @@ const Collection = () => {
         <div className="container">
         <div className="title">
             <h3>Top Collection</h3>
-             <img src="src/assets/images/pngwing.com (29).png" alt="" />
+             <img src={paw} alt="" />
             </div>
             <div className="cards">
                 <div className="card">

@@ -1,3 +1,5 @@
+import paw from "../../../assets/images/pngwing.com (29).png"
+import post from "../../../assets/images/ps-3-p-1-300x300.png"
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping,faStar } from '@fortawesome/free-solid-svg-icons';
@@ -12,13 +14,13 @@ const BestSeller = () => {
 
         <div className="title">
             <h3>Best Sellers</h3>
-             <img src="src/assets/images/pngwing.com (29).png" alt="" />
+             <img src={paw} alt="paw" />
             </div>
          
             <div className="cards">
             <div className="card">
                 <div className="imgBox">
-                    <img src="src/assets/images/ps-3-p-1-300x300.png" alt="product" />
+                    <img src={post} alt="product" />
                     <div className="transition">
                     <div className="circle">
                     <FontAwesomeIcon className='like' icon={faHeart} />
@@ -59,7 +61,7 @@ const BestSeller = () => {
             </div>
             <div className="card">
                 <div className="imgBox">
-                    <img src="src/assets/images/ps-3-p-1-300x300.png" alt="product" />
+                    <img src={post} alt="product" />
                     <div className="transition">
                     <div className="circle">
                     <FontAwesomeIcon className='like' icon={faHeart} />
@@ -100,7 +102,7 @@ const BestSeller = () => {
             </div>
             <div className="card">
                 <div className="imgBox">
-                    <img src="src/assets/images/ps-3-p-1-300x300.png" alt="product" />
+                    <img src={post} alt="product" />
                     <div className="transition">
                     <div className="circle">
                     <FontAwesomeIcon className='like' icon={faHeart} />
@@ -141,7 +143,7 @@ const BestSeller = () => {
             </div>
             <div className="card">
                 <div className="imgBox">
-                    <img src="src/assets/images/ps-3-p-1-300x300.png" alt="product" />
+                    <img src={post} alt="product" />
                     <div className="transition">
                     <div className="circle">
                     <FontAwesomeIcon className='like' icon={faHeart} />

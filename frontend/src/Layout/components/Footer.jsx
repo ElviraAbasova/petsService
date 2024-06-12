@@ -1,3 +1,8 @@
+import logo from "../../assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp"
+import playmarket from "../../assets/images/Google-Play.jpg"
+import appstore from "../../assets/images/App-Store.jpg"
+import payment from "../../assets/images/payment.png"
+
 import React from 'react'
 import "../footer.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +18,7 @@ const Footer = () => {
         <div className="top">
         <div className="col">
           <div className="logo">
-            <img src="src/assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp" alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
           <p>We know pets are like family, so we are committed to providing the highest-quality products that you can trust.</p>
           <div className="phone">
@@ -72,10 +77,10 @@ const Footer = () => {
           </div>
       <div className="apps">
         <div className="app">
-          <img src="src/assets/images/Google-Play.jpg" alt="playstore" />
+          <img src={playmarket} alt="playstore" />
         </div>
         <div className="app">
-          <img src="src/assets/images/App-Store.jpg" alt="appstore" />
+          <img src={appstore} alt="appstore" />
         </div>
       </div>
         </div>
@@ -86,7 +91,7 @@ const Footer = () => {
           Copyright © 2022 Ziggy. All rights reserved.
           </div>
           <div className="col">
-          <img src="src/assets/images/payment.png" alt="payment" />
+          <img src={payment} alt="payment" />
           </div>
           <div className="col">
           Privacy & Cookie Policy Terms of Service

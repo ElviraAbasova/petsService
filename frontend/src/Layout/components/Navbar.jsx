@@ -3,12 +3,13 @@ import "../navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
-    faBars,
+  faBars,
   faCartShopping,
   faHeart,
   faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import logo from "../../assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp"
 
 const Navbar = () => {
   return (
@@ -16,19 +17,19 @@ const Navbar = () => {
       <div className="container">
         <div className="logo">
           <img
-            src="src/assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp"
+            src={logo}
             alt="logo"
           />
         </div>
         <ul>
           <li>
-            <Link className="link">Home</Link>
+            <Link to="/" className="link">Home</Link>
           </li>
           <li>
-            <Link className="link">About Us</Link>
+            <Link to="/shop" className="link">Shop</Link>
           </li>
           <li>
-            <Link className="link">Contact</Link>
+            <Link to="/contact" className="link">Contact</Link>
           </li>
           <li>
             <Link className="link">Services</Link>
