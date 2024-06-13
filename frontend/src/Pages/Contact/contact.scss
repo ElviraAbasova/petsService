@@ -1,0 +1,444 @@
+#contactHero{
+    background-color: #F2F6F9;
+    position: relative;
+    height: 70rem;
+    overflow: hidden;
+    .container{
+        .pets{
+            max-width: 55rem ;
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            z-index: 1;
+            transform: translateY(5%);
+            img{
+                width: 100%;
+            }
+        }
+        .back{
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            z-index: 0;
+            img{
+                width: 100%;
+            }
+        }
+        .content {
+            padding-right: 60rem;
+            padding-top: 30rem;
+            font-size: 3.5rem;
+            transition: opacity 1s ease-in-out;
+            
+            p {
+              margin: 3rem 0;
+              color: #f47107;
+              font-size: 2.5rem;
+              font-style: italic;
+              
+            }
+        }
+      
+     
+    }
+}
+#contactMain{
+    height: 130rem;
+    .container{
+        padding: 7rem 2rem;
+        .infos{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:2rem;
+            .info{
+                padding: 2rem;
+                background-color: #F2F6F9;
+                border-radius: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 1.5rem;
+                
+                
+                .icon{
+                    max-width: 4rem;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .title{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    color: gray;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    a{
+                        color: gray;
+                        text-decoration: none;
+                    }
+                    h5{
+                        color: black;
+                        font-size: 2rem;
+                    }
+
+                }
+               
+                
+            }
+        }
+        .contacts{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .map{
+                margin-top: 5rem;
+            }
+            .contactform{
+               
+                background-color: white;
+                bottom: -90%;
+                position: absolute;
+                padding: 5rem 10rem;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+               border-radius: 3rem;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+                width: 80%;
+                h4{
+                    font-size: 3rem;
+                }
+                form{
+                    width: 100%;
+                    margin-top: 3rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                    .top{
+                        display: grid;
+                        grid-template-columns: repeat(2,1fr);
+                        gap: 2rem;
+                    }
+                    .form{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        font-size: 1.5rem;
+                        input{
+                         
+                            transition: all 0.5s ease;
+                            outline: none;
+                            background-color: #F2F6F9;
+                            border: none;
+                            padding: 1.5rem;
+                            border-radius: 1rem;
+                        }
+                        input:focus, #message:focus{
+                            outline: 1px solid #F7970C;
+                            background-color: white;
+                        }
+                        #message{
+                            resize: none;
+                            transition: all 0.5s ease;
+                            outline: none;
+                            background-color: #F2F6F9;
+                            border: none;
+                            padding: 1rem;
+                            border-radius: 1rem;
+                            
+
+                        }
+                        
+                    }
+                    button{
+                        transition: all 0.5s ease;
+                        background-color: #F7970C;
+                        border: none;
+                        padding: 1.5rem;
+                        display: flex;
+                        gap: 1rem;
+                       justify-content: center;
+                       font-size: 1.4rem;
+                       border-radius: 2rem;
+                    }
+                    button:hover{
+                        background-color: #f47107;
+                    }
+                }
+                
+
+            }
+
+        }
+        
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #contactHero{
+        .container{
+            .content{
+                text-align: center;
+                padding-right: 0rem;
+                padding-top: 20rem;
+                font-size: 3.5rem;
+                p{
+                    margin-top: 3rem;
+                    font-size: 2.5rem;
+                    font-style: italic;
+                }
+            }
+            .pets{
+                
+                max-width: 50rem;
+            }
+        }
+    }
+    #contactMain{
+        .container{
+            .contacts{
+                .contactform{
+                    padding: 3rem 7rem;
+                    h4{
+                        font-size: 2.5rem;
+                    }
+                    form{
+                        .form{
+                            font-size: 1.4rem;
+                            input{
+                                padding: 1rem;
+                            }
+
+                        }
+                        button{
+                            padding: 1.2rem;
+                        }
+                    }
+                }
+            }
+            
+           
+        }
+    }
+}
+
+@media only screen and (max-width:768px) {
+    #contactHero{
+        .container{
+            .content{
+                padding-top: 20rem;
+                h2{
+                    font-size: 3.8rem;
+
+                }
+                p{
+                    font-size: 2rem;
+                }
+            }
+            .back{
+                max-width: 70rem;
+            }
+        }
+    }
+    #contactMain{
+        height: 130rem;
+        .container{
+            .infos{
+                grid-template-columns: repeat(2,1fr);
+                gap: 3rem;
+                .info{
+                    .title{
+                        font-size: 1.4rem;
+                        h5{
+                            font-size: 1.8rem;
+                        }
+                    }
+                }
+            }
+            .contacts{
+                .map{
+                    .mapp{
+                        height: 40rem;
+                    }
+                }
+                .contactform{
+                    padding: 3rem 4rem;
+                    width: 80%;
+                    bottom: -100%;
+                    h4{
+                        font-size: 2rem;
+                    }
+                    form{
+                       .form{
+                        font-size: 1.2rem;
+                        input,#message{
+                            font-size: 1.2rem;
+                        }
+                        #message{
+                            height: 10rem !important;
+                        }
+
+                       }
+                        .top{
+                            grid-template-columns: repeat(1,1fr);
+                        }
+                        button{
+                            padding: 1rem;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+            
+           
+        }
+    }
+
+}
+
+
+@media only screen and (max-width: 576px) {
+    #contactHero{
+        height: 60rem;
+        .container{
+            .content{
+                padding-top: 20rem;
+                h2{
+                    font-size: 3.5rem;
+
+                }
+                p{
+                    font-size: 1.8rem;
+                }
+            }
+            .pets{
+                max-width: 40rem;
+            }
+        }
+    }
+    #contactMain{
+    
+        .container{
+            padding: 7rem 4rem;
+            .infos{
+                grid-template-columns: repeat(1,1fr);
+                gap: 3rem;
+               
+            }
+            .contacts{
+                .map{
+                    .mapp{
+                        height: 30rem;
+                    }
+                }
+                .contactform{
+                    padding: 2rem;
+                    width: 90%;
+                    bottom: -110%;
+                    h4{
+                        font-size: 1.6rem;
+                    }
+                    form{
+                        gap: 1rem;
+                       .form{
+                        font-size: 1rem;
+                        input,#message{
+                            font-size: 1rem;
+                        }
+                        #message{
+                            height: 7rem !important;
+                        }
+
+                       }
+                        
+                        button{
+                            padding: 0.8rem;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+            
+           
+        }
+    }
+
+}
+
+@media only screen and (max-width: 375px) {
+    #contactHero{
+        height: 50rem;
+        .container{
+            .content{
+                padding-top: 20rem;
+                h2{
+                    font-size: 2.5rem;
+
+                }
+                p{
+                    font-size: 1.4rem;
+                }
+            }
+            .back{
+                max-width: 70rem;
+            }
+            .pets{
+                max-width: 30rem;
+            }
+        }
+    }
+    #contactMain{
+        height: 120rem;
+        .container{
+           padding: 3rem;
+            .infos{
+               
+                .info{
+                    .icon{
+                        max-width: 3rem;
+                    }
+                    .title{
+                        font-size: 1.2rem;
+                        h5{
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+            .contacts{
+                
+                .contactform{
+                    padding: 2rem;
+                    bottom: -100%;
+                    h4{
+                        font-size: 1.4rem;
+                    }
+                    form{
+                        gap: 0.8rem;
+                        .top{
+                            display: flex;
+                            flex-direction: column;
+                        }
+                       .form{
+
+                       
+                        #message{
+                            height: 6rem !important;
+                        }
+
+                       }
+                        
+                       
+                    }
+                }
+            }
+            
+            
+           
+        }
+    }
+
+}

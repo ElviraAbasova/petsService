@@ -34,9 +34,6 @@ const Blog = () => {
           <div className="image"></div>
           <div className="image"></div>
           <div className="image"></div>
-          <div className="image"></div>
-          <div className="image"></div>
-          <div className="image"></div>
           
         </div>
       </div>
