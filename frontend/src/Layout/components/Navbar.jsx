@@ -42,19 +42,19 @@ const Navbar = () => {
           </button>
         </div>
         <div className="LogoBar">
-          <div className="logo">
+          <Link className="logo">
             <FontAwesomeIcon className="user" icon={faUser} />
-          </div>
-          <div className="logo">
+          </Link>
+          <Link className="logo">
             <FontAwesomeIcon className="like" icon={faHeart} />
             <div className="number">0</div>
 
-          </div>
-          <div className="logo">
+          </Link>
+          <Link to="/basket" className="logo">
             <FontAwesomeIcon className="shop" icon={faCartShopping} />
             <div className="number">0</div>
 
-          </div>
+          </Link>
           
           
            
