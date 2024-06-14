@@ -79,13 +79,8 @@ const Basket = () => {
                         </div>
                         <button>Check out</button>
                     </div>
-              
             </div>
-              
-
-            </div>
-            
-
+            </div>    
             </div>
            
         

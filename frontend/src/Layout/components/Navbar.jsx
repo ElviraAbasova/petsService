@@ -42,7 +42,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className="LogoBar">
-          <Link className="logo">
+          <Link to="/login" className="logo">
             <FontAwesomeIcon className="user" icon={faUser} />
           </Link>
           <Link className="logo">
