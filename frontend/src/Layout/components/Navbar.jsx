@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/login" className="logo">
             <FontAwesomeIcon className="user" icon={faUser} />
           </Link>
-          <Link className="logo">
+          <Link to="/favorite" className="logo">
             <FontAwesomeIcon className="like" icon={faHeart} />
             <div className="number">0</div>
 

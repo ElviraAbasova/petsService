@@ -2,7 +2,7 @@
     position: relative;
     background-size: cover;
     height: 90rem;
-    transition: background-color 1s ease;
+    transition: all 1s ease; 
     overflow: hidden;
   
     .container {
@@ -10,32 +10,32 @@
         padding-right: 60rem;
         padding-top: 30rem;
         font-size: 3.5rem;
-        transition: opacity 1s ease-in-out;
+        transition: opacity 0.5s ease-in-out; 
         p {
           margin: 3rem 0;
           color: #f47107;
           font-size: 2.5rem;
           font-style: italic;
-          
         }
-        .shop{
-            transition: all 0.5s ease-in;
-            text-decoration: none;
-            background-color: #8D19E8;
-            color: white;
-            padding: 20px;
-            font-size: 1.4rem;
-            border-radius: 3rem;
-
+        .shop {
+          transition: background-color 0.5s ease, color 0.5s ease; 
+          text-decoration: none;
+          background-color: #8d19e8;
+          color: white;
+          padding: 20px;
+          font-size: 1.4rem;
+          border-radius: 3rem;
         }
-        .shop:hover{
-            background-color: #f47107;
+        .shop:hover {
+          background-color: #f47107;
         }
       }
   
-      .dogs, .meal, .back {
+      .dogs,
+      .meal,
+      .back {
         position: absolute;
-        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; 
       }
   
       .dogs {
@@ -81,11 +81,11 @@
       font-size: 2rem;
       top: 50%;
       cursor: pointer;
-      transition: all 0.5s ease;
+      transition: all 0.5s ease; 
     }
   
     .arrow:hover {
-      background-color: #8D19E8;
+      background-color: #8d19e8;
       color: white;
     }
   
@@ -113,6 +113,7 @@
       border-radius: 50%;
       display: inline-block;
       cursor: pointer;
+      transition: background-color 0.5s ease; 
     }
   
     .dot.active {
