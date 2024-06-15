@@ -1,8 +1,7 @@
-import logo from "../../assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp"
+import logo from "../../assets/images/logo.svg"
 import playmarket from "../../assets/images/Google-Play.jpg"
 import appstore from "../../assets/images/App-Store.jpg"
 import payment from "../../assets/images/payment.png"
-
 import React from 'react'
 import "../footer.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

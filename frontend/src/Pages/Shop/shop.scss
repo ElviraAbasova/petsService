@@ -239,6 +239,7 @@
                 gap: 2rem;
             
                 .card {
+                    text-decoration: none;
                     display: flex;
                     flex-direction: column;
                     gap: 1.2rem;
@@ -357,7 +358,9 @@
             
                     .about {
                         font-size: 1.6rem;
+                        color: black;
                     }
+                    
             
                     .stars {
                         display: flex;
@@ -397,9 +400,7 @@
                         background-color: #8D19E8;
                        
                     }
-                    .next{
-                
-                    }
+                    
                 }
                 
             }

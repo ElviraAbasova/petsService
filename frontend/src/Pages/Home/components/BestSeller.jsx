@@ -4,6 +4,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping,faStar } from '@fortawesome/free-solid-svg-icons';
 import {faHeart} from '@fortawesome/free-regular-svg-icons';
+import { Link } from "react-router-dom";
 
 
 
@@ -11,7 +12,6 @@ const BestSeller = () => {
   return (
     <section id='bestseller'>
         <div className="container">
-
         <div className="title">
             <h3>Best Sellers</h3>
              <img src={paw} alt="paw" />
@@ -59,7 +59,7 @@ const BestSeller = () => {
         
 
             </div>
-            <div className="card">
+            <Link to="/detail" className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -99,8 +99,8 @@ const BestSeller = () => {
                 </div>
         
 
-            </div>
-            <div className="card">
+            </Link>
+            <Link to="/detail" className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -140,8 +140,8 @@ const BestSeller = () => {
                 </div>
         
 
-            </div>
-            <div className="card">
+            </Link>
+            <Link to="/detail"className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -182,7 +182,7 @@ const BestSeller = () => {
                 </div>
         
 
-            </div>
+            </Link>
         </div>
         <button className='viewAll'>View All</button>
         </div>

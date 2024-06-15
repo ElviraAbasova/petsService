@@ -3,13 +3,12 @@ import "../navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import {
-  faBars,
   faCartShopping,
+  faBars,
   faHeart,
-  faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../assets/images/ce2fcf_3e884055e81d493095b847064c3a2c5e~mv2.webp"
+import logo from "../../assets/images/logo.svg"
 
 const Navbar = () => {
   return (
@@ -35,12 +34,7 @@ const Navbar = () => {
             <Link className="link">Services</Link>
           </li>
         </ul>
-        <div className="searchBar">
-          <input type="text" placeholder="Search product" />
-          <button>
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button>
-        </div>
+        
         <div className="LogoBar">
           <Link to="/login" className="logo">
             <FontAwesomeIcon className="user" icon={faUser} />

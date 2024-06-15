@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { faBasketShopping, faStar, faPaw, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import post from "../../../assets/images/ps-3-p-1-300x300.png"
+import { Link } from "react-router-dom";
 const ShopCards = () => {
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -180,7 +181,7 @@ const ShopCards = () => {
 
       <div className="cards">
         {currentCards.map(card => (
-          <div className="card" key={card.id}>
+          <Link to="/detail" className="card" key={card.id}>
             <div className="imgBox">
               <img src={post} alt="product" />
               <div className="transition">
@@ -207,7 +208,7 @@ const ShopCards = () => {
               </div>
               <p>({card.reviews} reviews)</p>
             </div>
-          </div>
+          </Link>
         ))}
         <div className="arrows">
         <button className=" arrow next" onClick={prevPage} disabled={currentPage === 1}>
