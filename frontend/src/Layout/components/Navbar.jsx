@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -7,18 +7,18 @@ import {
   faBars,
   faHeart,
   faUser,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/logo.svg";
 
 const Navbar = () => {
+  const [select, setSelect] = useState(false);
+
   return (
     <nav>
       <div className="container">
         <div className="logo">
-          <img
-            src={logo}
-            alt="logo"
-          />
+          <img src={logo} alt="logo" />
         </div>
         <ul>
           <li>
@@ -30,11 +30,22 @@ const Navbar = () => {
           <li>
             <Link to="/contact" className="link">Contact</Link>
           </li>
-          <li>
-            <Link className="link">Services</Link>
+          <li 
+            className="services"
+            onMouseEnter={() => setSelect(true)}
+            onMouseLeave={() => setSelect(false)}
+          >
+            <li className="link">Services</li>
+            <FontAwesomeIcon icon={faChevronDown} />
+            {select && (
+              <ul className="dropdown">
+                <li><Link to="/grooming" className="link">Grooming</Link></li>
+                <li><Link to="/veterinary" className="link">Veterinary</Link></li>
+              </ul>
+            )}
           </li>
         </ul>
-        
+
         <div className="LogoBar">
           <Link to="/login" className="logo">
             <FontAwesomeIcon className="user" icon={faUser} />
@@ -42,18 +53,13 @@ const Navbar = () => {
           <Link to="/favorite" className="logo">
             <FontAwesomeIcon className="like" icon={faHeart} />
             <div className="number">0</div>
-
           </Link>
           <Link to="/basket" className="logo">
             <FontAwesomeIcon className="shop" icon={faCartShopping} />
             <div className="number">0</div>
-
           </Link>
-          
-          
-           
         </div>
-        <FontAwesomeIcon icon={faBars} className="burger"/>
+        <FontAwesomeIcon icon={faBars} className="burger" />
       </div>
     </nav>
   );

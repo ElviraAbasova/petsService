@@ -3,6 +3,7 @@ import Basket from "../Pages/Basket";
 import Contact from "../Pages/Contact";
 import Detail from "../Pages/Detail";
 import Favorite from "../Pages/Favorite";
+import Grooming from "../Pages/Grooming";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Profile from "../Pages/Profile";
@@ -41,6 +42,10 @@ export const routes = [
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/grooming",
+        element: <Grooming />,
       },
     ],
   },
