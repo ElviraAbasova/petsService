@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Profile from "../Pages/Profile";
 import Register from "../Pages/Register";
 import Shop from "../Pages/Shop";
+import Veterinary from "../Pages/Veterinary";
 
 export const routes = [
   {
@@ -46,6 +47,10 @@ export const routes = [
       {
         path: "/grooming",
         element: <Grooming />,
+      },
+      {
+        path: "/veterinary",
+        element: <Veterinary />,
       },
     ],
   },

@@ -1,0 +1,805 @@
+#veterinaryHero {
+  background-image: url("../../assets/images/top-banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 35%;
+  .container {
+    padding: 0 1.5rem;
+    .title {
+      padding: 30rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      h2 {
+        font-size: 4rem;
+      }
+      h3 {
+        font-size: 2.5rem;
+        font-style: italic;
+      }
+      button {
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        margin-top: 3rem;
+        max-width: 20rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        padding: 1.2rem 0.8rem;
+        background-color: #f47107;
+        border: none;
+        color: white;
+        border-radius: 2rem;
+      }
+      button:hover {
+        background-color: orange;
+      }
+    }
+  }
+}
+#procedures {
+  .container {
+    .title {
+      padding-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        font-size: 3.5rem;
+      }
+      img {
+        margin-left: 1rem;
+        width: 2rem;
+      }
+    }
+    .procedures {
+      padding-top: 5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      .col {
+        display: flex;
+        gap: 2rem;
+        .icon {
+          font-size: 5rem;
+          color: #77bfbc;
+        }
+        .about {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          font-size: 2rem;
+          p {
+            color: gray;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+  }
+}
+#aboutVeterinary {
+  position: relative;
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 60rem;
+  .left {
+    position: relative;
+    background-image: url("../../assets/images/h6-img-1a.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .video {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      font-size: 2.5rem;
+      color: #f47107;
+      border-radius: 50%;
+    }
+    .video:hover {
+      color: #77bfbc;
+    }
+    .close-button {
+      position: absolute;
+      top: 4rem;
+      right: 2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 3rem;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .close-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+  .right {
+    background-color: #77bfbc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 6rem;
+    h4 {
+      text-shadow: 2px 2px #b84a01;
+      font-size: 3rem;
+      text-align: center;
+      line-height: 1.3;
+      color: #f47107;
+    }
+    p {
+      font-size: 2rem;
+      line-height: 1.4;
+      text-align: center;
+      color: white;
+    }
+  }
+  .abselutes {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    bottom: -10%;
+    right: 50%;
+    transform: translate(50%);
+    background-color: white;
+    padding: 4rem;
+    gap: 8rem;
+    border-radius: 2rem;
+    border: 2px dashed #f47107;
+    .col {
+      font-size: 3.5rem;
+      color: #77bfbc;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      h5 {
+        min-width: 15rem;
+        font-size: 2rem;
+        color: black;
+      }
+    }
+  }
+}
+#veterinaries {
+  padding-top: 5rem;
+  .container {
+    .title {
+      padding-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        font-size: 3.5rem;
+      }
+      img {
+        margin-left: 1rem;
+        width: 2rem;
+      }
+    }
+    .veterinars {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      .veterinar {
+        position: relative;
+        img {
+          width: 100%;
+        }
+        .about {
+          position: absolute;
+          bottom: 1.5rem;
+          right: 50%;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
+          transform: translate(50%);
+          font-size: 2rem;
+          h4 {
+            color: white;
+            background-color: #f47107;
+            padding: 0.6rem;
+            border-radius: 1rem;
+            transition: background-color 0.3s ease-in-out,
+              color 0.3s ease-in-out;
+          }
+          .icons {
+            display: flex;
+            gap: 1rem;
+            .icon {
+              transition: opacity 0.3s ease-in-out;
+              background-color: white;
+              width: 2.5rem;
+              height: 2.5rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              opacity: 0;
+              font-size: 1.5rem;
+            }
+            .icon:hover {
+              background-color: #f47107;
+              color: white;
+            }
+          }
+        }
+        &:hover {
+          .icons .icon {
+            opacity: 1;
+          }
+          .about h4 {
+            background-color: white;
+            color: #f47107;
+          }
+        }
+      }
+    }
+  }
+}
+#veterinaryRandevu {
+  padding: 5rem 0;
+  .container {
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        font-size: 3.5rem;
+      }
+      img {
+        margin-left: 1rem;
+        width: 2rem;
+      }
+    }
+    .randevu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+      .left {
+        img {
+          width: 100%;
+        }
+      }
+
+      form {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .row {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          font-size: 1.6rem;
+          
+          $font-family_1: "SF Pro";
+
+          .input {
+            font-family: $font-family_1;
+            max-width: 190px;
+            padding: 0.875rem;
+            font-size: 1.5rem;
+            border: 1.5px solid #000;
+            border-radius: 0.5rem;
+            box-shadow: 2.5px 3px 0 #000;
+            outline: none;
+            transition: ease 0.25s;
+            &:focus {
+              box-shadow: 5.5px 7px 0 black;
+            }
+          }
+        }
+        .names {
+          display: flex;
+          gap: 2rem;
+        }
+        $color_1: black;
+        $color_2: white;
+        $font-family_1: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        $background-color_1: #fff;
+        $background-color_2: #fff;
+        $background-color_3: #f47107;
+        $background-color_4: #ffab1a;
+        $border-color_1: #e0fdfb;
+
+  
+      
+        .submit {
+          cursor: pointer;
+          margin-top: 2rem;
+          max-width: 20rem;
+          background-color: #f47107;
+          padding: 1rem;
+          border: none;
+          color: white;
+          border-radius: 0.5rem;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #veterinaryHero {
+    background-position: 40%;
+    .container {
+      .title {
+        padding: 25rem 0;
+      }
+    }
+  }
+  #procedures {
+    .container {
+      .title {
+        h3 {
+          font-size: 3rem;
+        }
+      }
+      .procedures {
+        gap: 2rem;
+      }
+    }
+  }
+  #aboutVeterinary {
+    .right {
+      padding: 0 4rem;
+      h4 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.8rem;
+      }
+    }
+    .abselutes {
+      gap: 6rem;
+      padding: 3rem;
+      .col {
+        font-size: 3rem;
+        h5 {
+          min-width: 13rem;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+  #veterinaries {
+    .container {
+      padding: 0 1rem;
+      .title {
+        h3 {
+          font-size: 3rem;
+        }
+      }
+      .veterinars {
+        gap: 2rem;
+        .veterinar {
+          .about {
+            font-size: 1.6rem;
+            h4 {
+              padding: 0.4rem;
+            }
+            .icons {
+              .icon {
+                font-size: 1.3rem;
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #veterinaryRandevu{
+    .container{
+        padding: 0 2rem;
+        .title {
+            h3 {
+              font-size: 3rem;
+            }
+          }
+        .randevu{
+            grid-template-columns: repeat(1,1fr);
+           
+            .left{
+                width: 60%;
+                margin: auto;
+            }
+            form{
+               
+                .textarea{
+                  width: 90%;
+                }
+            }
+
+        }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #veterinaryHero {
+    background-position: 50%;
+    .container {
+      .title {
+        padding: 20rem 0 25rem 0;
+        h2 {
+          font-size: 3rem;
+        }
+        h3 {
+          font-size: 2rem;
+        }
+        button {
+          max-width: 18rem;
+          gap: 0.5rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  #procedures {
+    .container {
+      .title {
+        h3 {
+          font-size: 3rem;
+        }
+      }
+      .procedures {
+        grid-template-columns: repeat(2, 1fr);
+        .col {
+          .icon {
+            font-size: 3.5rem;
+          }
+        }
+      }
+    }
+  }
+  #aboutVeterinary {
+    grid-template-columns: repeat(1, 1fr);
+    .right {
+      padding: 0 1rem;
+    }
+
+    .abselutes {
+      width: 70%;
+      grid-template-columns: repeat(2, auto);
+      bottom: -20%;
+      gap: 2.5rem;
+    }
+  }
+  #veterinaries {
+    padding-top: 10rem;
+    .container {
+      .veterinars {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  #veterinaryHero {
+    .container {
+      .title {
+        h2 {
+          font-size: 2.5rem;
+        }
+        h3 {
+          font-size: 1.8rem;
+        }
+        button {
+          margin-top: 2rem;
+          gap: 0.5rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  #procedures {
+    .container {
+      .title {
+        h3 {
+          font-size: 2.5rem;
+        }
+        img {
+          width: 1.5rem;
+        }
+      }
+      .procedures {
+        .col {
+          .icon {
+            font-size: 3rem;
+          }
+          .about {
+            font-size: 1.8rem;
+            p {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  #aboutVeterinary {
+    .right {
+      h4 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.6rem;
+      }
+    }
+    .abselutes {
+      padding: 2rem;
+      gap: 2rem;
+      .col {
+        font-size: 2.5rem;
+        h5 {
+          min-width: 10rem;
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+  #veterinaries {
+    padding-top: 12rem;
+    .container {
+      padding: 0 3rem;
+      .title {
+        h3 {
+          font-size: 2.5rem;
+        }
+        img {
+          width: 1.5rem;
+        }
+      }
+      .veterinars {
+        grid-template-columns: repeat(1, 1fr);
+        .veterinar {
+          .about {
+            h4 {
+              padding: 0.6rem;
+            }
+            .icons {
+              .icon {
+                font-size: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #veterinaryRandevu{
+    .container{
+        padding: 0 1rem;
+        .title {
+            h3 {
+              font-size: 2.5rem;
+            }
+            img {
+                width: 1.5rem;
+              }
+          }
+        .randevu{
+   
+           
+            .left{
+                width: 80%;
+            }
+            form{
+
+                padding: 4rem;
+               .names{
+                flex-direction: column;
+               }
+               .textarea{
+                width: 100%;
+               }
+            }
+
+        }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #veterinaryHero {
+    .container {
+      .title {
+        padding: 18rem 0 20rem 0;
+        h2 {
+          font-size: 2.5rem;
+        }
+        h3 {
+          font-size: 1.8rem;
+        }
+        button {
+          max-width: 15rem;
+          margin-top: 1rem;
+          gap: 0.5rem;
+          font-size: 1rem;
+          padding: 1rem 0.8rem;
+        }
+      }
+    }
+  }
+  #procedures {
+    .container {
+      .procedures {
+        grid-template-columns: repeat(1, 1fr);
+
+        .col {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .icon {
+            font-size: 3rem;
+          }
+          .about {
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            p {
+              padding: 0 1rem;
+              text-align: center;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 375px) {
+  #veterinaryHero {
+    .container {
+      .title {
+        padding: 15rem 0;
+        h2 {
+          font-size: 2rem;
+        }
+        h3 {
+          font-size: 1.6rem;
+        }
+        button {
+          margin-top: 1rem;
+          gap: 0.5rem;
+          font-size: 1rem;
+          padding: 1rem 0.8rem;
+        }
+      }
+    }
+  }
+  #procedures {
+    .container {
+      .title {
+        h3 {
+          font-size: 2.3rem;
+        }
+      }
+    }
+  }
+  #aboutVeterinary {
+    .right {
+      h4 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+    .abselutes {
+      bottom: -45%;
+      grid-template-columns: repeat(1, 1fr);
+      width: 60%;
+      padding: 2rem;
+      gap: 2.5rem;
+      .col {
+        align-items: center;
+        justify-content: center;
+        font-size: 2.3rem;
+        h5 {
+          min-width: 0;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  #veterinaries {
+    padding-top: 27rem;
+    .container {
+      padding: 0 2rem;
+      .title {
+        h3 {
+          font-size: 2.3rem;
+        }
+      }
+      .veterinars {
+        .veterinar {
+          .about {
+            font-size: 1.4rem;
+            h4 {
+              padding: 0.4rem;
+            }
+            .icons {
+              .icon {
+                font-size: 1.3rem;
+                width: 2.5rem;
+                height: 2.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #veterinaryRandevu{
+    .container{
+  
+        .title {
+            h3 {
+              font-size: 2.3rem;
+            }
+           
+          }
+        .randevu{
+   
+           
+            .left{
+                width: 90%;
+            }
+            form{
+              // align-items: center;
+                padding: 4rem;
+               .names{
+                flex-direction: column;
+               }
+               .row{
+                font-size: 1.3rem;
+                .input{
+                    font-size: 1.3rem;
+                    max-width: 15rem;
+                }
+               }
+               .submit{
+                font-size: 1.3rem;
+               }
+               .radio-input {
+
+                flex-direction: column;
+               }
+               .textarea{
+                width: 100%;
+               }
+            }
+
+        }
+    }
+  }
+}

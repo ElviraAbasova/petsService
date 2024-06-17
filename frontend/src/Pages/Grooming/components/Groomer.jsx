@@ -3,7 +3,6 @@ import paw from "../../../assets/images/pngwing.com (29).png";
 import team1 from "../../../assets/images/team-v1-4.png";
 import team2 from "../../../assets/images/team-v1-3.png";
 import team3 from "../../../assets/images/team-v1-1.png";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
