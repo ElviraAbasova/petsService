@@ -81,6 +81,29 @@ const GroomRandevu = () => {
               </div>
               <div className="radio-input">
                 <input
+                  defaultValue="groom-1"
+                  name="groom-radio"
+                  id="groom-1"
+                  type="radio"
+                />
+                <label htmlFor="groom-1">Miranda Halim</label>
+                <input
+                  defaultValue="groom-2"
+                  name="groom-radio"
+                  id="groom-2"
+                  type="radio"
+                />
+                <label htmlFor="groom-2">Rosalina William</label>
+                <input
+                  defaultValue="groom-3"
+                  name="groom-radio"
+                  id="groom-3"
+                  type="radio"
+                />
+                <label htmlFor="groom-3">Yokolili Y. Yankee</label>
+              </div>
+              <div className="radio-input">
+                <input
                   defaultValue="value-1"
                   name="value-radio"
                   id="value-1"

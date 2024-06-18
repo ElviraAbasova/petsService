@@ -17,7 +17,8 @@
         font-size: 2.5rem;
         font-style: italic;
       }
-      button {
+      .button {
+        text-decoration: none;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         margin-top: 3rem;
@@ -64,6 +65,7 @@
         flex-direction: column;
         justify-content: space-between;
         .care {
+          cursor: pointer;
           display: flex;
           gap: 1rem;
           align-items: center;
@@ -118,10 +120,12 @@
       grid-template-columns: repeat(3, 1fr);
       justify-content: space-between;
       .groomer {
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
         .card {
+        
           transition: all 0.5s ease-in-out;
           padding: 1rem;
           border-radius: 50%;
@@ -156,6 +160,7 @@
           display: flex;
           gap: 1rem;
           .icon {
+            color: black;
             font-size: 1.5rem;
             transition: all 0.3s ease-in-out;
           }
@@ -279,11 +284,13 @@
               display: flex;
               gap: 1rem;
               .radio-button {
+                
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
               }
               input[type='radio']:after {
+                cursor: pointer;
                 width: 15px;
                 height: 15px;
                 border-radius: 15px;

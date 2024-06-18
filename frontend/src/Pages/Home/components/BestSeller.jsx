@@ -18,48 +18,7 @@ const BestSeller = () => {
             </div>
          
             <div className="cards">
-            <div className="card">
-                <div className="imgBox">
-                    <img src={post} alt="product" />
-                    <div className="transition">
-                    <div className="circle">
-                    <FontAwesomeIcon className='like' icon={faHeart} />
-
-                    </div>
-                    <div className="basket">
-                    <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
-                    Add to Card
-                    </div>
-                    </div>
-                    <div className="disc">
-                        -30%
-                    </div>
-                 
-
-                </div>
-                <div className="prices">
-                <h4 className='price'>$100</h4>
-                <div className="oldPrice">$150</div>
-                </div>
-                <p className='about'>
-                    Food for cat
-                </p>
-                <div className="stars">
-                    <div className="star">
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-
-                        
-                    </div>
-                    <p>(5 rewies)</p>
-                </div>
-        
-
-            </div>
-            <Link to="/detail" className="card">
+            <Link to="/detail" target="_parent" className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -100,7 +59,7 @@ const BestSeller = () => {
         
 
             </Link>
-            <Link to="/detail" className="card">
+            <Link to="/detail" target="_parent" className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -141,7 +100,48 @@ const BestSeller = () => {
         
 
             </Link>
-            <Link to="/detail"className="card">
+            <Link to="/detail" target="_parent" className="card">
+                <div className="imgBox">
+                    <img src={post} alt="product" />
+                    <div className="transition">
+                    <div className="circle">
+                    <FontAwesomeIcon className='like' icon={faHeart} />
+
+                    </div>
+                    <div className="basket">
+                    <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
+                    Add to Card
+                    </div>
+                    </div>
+                    <div className="disc">
+                        -30%
+                    </div>
+                 
+
+                </div>
+                <div className="prices">
+                <h4 className='price'>$100</h4>
+                <div className="oldPrice">$150</div>
+                </div>
+                <p className='about'>
+                    Food for cat
+                </p>
+                <div className="stars">
+                    <div className="star">
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+
+                        
+                    </div>
+                    <p>(5 rewies)</p>
+                </div>
+        
+
+            </Link>
+            <Link to="/detail" target="_parent" className="card">
                 <div className="imgBox">
                     <img src={post} alt="product" />
                     <div className="transition">
@@ -184,7 +184,7 @@ const BestSeller = () => {
 
             </Link>
         </div>
-        <button className='viewAll'>View All</button>
+        <Link to="/shop" target="_parent" className='viewAll'>View All</Link>
         </div>
    
     </section>

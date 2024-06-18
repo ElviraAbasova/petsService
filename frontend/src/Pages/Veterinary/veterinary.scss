@@ -17,7 +17,8 @@
         font-size: 2.5rem;
         font-style: italic;
       }
-      button {
+      .button {
+        text-decoration: none;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         margin-top: 3rem;
@@ -59,6 +60,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 3rem;
       .col {
+        cursor: pointer;
         display: flex;
         gap: 2rem;
         .icon {
@@ -162,6 +164,7 @@
     border-radius: 2rem;
     border: 2px dashed #f47107;
     .col {
+      cursor: pointer;
       font-size: 3.5rem;
       color: #77bfbc;
       display: flex;
@@ -197,6 +200,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 3rem;
       .veterinar {
+        cursor: pointer;
         position: relative;
         img {
           width: 100%;
@@ -322,7 +326,70 @@
         $background-color_3: #f47107;
         $background-color_4: #ffab1a;
         $border-color_1: #e0fdfb;
-
+        @keyframes radio-translate {
+          0% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        .radio-input {
+          display: flex;
+          flex-direction: row;
+          font-family: $font-family_1;
+          font-size: 16px;
+          font-weight: 600;
+          color: $color_1;
+          input[type="radio"] {
+            display: none;
+            &:checked {
+              
+              + {
+                label {
+                  &:before {
+                    background-color: $background-color_3;
+                    top: 0;
+                  }
+                  background-color: $background-color_4;
+                  color: $color_2;
+                  border-color: $border-color_1;
+                  animation: radio-translate 0.5s ease-in-out;
+                }
+              }
+            }
+          }
+          label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: $background-color_1;
+            border-radius: 5px;
+            margin-right: 12px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            &:before {
+              content: "";
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 0;
+              transform: translate(-50%, -50%);
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: $background-color_2;
+              border: 2px solid #ccc;
+              transition: all 0.3s ease-in-out;
+              
+            }
+          }
+        }
   
       
         .submit {
@@ -775,7 +842,7 @@
                 width: 90%;
             }
             form{
-              // align-items: center;
+    
                 padding: 4rem;
                .names{
                 flex-direction: column;
@@ -798,6 +865,10 @@
                 width: 100%;
                }
             }
+            .radio-input {
+
+              flex-direction: column;
+             }
 
         }
     }

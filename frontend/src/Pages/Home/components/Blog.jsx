@@ -1,14 +1,14 @@
 import paw from "../../../assets/images/pngwing.com (29).png"
 import main from "../../../assets/images/home-n2-bg9.png"
-
-
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 const Blog = () => {
   return (
     <section id="blog">
       <div className="container">
         <div className="title">
-          <h3>Pets Gallery</h3>
+          <h3>About Us</h3>
           <img src={paw} alt="" />
         </div>
         <div className="top">
@@ -24,9 +24,9 @@ const Blog = () => {
               deserunt reprehenderit elit laborum.
             </p>
             <ul>
-              <li>Fresh and quality food</li>
-              <li>Care Services Reliable</li>
-              <li>Highly qualified team</li>
+              <li> <FontAwesomeIcon className="icon" icon={faCheck} />Fresh and quality food</li>
+              <li> <FontAwesomeIcon className="icon"  icon={faCheck} />Care Services Reliable</li>
+              <li> <FontAwesomeIcon className="icon"  icon={faCheck} />Highly qualified team</li>
             </ul>
           </div>
         </div>

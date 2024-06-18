@@ -3,7 +3,7 @@ import "./favorite.scss"
 import post from "../../assets/images/ps-3-p-1-300x300.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBasketShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
-
+import { Link } from 'react-router-dom';
 const Favorite = () => {
   return (
     <section id='favorite'>
@@ -14,7 +14,7 @@ const Favorite = () => {
             </div>
             <div className="favorite">
                 <div className="leftSide">
-                <div className="product">
+                <Link to="/detail" target='_parent' className="product">
                     <div className="col"> 
                         <div className="imgBox">
                         <img src={post} alt="" />
@@ -34,8 +34,8 @@ const Favorite = () => {
                   <FontAwesomeIcon className='like' icon={faHeart} />
                 </div>
 
-                </div>
-                <div className="product">
+                </Link>
+                <Link to="/detail" target='_parent' className="product">
                     <div className="col">
                        <div className="imgBox">
                        <img src={post} alt="" />
@@ -54,7 +54,7 @@ const Favorite = () => {
                   <FontAwesomeIcon className='like' icon={faHeart} />
                 </div>
                     
-                </div>
+                </Link>
                 </div>
                 <div className="rightSide">
                     <button>

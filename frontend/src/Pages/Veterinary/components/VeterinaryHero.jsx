@@ -9,7 +9,7 @@ const VeterinaryHero = () => {
         <div className="title">
                 <h3>Veterinary</h3>
                 <h2>Hpspital For Your Pets</h2>
-                <button><FontAwesomeIcon icon={faCalendarDays} />MAKE AN APPOINTMENT</button>
+                <a className='button' href='#veterinaryRandevu'><FontAwesomeIcon icon={faCalendarDays} />MAKE AN APPOINTMENT</a>
 
             </div>
         </div>

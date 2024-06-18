@@ -181,7 +181,7 @@ const ShopCards = () => {
 
       <div className="cards">
         {currentCards.map(card => (
-          <Link to="/detail" className="card" key={card.id}>
+          <Link to="/detail" target="_parent" className="card" key={card.id}>
             <div className="imgBox">
               <img src={post} alt="product" />
               <div className="transition">

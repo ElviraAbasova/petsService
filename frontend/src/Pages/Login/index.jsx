@@ -25,18 +25,18 @@ const Login = () => {
                         <input type="password" id='password' required />
                     </div>
                     <Link className="forgot">forgot password?</Link>
-                    <button>Log in</button>
+                    <Link className="button" target="_parent" to="/">Log in</Link>
                 </form>
                 <div className="icons">
-                    <div className="icon">
+                    <Link to="https://www.facebook.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faFacebookF} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faInstagram} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://x.com/?lang=en" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faTwitter} />
-                    </div>
+                    </Link>
                 </div>
               
             </div>

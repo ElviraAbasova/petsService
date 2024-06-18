@@ -48,6 +48,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 1rem;
         }
         .row {
           display: flex;
@@ -131,7 +132,7 @@
           text-decoration: none;
           color: black;
         }
-        button {
+        .button {
           transition: all 0.3s ease-in-out;
           background-color: #f47107;
           border: none;
@@ -139,8 +140,10 @@
           color: white;
           border-radius: 3rem;
           font-size: 1.4rem;
+          text-align: center;
+          text-decoration: none;
         }
-        button:hover {
+        .button:hover {
           background-color: #8d19e8;
         }
       }

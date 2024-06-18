@@ -28,45 +28,45 @@ const Footer = () => {
           (877) 123 4567
           </h5>
           <div className="socials">
-            <div className="social">
+            <Link to="https://www.facebook.com/" target="_blank" className="social">
             <FontAwesomeIcon icon={faFacebookF} />
-            </div>
-            <div className="social">
+            </Link>
+            <Link to="https://x.com/?lang=en" target="_blank" className="social">
             <FontAwesomeIcon icon={faTwitter} />
-            </div>
-            <div className="social">
+            </Link>
+            <Link to="https://www.instagram.com/" target="_blank" className="social">
             <FontAwesomeIcon icon={faInstagram} />
-            </div>
-            <div className="social">
+            </Link>
+            <Link to="https://web.whatsapp.com/" target="_blank" className="social">
             <FontAwesomeIcon icon={faWhatsapp} />
-            </div>
+            </Link>
             
           </div>
         </div>
         <div className="col">
           <h5>USEFUL LINKS</h5>
           <ul>
-            <li><Link className="link">New Products</Link></li>
-            <li><Link className="link">Discounts</Link></li>
-            <li><Link className="link">Best Sellers</Link></li>
-            <li><Link className="link">Pet Store Location</Link></li>
+            <li><Link to="/shop" target="_parent" className="link">New Products</Link></li>
+            <li><Link to="/shop" target="_parent" className="link">Discounts</Link></li>
+            <li><Link to="/shop" target="_parent" className="link">Best Sellers</Link></li>
+            <li><Link to="/contact" target="_parent" className="link">Pet Store Location</Link></li>
           </ul>
         </div>
         <div className="col">
           <h5>MY ACCOUNT</h5>
           <ul>
-            <li><Link className="link">MY Profile</Link></li>
-            <li><Link className="link">My Order History</Link></li>
-            <li><Link className="link">My Wishlist</Link></li>
-            <li><Link className="link">Shopping Card</Link></li>
+            <li><Link to="/profile" target="_parent" className="link">MY Profile</Link></li>
+            <li><Link to="/profile" target="_parent" className="link">My Order History</Link></li>
+            <li><Link to="/favorite" target="_parent" className="link">My Wishlist</Link></li>
+            <li><Link to="/basket" target="_parent" className="link">Shopping Card</Link></li>
           </ul>
         </div>
         <div className="col">
           <h5>SERVICES</h5>
           <ul>
-            <li><Link className="link">Shopping</Link></li>
-            <li><Link className="link">Grooming</Link></li>
-            <li><Link className="link">Veterinary</Link></li>
+            <li><Link to="/shop" target="_parent" className="link">Shopping</Link></li>
+            <li><Link to="/grooming" target="_parent" className="link">Grooming</Link></li>
+            <li><Link to="/veterinary" target="_parent" className="link">Veterinary</Link></li>
           </ul>
         </div>
         <div className="col">
@@ -75,12 +75,12 @@ const Footer = () => {
           Download Our App
           </div>
       <div className="apps">
-        <div className="app">
+        <Link to="https://play.google.com/store/apps?hl=en_US&pli=1" target="_parent" className="app">
           <img src={playmarket} alt="playstore" />
-        </div>
-        <div className="app">
+        </Link>
+        <Link to="https://www.apple.com/app-store/" target="_parent" className="app">
           <img src={appstore} alt="appstore" />
-        </div>
+        </Link>
       </div>
         </div>
         </div>

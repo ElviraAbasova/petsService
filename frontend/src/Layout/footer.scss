@@ -17,6 +17,7 @@ footer{
                 flex-direction: column;
                 gap: 3rem;
                 .logo{
+                    cursor: pointer;
                     width: 10rem;
                     img{
                         width: 100%;
@@ -28,6 +29,7 @@ footer{
                     line-height: 1.5;
                 }
                 .phone{
+                    cursor: pointer;
                     display: flex;
                     align-items: center;
                     gap: 1rem;
@@ -47,6 +49,8 @@ footer{
                     display: flex;
                     gap: 1rem;
                     .social{
+                        color: black;
+                        cursor: pointer;
                         transition: all 0.5s ease-in-out;
                         border-radius: 50%;
                         width: 4rem;
@@ -63,6 +67,7 @@ footer{
                     }
                 }
                 h5{
+                    cursor: pointer;
                     margin-top: 2rem;
                     font-size: 1.5rem;
                     font-weight: 600;
@@ -73,6 +78,7 @@ footer{
                     gap: 2rem;
                     list-style-type: none;
                     li{
+                        cursor: pointer;
                         .link{
                             color: gray;
                             text-decoration: none;
@@ -84,6 +90,7 @@ footer{
                     }
                 }
                 .download{
+                    cursor: pointer;
                     margin-top: 2rem;
                     font-size: 1.4rem;
                     display: flex;
@@ -95,6 +102,7 @@ footer{
                     align-items: center;
                     gap: 1rem;
                     .app{
+                        cursor: pointer;
                         max-width: 9rem;
                         img{
                             width: 100%;
@@ -113,6 +121,7 @@ footer{
             display: flex;
             justify-content: space-between;
             .col{
+                cursor: pointer;
                 font-size: 1.4rem;
                 color: #949494;
             }

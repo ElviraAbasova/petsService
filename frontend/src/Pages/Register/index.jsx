@@ -16,7 +16,10 @@ const Register = () => {
         <div className="login">
           <div className="top">
             <h3>Register</h3>
-            <Link className="register" to="/login"> Log in </Link>
+            <Link className="register" to="/login">
+              {" "}
+              Log in{" "}
+            </Link>
           </div>
           <form action="">
             <div className="info">
@@ -34,7 +37,7 @@ const Register = () => {
                 <label for="date">Date</label>
                 <input type="date" id="date" required />
               </div>
-        
+
               <div className="radio-button-container">
                 <div className="radio-button">
                   <input
@@ -76,18 +79,26 @@ const Register = () => {
               <input type="password" id="password" required />
             </div>
 
-            <button>Log in</button>
+            <Link className="button" to="/login" target="_parent">Register</Link>
           </form>
           <div className="icons">
-            <div className="icon">
+            <Link
+              to="https://www.facebook.com/"
+              target="_blank"
+              className="icon"
+            >
               <FontAwesomeIcon icon={faFacebookF} />
-            </div>
-            <div className="icon">
+            </Link>
+            <Link
+              to="https://www.instagram.com/"
+              target="_blank"
+              className="icon"
+            >
               <FontAwesomeIcon icon={faInstagram} />
-            </div>
-            <div className="icon">
+            </Link>
+            <Link to="https://x.com/?lang=en" target="_blank" className="icon">
               <FontAwesomeIcon icon={faTwitter} />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="pets">

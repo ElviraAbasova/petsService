@@ -1,6 +1,7 @@
 import React from "react";
 import "./basket.scss";
 import post from "../../assets/images/ps-3-p-1-300x300.png";
+import { Link } from 'react-router-dom';
 const Basket = () => {
   return (
     <section id="basket">
@@ -11,7 +12,7 @@ const Basket = () => {
         </div>
         <div className="basket">
           <div className="leftSide">
-            <div className="product">
+            <Link to="/detail" target="_parent" className="product">
               <div className="col">
                 <div className="imgBox">
                   <img src={post} alt="" />
@@ -71,8 +72,8 @@ const Basket = () => {
                   </defs>
                 </svg>
               </button>
-            </div>
-            <div className="product">
+            </Link>
+            <Link to="/detail" target="_parent" className="product">
               <div className="col">
                 <div className="imgBox">
                   <img src={post} alt="" />
@@ -132,7 +133,7 @@ const Basket = () => {
                   </defs>
                 </svg>
               </button>
-            </div>
+            </Link>
           </div>
           <div className="rightSide">
             <div className="top">

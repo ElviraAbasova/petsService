@@ -8,7 +8,9 @@
             gap: 8rem;
             font-size: 1.5rem;
             color: gray;
-            button{
+            .back{
+                text-decoration: none;
+                cursor: pointer;
                 padding: 1rem;
                 color: white;
                 border: none;
@@ -29,13 +31,14 @@
                 border: 2px dotted rgb(221, 221, 221);
                 width: 50%;
                 img{
-                    transition: all 0.4 ease-in-out;
+                    transition: all 0.4s ease-in-out;
                     width: 100%;
                 }
                 &:hover img {
-                    transform: scale(1.5);
+                    transform: scale(1.4);
                   }
                 .disc{
+                    cursor: pointer;
                     position: absolute;
                     background-color: #ff004c;
                         color: white;
@@ -56,7 +59,7 @@
                     }
                 }
                 .circle{
-                    
+                    cursor: pointer;
                     border: 1px solid #e7e7e7;
                     position: absolute;
                     width: 4rem;
@@ -131,6 +134,7 @@
                     overflow: hidden;
                     display: flex;
                     button{
+                        cursor: pointer;
                        transition: all 0.4s ease-in-out; 
                         padding: 1rem 1.2rem;
                         border: none;
@@ -153,6 +157,7 @@
                       }
                 }
                 .basket{
+                    cursor: pointer;
                     background-color: #8d19e8;
                     color: white;
                     padding: 1.5rem;
@@ -177,6 +182,7 @@
                     align-items: center;
                     font-size: 1.4rem;
                     p{
+                        cursor: pointer;
                         font-size: 1.4rem;
                     }
                     p:hover{
@@ -186,7 +192,11 @@
                         display: flex;
                         gap: 0.7rem;
                         align-items: center;
+                        .icon{
+                            color: black;
+                        }
                         .icon:hover{
+
                             color: #f47107;
                         }
                     }

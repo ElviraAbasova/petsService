@@ -7,6 +7,7 @@ import peptile from "../../../assets/images/chameleon-psfohr2vggarlsbbs7oanyz3u1
 import farm from "../../../assets/images/cow-psfohs0pnac1xe9ymq2x8gqkffat8oej993yu6l98g.png"
 
 import React from 'react'
+import { Link } from "react-router-dom"
 
 const Categories = () => {
   return (
@@ -17,30 +18,30 @@ const Categories = () => {
              <img src={paw} alt="" />
             </div>
             <div className="sections">
-                <div className="section">
+                <Link to="/shop" target="_parent" className="section">
                     <img src={cat} alt="cat" />
                     <h4>Cats</h4>
-                </div>
-                <div className="section">
+                </Link>
+                <Link to="/shop" target="_parent" className="section">
                 <img src={dog} alt="dog" />
                 <h4>Dogs</h4>
-                </div>
-                <div className="section">
+                </Link>
+                <Link to="/shop" target="_parent" className="section">
                 <img src={bird}  alt="bird" />
                 <h4>Birds</h4>
-                </div>
-                <div className="section">
+                </Link>
+                <Link to="/shop" target="_parent" className="section">
                 <img src={fish} alt="fish" />
                 <h4>Fish</h4>
-                </div>
-                <div className="section">
+                </Link>
+                <Link to="/shop" target="_parent" className="section">
                 <img src={peptile} alt="peptile" />
                 <h4>Peptile</h4>
-                </div>
-                <div className="section">
+                </Link>
+                <Link to="/shop" target="_parent" className="section">
                 <img src={farm} alt="farm" />
                 <h4>Farm Animal</h4>
-                </div>
+                </Link>
             </div>
         </div>
     </section>

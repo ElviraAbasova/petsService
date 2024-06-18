@@ -16,28 +16,28 @@ const Collection = () => {
                
                 <h4>Animal Food</h4>
                 <div className="shop">
-                <Link className='link'>Shop now</Link>
+                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Toy</h4>
                 <div className="shop">
-                <Link className='link'>Shop now</Link>
+                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Clothes</h4>
                 <div className="shop">
-                <Link className='link'>Shop now</Link>
+                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Medical</h4>
                 <div className="shop">
-                <Link className='link'>Shop now</Link>
+                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
            

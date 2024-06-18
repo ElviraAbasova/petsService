@@ -17,16 +17,16 @@ import {
     faWhatsapp
    
   } from "@fortawesome/free-brands-svg-icons";
-
+  import { Link } from 'react-router-dom';
 const Detail = () => {
   return (
     <section id="detail">
       <div className="container">
         <div className="top">
-          <button>
+          <Link className="back" to="/" target="_parent">
             <FontAwesomeIcon icon={faArrowLeft} />
             Go Back
-          </button>
+          </Link>
           Home/Category/Food
         </div>
         <div className="detail">
@@ -85,10 +85,10 @@ const Detail = () => {
               </div>
               <div className="row">
                 Share: <div className="icons">
-                    <div className="icon"><FontAwesomeIcon icon={faWhatsapp} /></div>
-                    <div className="icon"><FontAwesomeIcon icon={faFacebookF} /></div>
-                    <div className="icon"><FontAwesomeIcon icon={faTwitter} /></div>
-                    <div className="icon"><FontAwesomeIcon icon={faInstagram} /></div>
+                    <Link to="https://web.whatsapp.com/" target="_blank" className="icon"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+                    <Link to="https://www.facebook.com/" target="_blank" className="icon"><FontAwesomeIcon icon={faFacebookF} /></Link>
+                    <Link to="https://x.com/?lang=en" target="_blank" className="icon"><FontAwesomeIcon icon={faTwitter} /></Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className="icon"><FontAwesomeIcon icon={faInstagram} /></Link>
 
                 </div>
               </div>

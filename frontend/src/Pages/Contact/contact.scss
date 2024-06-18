@@ -51,6 +51,7 @@
             grid-template-columns: repeat(3,1fr);
             gap:2rem;
             .info{
+                cursor: pointer;
                 transition: all 0.5s ease-in-out;
                 padding: 2rem;
                 background-color: #F2F6F9;
@@ -228,6 +229,7 @@ line {
                         
                     }
                     button{
+                        cursor: pointer;
                         transition: all 0.5s ease;
                         background-color: #F7970C;
                         border: none;

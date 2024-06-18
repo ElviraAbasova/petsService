@@ -86,6 +86,29 @@ const VeterinaryReservation = () => {
                   <input className="input" name="time" type="time" />
                 </div>
               </div>
+              <div className="radio-input">
+                <input
+                  defaultValue="value-1"
+                  name="value-radio"
+                  id="value-1"
+                  type="radio"
+                />
+                <label htmlFor="value-1">Mary Rodgers</label>
+                <input
+                  defaultValue="value-2"
+                  name="value-radio"
+                  id="value-2"
+                  type="radio"
+                />
+                <label htmlFor="value-2">Clark Hudson</label>
+                <input
+                  defaultValue="value-3"
+                  name="value-radio"
+                  id="value-3"
+                  type="radio"
+                />
+                <label htmlFor="value-3">Sandra Kohn</label>
+              </div>
               <div className="row">
                   <label for="date">Enter Info</label>
                   <textarea style={{maxWidth:"100%", height:"20rem", resize:"none"}} className='input textarea' placeholder='Please write problem of your pet' ></textarea>

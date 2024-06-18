@@ -20,6 +20,9 @@
         gap: 2rem;
 
         .product {
+          text-decoration: none;
+          color: black;
+          cursor: pointer;
             position: relative;
           transition: all 0.5s ease-in-out;
           border: 1.5px solid transparent;
@@ -161,6 +164,7 @@
             font-size: 2.5rem;
           }
           button {
+            cursor: pointer;
             transition: all 0.3s ease-in-out;
             background-color: #8d19e8;
             padding: 1rem;

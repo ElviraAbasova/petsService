@@ -4,7 +4,7 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import { Link } from "react-router-dom";
 import meal from "../../../assets/images/rev_home2_01.png";
 import dogs from "../../../assets/images/rev_home2_2.png";
-import back1 from "../../../assets/images/home-n1-s-11.png";
+import back1 from "../../../assets/images/pngwing.com (32e).png";
 import cat from "../../../assets/images/rev_home7_16.png";
 import back2 from "../../../assets/images/rev_home7_15.png";
 import dog from "../../../assets/images/rev_home3 (1).png";
@@ -18,7 +18,7 @@ const Hero = () => {
         <>
           <h2>Best Foods For Your Pets</h2>
           <p>Help your dog maintain a healthier weight with </p>
-          <Link className="shop">Shop Now</Link>
+          <Link to="/shop" className="shop">Shop Now</Link>
         </>
       ),
       mealImg: meal,
@@ -31,7 +31,7 @@ const Hero = () => {
         <>
           <h2>Comfortable Beds For Your Pets</h2>
           <p>Keep your pets happy and healthy with our treats</p>
-          <Link className="shop">Shop Now</Link>
+          <Link to="/shop" className="shop">Shop Now</Link>
         </>
       ),
       dogsImg: cat,
@@ -43,7 +43,7 @@ const Hero = () => {
         <>
           <h2>New & Exclusive Pet Clothings</h2>
           <p>Give your pets the best with our options</p>
-          <Link className="shop">Shop Now</Link>
+          <Link to="/shop" className="shop">Shop Now</Link>
         </>
       ),
       dogsImg: dog,
@@ -54,24 +54,33 @@ const Hero = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [fadeProp, setFadeProp] = useState("fade-in");
   const intervalTime = 5000;
   const startX = useRef(0);
   const endX = useRef(0);
 
   const handlePrevClick = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? slides.length - 1 : prevSlide - 1
-    );
+    setFadeProp("fade-out");
+    setTimeout(() => {
+      setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+      setFadeProp("fade-in");
+    }, 500);
   };
 
   const handleNextClick = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === slides.length - 1 ? 0 : prevSlide + 1
-    );
+    setFadeProp("fade-out");
+    setTimeout(() => {
+      setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
+      setFadeProp("fade-in");
+    }, 500);
   };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
+    setFadeProp("fade-out");
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setFadeProp("fade-in");
+    }, 500);
     setIsPaused(true);
   };
 
@@ -134,6 +143,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
+      className={fadeProp}
       style={{ backgroundColor: slides[currentSlide].color }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

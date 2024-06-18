@@ -5,6 +5,7 @@ import team2 from "../../../assets/images/team-v1-3.png";
 import team3 from "../../../assets/images/team-v1-1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const Groomer = () => {
   return (
@@ -23,15 +24,15 @@ const Groomer = () => {
                 <h4>Miranda H. Halim</h4>
                 <p>Senior groomer with 8 years of experience. He knows everything about the pets.</p>
                 <div className="icons">
-                    <div className="icon">
+                    <Link to="https://www.facebook.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faFacebook} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faInstagram} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://x.com/?lang=en" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faTwitter} />
-                    </div>
+                    </Link>
                     
                     
                 </div>
@@ -45,15 +46,15 @@ const Groomer = () => {
                 <h4>Rosalina D. William</h4>
                 <p>Senior groomer with 8 years of experience. He knows everything about the pets.</p>
                 <div className="icons">
-                    <div className="icon">
+                <Link to="https://www.facebook.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faFacebook} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faInstagram} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://x.com/?lang=en" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faTwitter} />
-                    </div>
+                    </Link>
                     
                     
                 </div>
@@ -67,16 +68,15 @@ const Groomer = () => {
                 <h4>Yokolili Y. Yankee</h4>
                 <p>Senior groomer with 8 years of experience. He knows everything about the pets.</p>
                 <div className="icons">
-                    <div className="icon">
+                <Link to="https://www.facebook.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faFacebook} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faInstagram} />
-                    </div>
-                    <div className="icon">
+                    </Link>
+                    <Link to="https://x.com/?lang=en" target="_blank" className="icon">
                     <FontAwesomeIcon icon={faTwitter} />
-                    </div>
-                    
+                    </Link>
                     
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import Layout from "../Layout";
+import Admin from "../Pages/Admin";
 import Basket from "../Pages/Basket";
 import Contact from "../Pages/Contact";
 import Detail from "../Pages/Detail";
@@ -10,6 +11,7 @@ import Profile from "../Pages/Profile";
 import Register from "../Pages/Register";
 import Shop from "../Pages/Shop";
 import Veterinary from "../Pages/Veterinary";
+import Work from "../Pages/Work";
 
 export const routes = [
   {
@@ -52,6 +54,10 @@ export const routes = [
         path: "/veterinary",
         element: <Veterinary />,
       },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
     ],
   },
   {
@@ -61,5 +67,9 @@ export const routes = [
   {
     path: "/register",
     element: <Register />,
-  }
+  },
+  {
+    path: "/work",
+    element: <Work />,
+  },
 ];

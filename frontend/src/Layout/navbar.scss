@@ -54,6 +54,12 @@ nav {
         .link:hover:after {
           transform: scaleX(1);
         }
+        .choose .link {
+          color: #f47107;
+          &:after {
+            transform: scaleX(1);
+          }
+        }
   
         .services {
           .dropdown {
@@ -114,11 +120,56 @@ nav {
             color: #feba83;
           }
         }
+        .logo.choose {
+          color: #f47107;
+        }
       }
       .burger {
         display: none;
       }
     }
+    .toTop{
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      background-color: #f47107;
+      width: 5rem;
+      height: 5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border-radius: 50%;
+      z-index: 3;
+  }
+  .toTop:hover{
+      background-color: #8D19E8;
+  }
+  .chat{
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    position: fixed;
+    right: 1rem;
+    bottom: 10rem;
+    background-color: rgb(9, 186, 9);
+    width: 8rem;
+    height: 8rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-radius: 50%;
+    z-index: 3;
+
+  }
+  .chat:hover{
+    background-color: green;
+  }
+  
   }
   
   @media only screen and (max-width: 992px) {
@@ -185,6 +236,23 @@ nav {
       }
     }
   }
+  @media only screen and (max-width: 576px) {
+    nav {
+      .container {
+      .logo{
+        max-width: 8rem;
+      }
+        ul {
+          gap: 1.5rem;
+          
+        }
+        .LogoBar {
+          max-width: 8rem;
+         
+        }
+      }
+    }
+  }
   
   @media only screen and (max-width: 480px) {
     nav {
@@ -203,6 +271,18 @@ nav {
           font-size: 2rem;
         }
       }
+      .toTop{  
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.4rem;
+    }
+    .chat{
+      width: 4rem;
+        height: 4rem;
+        bottom: 7rem;
+        font-size: 1.6rem;
+
+    }
     }
   }
   

@@ -1,9 +1,9 @@
 #hero {
     position: relative;
     background-size: cover;
-    height: 90rem;
+    height: 85rem;
     overflow: hidden;
-    transition: background-color 0.5s ease;
+    transition: background-color 1s ease;
     &.fade-in .container {
       opacity: 1;
       transform: scale(1);
@@ -13,11 +13,11 @@
       transform: scale(0.95);
     }
     .container {
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 1s ease, transform 1s ease;
       .content {
-        padding-right: 60rem;
+        padding-right: 55rem;
         padding-top: 30rem;
-        font-size: 3.5rem;
+        font-size: 3rem;
         p {
           margin: 3rem 0;
           color: #f47107;
@@ -41,12 +41,12 @@
       .meal,
       .back {
         position: absolute;
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition: opacity 1s ease, transform 1s ease;
       }
       .dogs {
-        top: 30rem;
+        top: 35rem;
         right: 5%;
-        max-width: 60rem;
+        max-width: 55rem;
         z-index: 1;
         img {
           width: 100%;
@@ -55,16 +55,18 @@
       .meal {
         top: 30rem;
         right: 6%;
-        max-width: 60rem;
+        max-width: 56rem;
         z-index: 2;
         img {
           width: 100%;
         }
       }
       .back {
-        bottom: -6px;
-        right: 0;
+        bottom: -70%;
+        right: -10%;
         max-width: 100rem;
+        max-height: 30rem;
+        z-index: -1;
         img {
           width: 100%;
         }
@@ -90,32 +92,32 @@
       }
     }
     .right {
-      right: 0;
-    }
-    .left {
-      left: 0;
-    }
-    .dots {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      display: flex;
-      gap: 1rem;
-      transform: translate(-50%);
-      .dot {
-        width: 1.5rem;
-        height: 1.5rem;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        cursor: pointer;
-        transition: background-color 0.5s ease;
-        &.active {
-          background-color: #8d19e8;
+        right: 0;
+      }
+      .left {
+        left: 0;
+      }
+      .dots {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        display: flex;
+        gap: 1rem;
+        transform: translate(-50%);
+        .dot {
+          width: 1.5rem;
+          height: 1.5rem;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          cursor: pointer;
+          transition: background-color 0.5s ease;
+          &.active {
+            background-color: #8d19e8;
+          }
         }
       }
     }
-  }
   
 
 #categories{
@@ -127,7 +129,7 @@
             align-items: center;
             justify-content: center;
             h3{
-                font-size: 4rem;
+                font-size: 3.5rem;
                
             }
             img{
@@ -142,6 +144,8 @@
             gap: 2rem;
             grid-template-columns: repeat(6,1fr);
             .section{
+                text-decoration: none;
+                cursor: pointer;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -178,7 +182,7 @@
             align-items: center;
             justify-content: center;
             h3{
-                font-size: 4rem;
+                font-size: 3.5rem;
                
             }
             img{
@@ -194,6 +198,7 @@
             gap: 2rem;
         
             .card {
+                cursor: pointer;
                 display: flex;
                 flex-direction: column;
                 gap: 1.2rem;
@@ -331,6 +336,7 @@
             }
         }
         .viewAll{
+            text-decoration: none;
             margin-top: 4rem;
             text-align: center;
             background-color: white;
@@ -358,7 +364,7 @@
             align-items: center;
             justify-content: center;
             h3{
-                font-size: 4rem;
+                font-size: 3.5rem;
                
             }
             img{
@@ -429,7 +435,7 @@
             align-items: center;
             justify-content: center;
             h3{
-                font-size: 4rem;
+                font-size: 3.5rem;
                
             }
             img{
@@ -439,11 +445,14 @@
 
         }
         .services{
+
             margin-top: 4rem;
             display: grid;
             grid-template-columns: repeat(3,1fr);
             gap: 2rem;
             .service{
+                text-decoration: none;
+                cursor: pointer;
                 transition: all 1s ease-in-out;
                 border-radius: 3rem;
                 padding: 5rem;
@@ -459,6 +468,7 @@
                     }
                 }
                 h2{
+                    color: black;
                     font-size: 2.5rem;
                 }
                 p{
@@ -489,25 +499,7 @@
             }
         }
     }
-    .toTop{
-        transition: all 0.5s ease-in-out;
-        position: fixed;
-        right: 1rem;
-        bottom: 1rem;
-        background-color: #f47107;
-        width: 5rem;
-        height: 5rem;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        border-radius: 50%;
-        z-index: 3;
-    }
-    .toTop:hover{
-        background-color: #8D19E8;
-    }
+   
 }
 #about{
     background-image: url("../../assets/images/p-b-8.jpg");
@@ -548,12 +540,12 @@
         padding: 4rem ;
         overflow: hidden;
         .title{
-            
+           
             display: flex;
             align-items: center;
             justify-content: center;
             h3{
-                font-size: 4rem;
+                font-size: 3.5rem;
                
             }
             img{
@@ -574,6 +566,7 @@
                     }
                 }
                 .rightSide{
+                    cursor: pointer;
                     display: flex;
                     flex-direction: column;
                     gap: 1rem;
@@ -582,7 +575,7 @@
                         font-size: 2rem;
                     }
                     h4{
-                        font-size: 3.5rem;
+                        font-size: 3rem;
                     }
                     p{
                         font-size: 2rem;
@@ -590,22 +583,24 @@
                     }
                     ul{
                         margin-top: 3rem;
-                        list-style-type: "✔";
+                        list-style-type: none;
                         list-style-position: inside;
                         display: flex;
                         flex-direction: column;
                         gap: 2rem;
                         
                         li{
-                           
+                           display: flex;
+                           gap: 1rem;
+                           align-items: center;
                             font-size: 2rem;
                             color: #7b7b7b;
+                            .icon{
+                                color: #f47107;
+                            }
                             
                         }
-                        li::marker{
-                            color: #f47107;
-                            
-                        }
+                        
                     }
                 }
             }
@@ -627,6 +622,7 @@
                     height: 35rem;
                     width: 100%;
                     transition: all 0.5s ease-in-out;
+                    cursor: pointer;
                 }
                 .image:not(:first-child){
                     margin-left: -5rem;
@@ -659,24 +655,25 @@
 
 @media only screen and (max-width: 992px) {
     #hero{
+        height: 75rem;
         .container{
             .dogs{
              
-                top: 40rem;
+                top: 37rem;
                 right: 5%;
-                max-width: 50rem;
+                max-width: 45rem;
                
                }
                .meal{
                
                 top: 40rem;
                 right: 6%;
-                max-width: 50rem;
+                max-width: 45rem;
               
                }
                .back{
              
-                bottom: -6px;
+                bottom: -120%;
                 right: 0;
                 max-width: 70rem;
                
@@ -684,8 +681,11 @@
                .content{
                 text-align: center;
                 padding-right: 0rem;
-                padding-top: 20rem;
-                font-size: 3.5rem;
+                padding-top: 18rem;
+                font-size: 3rem;
+                h2{
+                    font-size: 3.5rem;
+                }
                 p{
                     margin-top: 3rem;
                     font-size: 2.5rem;
@@ -742,11 +742,25 @@
         .container{
             .content{
                 padding-top: 20rem;
+              
                 h2{
-                    font-size: 3.8rem;
+                    font-size: 3rem;
 
                 }
+                p{
+                    font-size: 2rem;
+                }
+                .shop{
+                    padding: 1.5rem;
+                    
+                }
             }
+            .back{
+             
+                bottom: -140%;
+              
+               
+               }
         }
 
     }
@@ -868,7 +882,7 @@
 @media only screen and (max-width: 576px) {
   
     #hero{
-        height: 70rem;
+        height: 65rem;
         .container{
             
             .content{
@@ -876,23 +890,25 @@
             }
             .dogs{
              
-                top: 45rem;
+                top: 42rem;
                 right: 2%;
                 max-width: 33rem;
                
                }
                .meal{
                
-                top: 45rem;
+                top: 42rem;
                 right: 3%;
-                max-width: 35rem;
+                max-width: 33rem;
               
                }
                .back{
              
-                bottom: -6px;
+                bottom: -90%;
                 right: 0;
-                max-width: 70rem;
+                max-width: 50rem;
+                max-height: 20rem;
+
                
                }
                .content{
@@ -1003,10 +1019,15 @@
 
 @media only screen and (max-width: 375px) {
     #hero{
+        height: 56rem;
         .container{
             .content{
+                padding-top: 15rem !important;
                 h2{
-                    font-size: 2.5rem;
+                    font-size: 2.4rem;
+                }
+                p{
+                    font-size: 2.2rem;
                 }
                 .shop{
                     padding: 1rem;
@@ -1015,18 +1036,18 @@
             }
             
             .dogs{
-             
+                 top: 35rem;
                 max-width: 30rem;
                
                }
                .meal{
-        
+                top: 35rem;
                 max-width: 30rem;
               
                }
                .back{
              
-                bottom: -6px;
+                bottom: -125%;
                 right: 0;
                 max-width: 50rem;
                
@@ -1120,12 +1141,7 @@
            
          
         }
-        .toTop{
-           
-            width: 3rem;
-            height: 3rem;
-            font-size: 1.4rem;
-        }
+      
 
     }
     #collection{
