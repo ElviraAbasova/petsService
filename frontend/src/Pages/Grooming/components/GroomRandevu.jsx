@@ -41,7 +41,7 @@ const GroomRandevu = () => {
               </div>
               <div className="names">
                 <div className="row">
-                  <label for="name">Your Name</label>
+                  <label htmlFor="name">Your Name</label>
                   <input
                     placeholder="Your Name"
                     className="input"
@@ -50,7 +50,7 @@ const GroomRandevu = () => {
                   />
                 </div>
                 <div className="row">
-                  <label for="pet">Pet Name</label>
+                  <label htmlFor="pet">Pet Name</label>
                   <input
                     placeholder="Pet Name"
                     className="input"
@@ -61,7 +61,7 @@ const GroomRandevu = () => {
               </div>
               <div className="names">
                 <div className="row">
-                  <label for="phone">Your Phone</label>
+                  <label htmlFor="phone">Your Phone</label>
                   <input
                     placeholder="Your Phone"
                     className="input"
@@ -70,7 +70,7 @@ const GroomRandevu = () => {
                   />
                 </div>
                 <div className="row">
-                  <label for="email">Your Email</label>
+                  <label htmlFor="email">Your Email</label>
                   <input
                     placeholder="Your Email"
                     className="input"
@@ -127,11 +127,11 @@ const GroomRandevu = () => {
               </div>
               <div className="names">
                 <div className="row">
-                  <label for="date">Select Date</label>
+                  <label htmlFor="date">Select Date</label>
                   <input className="input" name="date" type="date" />
                 </div>
                 <div className="row">
-                  <label for="time">Select Time</label>
+                  <label htmlFor="time">Select Time</label>
                   <input className="input" name="time" type="time" />
                 </div>
               </div>

@@ -1,15 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { faBasketShopping, faStar, faPaw, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import post from "../../../assets/images/ps-3-p-1-300x300.png"
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllData } from "../../../Service/requests";
+import { AddDatas } from "../../../Redux/Slices/datasSlice";
+
 const ShopCards = () => {
+  const datas = useSelector((state) => state.datas.arr);
+  const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 9;
+
+  useEffect(() => {
+    getAllData("products").then(res => dispatch(AddDatas(res)));
+  }, [dispatch]);
 
   const onSliderChange = (value) => {
     setPriceRange(value);
@@ -25,27 +34,12 @@ const ShopCards = () => {
     setPriceRange([priceRange[0], value]);
   };
 
-  const cards = [
-   
-    { id: 1, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 2, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 3, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 4, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 5, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 6, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 7, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 8, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 9, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    { id: 10, price: 100, oldPrice: 150, description: "Food for cat", discount: "-30%", reviews: 5 },
-    
-  ];
-
-  const totalCards = cards.length;
+  const totalCards = datas.length;
   const totalPages = Math.ceil(totalCards / cardsPerPage);
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = datas.slice(indexOfFirstCard, indexOfLastCard);
 
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -181,9 +175,9 @@ const ShopCards = () => {
 
       <div className="cards">
         {currentCards.map(card => (
-          <Link to="/detail" target="_parent" className="card" key={card.id}>
+          <Link to="/detail" target="_parent" className="card" key={card._id}>
             <div className="imgBox">
-              <img src={post} alt="product" />
+              <img src={card.image} alt="product" />
               <div className="transition">
                 <div className="circle">
                   <FontAwesomeIcon className='like' icon={faHeart} />
@@ -193,34 +187,32 @@ const ShopCards = () => {
                   Add to Card
                 </div>
               </div>
-              <div className="disc">{card.discount}</div>
+              <div className="disc">-{card.discount}%</div>
             </div>
             <div className="prices">
-              <h4 className='price'>${card.price}</h4>
-              <div className="oldPrice">${card.oldPrice}</div>
+              <h4 className='price'>${Math.round((card.price - (card.price * card.discount / 100)) * 100) / 100}</h4>
+              <div className="oldPrice">${card.price}</div>
             </div>
             <p className='about'>{card.description}</p>
             <div className="stars">
               <div className="star">
-                {[...Array(5)].map((_, index) => (
+              {Array.from({ length: card.rating }, (_, index) => (
                   <FontAwesomeIcon icon={faStar} key={index} />
                 ))}
               </div>
-              <p>({card.reviews} reviews)</p>
+              <p>({card.comments.length} reviews)</p>
             </div>
           </Link>
         ))}
         <div className="arrows">
-        <button className=" arrow next" onClick={prevPage} disabled={currentPage === 1}>
+          <button className="arrow next" onClick={prevPage} disabled={currentPage === 1}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
-          <button className=" arrow before" onClick={nextPage} disabled={currentPage === totalPages}>
+          <button className="arrow before" onClick={nextPage} disabled={currentPage === totalPages}>
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
-          
-        </div>
-      
+      </div>
     </div>
   );
 };

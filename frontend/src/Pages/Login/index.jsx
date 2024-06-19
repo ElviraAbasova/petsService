@@ -17,11 +17,11 @@ const Login = () => {
                 </div>
                 <form action="">
                     <div className="row">
-                        <label for="username">Email or Username</label>
+                        <label htmlFor="username">Email or Username</label>
                         <input type="text" id='username' required/>
                     </div>
                     <div className="row">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" id='password' required />
                     </div>
                     <Link className="forgot">forgot password?</Link>

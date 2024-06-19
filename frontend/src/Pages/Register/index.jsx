@@ -24,17 +24,17 @@ const Register = () => {
           <form action="">
             <div className="info">
               <div className="row">
-                <label for="name">Name</label>
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" required />
               </div>
               <div className="row">
-                <label for="surname">Surname</label>
+                <label htmlFor="surname">Surname</label>
                 <input type="text" id="surname" required />
               </div>
             </div>
             <div className="info">
               <div className="row">
-                <label for="date">Date</label>
+                <label htmlFor="date">Date</label>
                 <input type="date" id="date" required />
               </div>
 
@@ -67,15 +67,15 @@ const Register = () => {
             </div>
 
             <div className="row">
-              <label for="email">Email</label>
+              <label htmlForr="email">Email</label>
               <input type="email" id="email" required />
             </div>
             <div className="row">
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input type="text" id="username" required />
             </div>
             <div className="row">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input type="password" id="password" required />
             </div>
 

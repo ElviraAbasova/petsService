@@ -17,7 +17,7 @@ const VeterinaryReservation = () => {
             <form action="">
             <div className="names">
                 <div className="row">
-                  <label for="category">Pet Category</label>
+                  <label htmlFor="category">Pet Category</label>
                   <input
                     placeholder="Pet Category"
                     className="input"
@@ -26,7 +26,7 @@ const VeterinaryReservation = () => {
                   />
                 </div>
                 <div className="row">
-                  <label for="pet">Pet Name</label>
+                  <label htmlFor="pet">Pet Name</label>
                   <input
                     placeholder="Pet Name"
                     className="input"
@@ -37,7 +37,7 @@ const VeterinaryReservation = () => {
               </div>
               <div className="names">
                 <div className="row">
-                  <label for="name">Your Name</label>
+                  <label htmlFor="name">Your Name</label>
                   <input
                     placeholder="Your Name"
                     className="input"
@@ -46,7 +46,7 @@ const VeterinaryReservation = () => {
                   />
                 </div>
                 <div className="row">
-                  <label for="surname">Your Surname</label>
+                  <label htmlFor="surname">Your Surname</label>
                   <input
                     placeholder="Your Surname"
                     className="input"
@@ -57,7 +57,7 @@ const VeterinaryReservation = () => {
               </div>
               <div className="names">
                 <div className="row">
-                  <label for="phone">Your Phone</label>
+                  <label htmlFor="phone">Your Phone</label>
                   <input
                     placeholder="Your Phone"
                     className="input"
@@ -66,7 +66,7 @@ const VeterinaryReservation = () => {
                   />
                 </div>
                 <div className="row">
-                  <label for="email">Your Email</label>
+                  <label htmlFor="email">Your Email</label>
                   <input
                     placeholder="Your Email"
                     className="input"
@@ -78,11 +78,11 @@ const VeterinaryReservation = () => {
              
               <div className="names">
                 <div className="row">
-                  <label for="date">Select Date</label>
+                  <label htmlFor="date">Select Date</label>
                   <input className="input" name="date" type="date" />
                 </div>
                 <div className="row">
-                  <label for="time">Select Time</label>
+                  <label htmlFor="time">Select Time</label>
                   <input className="input" name="time" type="time" />
                 </div>
               </div>
@@ -110,7 +110,7 @@ const VeterinaryReservation = () => {
                 <label htmlFor="value-3">Sandra Kohn</label>
               </div>
               <div className="row">
-                  <label for="date">Enter Info</label>
+                  <label htmlFor="date">Enter Info</label>
                   <textarea style={{maxWidth:"100%", height:"20rem", resize:"none"}} className='input textarea' placeholder='Please write problem of your pet' ></textarea>
                 </div>
               

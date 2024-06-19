@@ -17,21 +17,30 @@ const Navbar = () => {
   const [select, setSelect] = useState(false);
   const [menu, setMenu] = useState(false);
 
+  const openMenu = () => {
+    setMenu(!menu);
+  };
+
+  const closeMenu = () => {
+    setMenu(false);
+  };
+
   const location = useLocation();
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
-  const handleShow = ()=>{
-    setMenu(true)
-  }
-  const handleClose = ()=>{
-    setMenu(false)
-  }
+  const handleShow = () => {
+    setMenu(true);
+  };
+
+  const handleClose = () => {
+    setMenu(false);
+  };
 
   return (
     <nav>
@@ -39,18 +48,24 @@ const Navbar = () => {
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
-        <ul className={!menu ? 'show' : ''}>
+        <ul className={menu ? "show" : ""}>
           <li className={location.pathname === "/" ? "choose" : ""}>
-            <Link to="/" className="link">Home</Link>
+            <Link to="/" className="link" onClick={closeMenu}>
+              Home
+            </Link>
           </li>
           <li className={location.pathname === "/shop" ? "choose" : ""}>
-            <Link to="/shop" className="link">Shop</Link>
+            <Link to="/shop" className="link" onClick={closeMenu}>
+              Shop
+            </Link>
           </li>
           <li className={location.pathname === "/contact" ? "choose" : ""}>
-            <Link to="/contact" className="link">Contact</Link>
+            <Link to="/contact" className="link" onClick={closeMenu}>
+              Contact
+            </Link>
           </li>
-          <li 
-            className={`services ${select ? 'active' : ''}`}
+          <li
+            className={`services ${select ? "active" : ""}`}
             onMouseEnter={() => setSelect(true)}
             onMouseLeave={() => setSelect(false)}
           >
@@ -59,16 +74,22 @@ const Navbar = () => {
             {select && (
               <ul className="dropdown">
                 <li className={location.pathname === "/grooming" ? "choose" : ""}>
-                  <Link to="/grooming" className="link">Grooming</Link>
+                  <Link to="/grooming" className="link" onClick={closeMenu}>
+                    Grooming
+                  </Link>
                 </li>
                 <li className={location.pathname === "/veterinary" ? "choose" : ""}>
-                  <Link to="/veterinary" className="link">Veterinary</Link>
+                  <Link to="/veterinary" className="link" onClick={closeMenu}>
+                    Veterinary
+                  </Link>
                 </li>
               </ul>
             )}
           </li>
           <li className={location.pathname === "/admin" ? "choose" : ""}>
-            <Link to="/admin" className="link">Admin</Link>
+            <Link to="/admin" className="link" onClick={closeMenu}>
+              Admin
+            </Link>
           </li>
         </ul>
 
@@ -85,14 +106,13 @@ const Navbar = () => {
             <div className="number">0</div>
           </Link>
         </div>
-        <FontAwesomeIcon onClick={menu ? handleClose : handleShow} icon={faBars} className="burger" />
-  
+        <FontAwesomeIcon onClick={openMenu} icon={faBars} className="burger" />
       </div>
       <div className="toTop" onClick={scrollToTop}>
         <FontAwesomeIcon icon={faArrowUp} />
       </div>
-      <div className="chat" >
-      <FontAwesomeIcon icon={faCommentDots} />
+      <div className="chat">
+        <FontAwesomeIcon icon={faCommentDots} />
       </div>
     </nav>
   );
