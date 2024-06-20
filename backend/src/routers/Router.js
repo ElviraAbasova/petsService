@@ -4,7 +4,7 @@ const productController = require("../controllers/ProductController")
 const userController = require("../controllers/UserController")
 const veterinarController = require("../controllers/VeterinarController")
 const groomerController = require("../controllers/GroomerController")
-
+const groomingPriceController = require("../controllers/GroomingPriceController")
 
 
 router.get("/products", productController.getAllData)
@@ -34,5 +34,12 @@ router.delete("/groomers/:id", groomerController.deleteDataById)
 router.post("/groomers", groomerController.postData)
 router.patch("/groomers/:id", groomerController.patchDataById)
 router.put("/groomers/:id", groomerController.putDataById)
+
+router.get("/grooming", groomingPriceController.getAllData)
+router.get("/grooming/:id", groomingPriceController.getDataById)
+router.delete("/grooming/:id", groomingPriceController.deleteDataById)
+router.post("/grooming", groomingPriceController.postData)
+router.patch("/grooming/:id", groomingPriceController.patchDataById)
+router.put("/grooming/:id", groomingPriceController.putDataById)
 
 module.exports = router

@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import paw from "../../../assets/images/pngwing.com (29).png";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAllData } from "../../../Service/requests";
+import { AddGrooming } from "../../../Redux/Slices/datasSlice";
+import Skeleton from 'react-loading-skeleton'; 
+import 'react-loading-skeleton/dist/skeleton.css';
 const GroomingPrice = () => {
+  const [loading, setLoading] = useState(true);
+
+  const prices = useSelector((state) => state.datas.grooming);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllData("grooming").then((res) => {
+      dispatch(AddGrooming(res));
+      setLoading(false); 
+    });
+  }, [dispatch]);
   return (
     <section id="groomPrice">
       <div className="container">
@@ -10,47 +25,37 @@ const GroomingPrice = () => {
           <img src={paw} alt="paw" />
         </div>
         <div className="prices">
-          <div className="price">
-            <div className="top">
-              <h4>$9.99</h4>
-              <h5>Basic Package</h5>
-              <div className="line"></div>
-            </div>
-            <ul>
-              <li>Bath & Brush</li>
-              <li>Custom Meals</li>
-              <li>Day Care</li>
-            </ul>
-          </div>
-          <div className="price">
-            <div className="top">
-              <h4>$19.99 </h4>
-              <h5>Advanced Package</h5>
-              <div className="line"></div>
-            </div>
-            <ul>
-              <li>Massage & Spa</li>
-              <li>Handstripping</li>
-              <li>Bath & Brush</li>
-              <li>Custom Meals</li>
-              <li>Day Care</li>
-            </ul>
-          </div>
-          <div className="price">
-            <div className="top">
-              <h4>$29.99</h4>
-              <h5>Pro Package</h5>
-              <div className="line"></div>
-            </div>
-            <ul>
-              <li>Bath & Brush X2</li>
-              <li>Custom Meals X2</li>
-              <li>Walking</li>
-              <li>Massage & Spa</li>
-              <li>Handstripping</li>
-              <li>Day Care</li>
-            </ul>
-          </div>
+          {loading ? (
+   
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="price">
+                <div className="top">
+                  <Skeleton width={80} />
+                  <Skeleton width={120} />
+                  <div className="line"></div>
+                </div>
+                <ul>
+                  <li><Skeleton count={8} /></li>
+                </ul>
+              </div>
+            ))
+          ) : (
+        
+            prices.map((price) => (
+              <div key={price._id} className="price">
+                <div className="top">
+                  <h4>{price.price} $</h4>
+                  <h5>{price.package}</h5>
+                  <div className="line"></div>
+                </div>
+                <ul>
+                  {price.about && price.about.map((data, index) => (
+                    <li key={index}>{data}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>

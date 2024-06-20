@@ -1,16 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import paw from "../../../assets/images/pngwing.com (29).png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { AddDatas } from "../../../Redux/Slices/datasSlice";
+import { AddVeterinars } from "../../../Redux/Slices/datasSlice";
 import { Link } from "react-router-dom";
 import { getAllData } from "../../../Service/requests";
+import Skeleton from 'react-loading-skeleton'; 
+import 'react-loading-skeleton/dist/skeleton.css';
 const Veterinaries = () => {
-  const veterinars = useSelector((state) => state.datas.arr);
+  const [loading, setLoading] = useState(true); 
+
+  const veterinars = useSelector((state) => state.datas.veterinars);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    getAllData("veterinars").then((res) => dispatch(AddDatas(res)));
+    getAllData("veterinars").then((res) => {
+      dispatch(AddVeterinars(res));
+      setLoading(false); 
+    });
   }, [dispatch]);
   return (
     <section id="veterinaries">
@@ -20,29 +28,42 @@ const Veterinaries = () => {
           <img src={paw} alt="paw" />
         </div>
         <div className="veterinars">
-          {veterinars && veterinars.map(veterinar=>{
-            return(
-              <div key={veterinar._id} className="veterinar">
-              <img src={veterinar.image} alt="doctor" />
-              <div className="about">
-                <h4>{veterinar.name + " " + veterinar.surname}</h4>
-                <div className="icons">
-                  <Link to={veterinar.facebook} className="icon">
-                    <FontAwesomeIcon icon={faFacebook} />
-                  </Link>
-                  <Link to={veterinar.instagram} className="icon">
-                    <FontAwesomeIcon icon={faInstagram} />
-                  </Link>
-                  <Link to={veterinar.twitter} className="icon">
-                    <FontAwesomeIcon icon={faTwitter} />
-                  </Link>
+          {loading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="veterinar">
+                <Skeleton style={{width:"100%"}} height={340} />
+                <div className="about">
+                  <Skeleton width={120} height={20} />
+                  <div className="icons">
+                    <Skeleton circle width={30} height={30} />
+                    <Skeleton circle width={30} height={30} />
+                    <Skeleton circle width={30} height={30} />
+                  </div>
                 </div>
               </div>
-            </div>
+            ))
+          ) : (
 
-            )
-          })}
-        
+            veterinars.map((veterinar) => (
+              <div key={veterinar._id} className="veterinar">
+                <img src={veterinar.image} alt="doctor" />
+                <div className="about">
+                  <h4>{veterinar.name + " " + veterinar.surname}</h4>
+                  <div className="icons">
+                    <Link to={veterinar.facebook} className="icon">
+                      <FontAwesomeIcon icon={faFacebook} />
+                    </Link>
+                    <Link to={veterinar.instagram} className="icon">
+                      <FontAwesomeIcon icon={faInstagram} />
+                    </Link>
+                    <Link to={veterinar.twitter} className="icon">
+                      <FontAwesomeIcon icon={faTwitter} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>

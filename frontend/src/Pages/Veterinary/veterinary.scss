@@ -180,6 +180,7 @@
 }
 #veterinaries {
   padding-top: 5rem;
+
   .container {
     .title {
       padding-top: 3rem;
@@ -199,7 +200,9 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 3rem;
+      width: 100%;
       .veterinar {
+        width: 100%;
         cursor: pointer;
         position: relative;
         img {

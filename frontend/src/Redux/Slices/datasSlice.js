@@ -1,20 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  arr: [],
+  products: [],
+  groomers: [],
+  veterinars: [],
+  grooming: [],
 }
 
 export const datasSlice = createSlice({
   name: 'datas',
   initialState,
   reducers: {
-    AddDatas: (state,action) => {
-      state.arr = action.payload
+    AddProducts: (state, action) => {
+      state.products = action.payload;
     },
+    AddGroomers: (state, action) => {
+      state.groomers = action.payload;
+    },
+    AddVeterinars: (state, action) => {
+      state.veterinars = action.payload;
+    },
+    AddGrooming: (state, action) => {
+      state.grooming = action.payload;
+    }
   },
 })
 
-
-export const {AddDatas} = datasSlice.actions
+export const { AddProducts, AddGroomers, AddVeterinars,AddGrooming } = datasSlice.actions
 
 export default datasSlice.reducer

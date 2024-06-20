@@ -6,18 +6,28 @@ import { faBasketShopping, faStar, faPaw, faArrowRight, faArrowLeft } from '@for
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllData } from "../../../Service/requests";
-import { AddDatas } from "../../../Redux/Slices/datasSlice";
+import { getAllData,  patchData } from "../../../Service/requests";
+import { AddProducts } from "../../../Redux/Slices/datasSlice";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { Addfav } from "../../../Redux/Slices/favoriteSlice";
 
 const ShopCards = () => {
-  const datas = useSelector((state) => state.datas.arr);
+  const datas = useSelector((state) => state.datas.products);
+  const fav = useSelector((state) => state.favorite.arr);
+
+
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const cardsPerPage = 9;
 
   useEffect(() => {
-    getAllData("products").then(res => dispatch(AddDatas(res)));
+    getAllData("products").then(res => {
+      dispatch(AddProducts(res));
+      setLoading(false);
+    });
   }, [dispatch]);
 
   const onSliderChange = (value) => {
@@ -52,6 +62,15 @@ const ShopCards = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  const handleFav = async(elem, e) => {
+    e.preventDefault(); 
+    dispatch(Addfav(elem));
+  
+}
+ const handleColor = (id) =>{
+    return fav.find(elem=> elem._id==id)
+}
 
   return (
     <div className="shops">
@@ -174,36 +193,57 @@ const ShopCards = () => {
       </div>
 
       <div className="cards">
-        {currentCards.map(card => (
-          <Link to="/detail" target="_parent" className="card" key={card._id}>
-            <div className="imgBox">
-              <img src={card.image} alt="product" />
-              <div className="transition">
-                <div className="circle">
-                  <FontAwesomeIcon className='like' icon={faHeart} />
-                </div>
-                <div className="basket">
-                  <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
-                  Add to Card
-                </div>
+        {loading ? (
+          Array.from({ length: cardsPerPage }).map((_, index) => (
+            <div className="card" key={index}>
+              <div className="imgBox">
+                <Skeleton height={200} style={{width:"100%"}}  />
               </div>
-              <div className="disc">-{card.discount}%</div>
-            </div>
-            <div className="prices">
-              <h4 className='price'>${Math.round((card.price - (card.price * card.discount / 100)) * 100) / 100}</h4>
-              <div className="oldPrice">${card.price}</div>
-            </div>
-            <p className='about'>{card.description}</p>
-            <div className="stars">
-              <div className="star">
-              {Array.from({ length: card.rating }, (_, index) => (
-                  <FontAwesomeIcon icon={faStar} key={index} />
-                ))}
+              <div className="prices">
+                <Skeleton width={100} />
+                <Skeleton width={50} />
               </div>
-              <p>({card.comments.length} reviews)</p>
+              <p className='about'>
+                <Skeleton count={2} />
+              </p>
+              <div className="stars">
+                <Skeleton width={100} />
+                <Skeleton width={50} />
+              </div>
             </div>
-          </Link>
-        ))}
+          ))
+        ) : (
+          currentCards.map(card => (
+            <Link to={`/${card._id}`}  className="card" key={card._id}>
+              <div className="imgBox">
+                <img src={card.image} alt="product" />
+                <div className="transition">
+                  <div onClick={(e)=> handleFav(card,e)} style={{color: handleColor(card._id) ? "white" : "#f47107",backgroundColor: handleColor(card._id) ? "#f47107" : "white"}}  className="circle">
+                    <FontAwesomeIcon className='like' icon={faHeart} />
+                  </div>
+                  <div className="basket">
+                    <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
+                    Add to Card
+                  </div>
+                </div>
+                <div className="disc">-{card.discount}%</div>
+              </div>
+              <div className="prices">
+                <h4 className='price'>${Math.round((card.price - (card.price * card.discount / 100)) * 100) / 100}</h4>
+                <div className="oldPrice">${card.price}</div>
+              </div>
+              <p className='about'>{card.description}</p>
+              <div className="stars">
+                <div className="star">
+                {Array.from({ length: card.rating }, (_, index) => (
+                    <FontAwesomeIcon icon={faStar} key={index} />
+                  ))}
+                </div>
+                <p>({card.comments.length} reviews)</p>
+              </div>
+            </Link>
+          ))
+        )}
         <div className="arrows">
           <button className="arrow next" onClick={prevPage} disabled={currentPage === 1}>
             <FontAwesomeIcon icon={faArrowLeft} />

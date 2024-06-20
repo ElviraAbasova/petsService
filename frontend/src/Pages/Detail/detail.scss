@@ -34,7 +34,7 @@
                     transition: all 0.4s ease-in-out;
                     width: 100%;
                 }
-                &:hover img {
+                img:active{
                     transform: scale(1.4);
                   }
                 .disc{

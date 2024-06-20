@@ -30,7 +30,6 @@ export const patchData = async (endPoint, id, obj) => {
     const data = res.data;
     return data;
 };
-
 export const putData = async (endPoint, id, obj) => {
     const res = await axios.put(`${baseUrl + endPoint}/${id}`, obj);
     const data = res.data;

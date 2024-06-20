@@ -12,10 +12,13 @@ import {
   faCommentDots,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/images/logo.svg";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [select, setSelect] = useState(false);
   const [menu, setMenu] = useState(false);
+
+  const fav = useSelector(state=>state.favorite.arr)
 
   const openMenu = () => {
     setMenu(!menu);
@@ -99,7 +102,7 @@ const Navbar = () => {
           </Link>
           <Link to="/favorite" className={`logo ${location.pathname === "/favorite" ? "choose" : ""}`}>
             <FontAwesomeIcon className="like" icon={faHeart} />
-            <div className="number">0</div>
+            <div className="number">{fav.length}</div>
           </Link>
           <Link to="/basket" className={`logo ${location.pathname === "/basket" ? "choose" : ""}`}>
             <FontAwesomeIcon className="shop" icon={faCartShopping} />
