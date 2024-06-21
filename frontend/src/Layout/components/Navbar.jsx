@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
@@ -13,12 +13,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/images/logo.svg";
 import { useSelector } from "react-redux";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:3000");
 
 const Navbar = () => {
   const [select, setSelect] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState([]);
+  const messagesEndRef = useRef(null);
 
-  const fav = useSelector(state=>state.favorite.arr)
+  const fav = useSelector((state) => state.favorite.arr);
+  const basket = useSelector((state) => state.basket.arr);
+
 
   const openMenu = () => {
     setMenu(!menu);
@@ -37,13 +46,38 @@ const Navbar = () => {
     });
   };
 
-  const handleShow = () => {
-    setMenu(true);
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setChat((prevChat) => [...prevChat, data]);
+    });
+
+    return () => {
+      socket.off("receive_message");
+    };
+  }, []);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (message.trim()) {
+      const msgData = {
+        message,
+        id: socket.id,
+      };
+      socket.emit("send_message", msgData);
+      setMessage("");
+    }
   };
 
-  const handleClose = () => {
-    setMenu(false);
-  };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
+  
+  const handleCount=()=>{
+    return basket.reduce((acc, elem) => {
+      return acc + elem.count;
+    }, 0);
+  }
+
 
   return (
     <nav>
@@ -106,7 +140,7 @@ const Navbar = () => {
           </Link>
           <Link to="/basket" className={`logo ${location.pathname === "/basket" ? "choose" : ""}`}>
             <FontAwesomeIcon className="shop" icon={faCartShopping} />
-            <div className="number">0</div>
+            <div className="number">{handleCount()}</div>
           </Link>
         </div>
         <FontAwesomeIcon onClick={openMenu} icon={faBars} className="burger" />
@@ -114,9 +148,33 @@ const Navbar = () => {
       <div className="toTop" onClick={scrollToTop}>
         <FontAwesomeIcon icon={faArrowUp} />
       </div>
-      <div className="chat">
+      <div className="chat" onClick={() => setShowChat(!showChat)}>
         <FontAwesomeIcon icon={faCommentDots} />
       </div>
+      {showChat && (
+        <div className="chatModal">
+          <div className="chatHeader">
+            <h4>Chat</h4>
+            <button onClick={() => setShowChat(false)}>Close</button>
+          </div>
+          <div className="chatBody">
+            {chat.map((msg, index) => (
+              <div key={index} className={`chatMessage ${msg.id === socket.id ? "right" : "left"}`}>
+                {msg.message}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+          <form className="chatFooter" onSubmit={sendMessage}>
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      )}
     </nav>
   );
 };

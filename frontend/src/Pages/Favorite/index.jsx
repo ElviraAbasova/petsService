@@ -5,7 +5,8 @@ import { faBasketShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Addfav, DeleteAll } from '../../Redux/Slices/favoriteSlice';
-import post from "../../assets/images/ps-3-p-1-300x300.png";
+import { AddBasket } from '../../Redux/Slices/basketSlice';
+import { ToastContainer} from 'react-toastify';
 
 const Favorite = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,11 @@ const Favorite = () => {
     const handleDelete = () => {
         dispatch(DeleteAll());
     };
+    const handleBasket = async(elem, e) => {
+        e.preventDefault(); 
+        dispatch(AddBasket(elem));
+       
+      }
 
     return (
         <section id='favorite'>
@@ -31,7 +37,7 @@ const Favorite = () => {
                     <div className="favorite">
                         <div className="leftSide">
                             {fav.map(elem => (
-                                <Link key={elem.id} to="/detail" target='_parent' className="product">
+                                <Link key={elem.id} to={`/${elem._id}`}  className="product">
                                     <div className="col"> 
                                         <div className="imgBox">
                                             <img src={elem.image} alt="product" />
@@ -41,7 +47,7 @@ const Favorite = () => {
                                     <div className="col">        
                                         <h5>${elem.price}</h5>
                                     </div>
-                                    <button className="col">       
+                                    <button onClick={(e) => handleBasket(elem, e)}  className="col">       
                                         <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
                                         Add to Card 
                                     </button>
@@ -58,9 +64,10 @@ const Favorite = () => {
                         </div>
                     </div>
                 ) : (
-                    <h3 style={{ color: "red", fontSize: "3rem", textAlign:"center" }}>Empty</h3>
+                    <h3 style={{ color: "gray", fontSize: "2.5rem", textAlign:"center" }}>Empty</h3>
                 )}
             </div>
+            <ToastContainer/>
         </section>
     );
 };

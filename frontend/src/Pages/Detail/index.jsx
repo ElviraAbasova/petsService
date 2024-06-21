@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import glass from "../../assets/images/zooming-magnifying-glass-svgrepo-com.svg";
-import post from "../../assets/images/ps-3-p-1-300x300.png";
+import { ToastContainer, toast } from 'react-toastify';
 import "./detail.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,21 +18,42 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Addfav } from "../../Redux/Slices/favoriteSlice";
+import { AddBasket, AddFromDetail } from "../../Redux/Slices/basketSlice";
+
 const Detail = () => {
   const data = useSelector((state) => state.datas.products);
   const { id } = useParams();
   let find = data.find((elem) => elem._id == id);
   const fav = useSelector((state) => state.favorite.arr);
   const dispatch = useDispatch();
+  const [count, setCount] = useState(1);
 
-  const handleFav = async(elem, e) => {
+  const handleFav = (elem, e) => {
     e.preventDefault(); 
     dispatch(Addfav(elem));
-  
-}
- const handleColor = (id) =>{
-    return fav.find(elem=> elem._id==id)
-}
+  }
+
+  const handleBasket = (elem, e) => {
+    e.preventDefault(); 
+    dispatch(AddFromDetail({ ...elem, count: count }));
+    setCount(1)
+    
+  }
+
+  const IncBasket = (e) => {
+    e.preventDefault(); 
+    setCount(prevCount => prevCount + 1);
+  }
+
+  const DecBasket = (e) => {
+    e.preventDefault(); 
+    setCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1));
+  }
+
+  const handleColor = (id) => {
+    return fav.find(elem => elem._id == id);
+  }
+
   return (
     <section id="detail">
       <div className="container">
@@ -50,7 +71,7 @@ const Detail = () => {
             <div className="scope">
               <img src={glass} className="glassImg" alt="glass" />
             </div>
-            <div onClick={(e)=> handleFav(find,e)} style={{color: handleColor(find._id) ? "white" : "#f47107",backgroundColor: handleColor(find._id) ? "#f47107" : "white"}}  className="circle">
+            <div onClick={(e) => handleFav(find, e)} style={{ color: handleColor(find._id) ? "white" : "#f47107", backgroundColor: handleColor(find._id) ? "#f47107" : "white" }} className="circle">
               <FontAwesomeIcon className="like" icon={faHeart} />
             </div>
           </div>
@@ -59,7 +80,7 @@ const Detail = () => {
             <h3>{find.title}</h3>
             <div className="price">
               <h4>
-                $$
+                $
                 {Math.round(
                   (find.price - (find.price * find.discount) / 100) * 100
                 ) / 100}
@@ -75,16 +96,16 @@ const Detail = () => {
             <p>{find.description}</p>
             <div className="toBasket">
               <div className="count">
-                <button className="dec">-</button>
-                <input defaultValue={1} type="number" />
-                <button className="inc">+</button>
+                <button className="dec" onClick={DecBasket}>-</button>
+                <input value={count} readOnly type="number" />
+                <button className="inc" onClick={IncBasket}>+</button>
               </div>
-              <button className="basket">
+              <button onClick={(e) => handleBasket(find, e)} className="basket">
                 <FontAwesomeIcon
                   className="basketIcon"
                   icon={faBasketShopping}
                 />
-                Add to Card
+                Add to Cart
               </button>
             </div>
             <div className="bottom">
@@ -131,6 +152,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </section>
   );
 };

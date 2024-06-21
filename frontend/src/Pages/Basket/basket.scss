@@ -13,11 +13,13 @@
       margin-top: 4rem;
       display: grid;
       grid-template-columns: repeat(2, auto);
-      gap: 4rem;
+      gap: 3rem;
+      width: 100%;
       .leftSide {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        
 
         .product {
           text-decoration: none;
@@ -33,23 +35,27 @@
           display: grid;
           grid-template-columns: repeat(4, auto);
           align-items: center;
-          gap: 6em;
+          gap: 4em;
           .col {
             display: flex;
             align-items: center;
             gap: 1rem;
             font-size: 1.5rem;
             .imgBox {
-              max-width: 40rem;
+              width: 45%;
+              max-width: 30rem;
               img {
                 width: 100%;
               }
             }
             h4 {
+              width: 55%;
+
               word-break: break-all;
-              width: 35rem;
+              width: 30rem;
             }
             h5 {
+              font-size: 1.6rem;
               color: #f47107;
             }
             .minus,
@@ -79,6 +85,7 @@
             }
           }
           .col:nth-child(1) {
+            display: flex;
             gap: 1rem;
           }
           $background-color_1: #f47107;
@@ -130,10 +137,11 @@
         }
       }
       .rightSide {
-        height: 30rem;
+   
+        height: max-content;
         box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
           rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-        padding: 5rem;
+        padding: 5rem 3rem;
         border-radius: 1.5rem;
         display: flex;
         flex-direction: column;
@@ -150,10 +158,11 @@
             display: flex;
             align-items: center;
             gap: 9rem;
-            font-size: 2rem;
+            font-size: 1.7rem;
           }
         }
         .bottom {
+          padding-top: 1rem;
           display: flex;
           flex-direction: column;
           gap: 2rem;
@@ -161,7 +170,7 @@
             display: flex;
             align-items: center;
             gap: 9rem;
-            font-size: 2.5rem;
+            font-size: 2rem;
           }
           button {
             cursor: pointer;
@@ -212,6 +221,11 @@
           .bottom {
             .row {
               justify-content: space-between;
+             
+            }
+            button{
+              width: 70%;
+              margin: auto;
             }
           }
         }
@@ -235,7 +249,9 @@
             .col {
               gap: 1rem;
               font-size: 1.4rem;
-
+             .imgBox{
+              width: 80%;
+             }
               h4 {
                 width: 100%;
                 text-align: center;

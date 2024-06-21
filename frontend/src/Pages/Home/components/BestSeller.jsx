@@ -10,7 +10,9 @@ import { AddProducts } from "../../../Redux/Slices/datasSlice";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Addfav } from "../../../Redux/Slices/favoriteSlice";
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AddBasket } from "../../../Redux/Slices/basketSlice";
 const BestSeller = () => {
   const datas = useSelector((state) => state.datas.products);
   const fav = useSelector((state) => state.favorite.arr);
@@ -32,9 +34,15 @@ const BestSeller = () => {
       e.preventDefault(); 
       dispatch(Addfav(elem));
     
+    
   }
    const handleColor = (id) =>{
       return fav.find(elem=> elem._id==id)
+  }
+  const handleBasket = async(elem, e) => {
+    e.preventDefault(); 
+    dispatch(AddBasket(elem));
+   
   }
   return (
     <section id="bestseller">
@@ -72,7 +80,7 @@ const BestSeller = () => {
                   <div onClick={(e)=> handleFav(card,e)} style={{color: handleColor(card._id) ? "white" : "#f47107",backgroundColor: handleColor(card._id) ? "#f47107" : "white"}}  className="circle">
                       <FontAwesomeIcon className='like' icon={faHeart} />
                     </div>
-                    <div className="basket">
+                    <div onClick={(e)=> handleBasket(card,e)} className="basket">
                       <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />
                       Add to Card
                     </div>
@@ -100,6 +108,7 @@ const BestSeller = () => {
           View All
         </Link>
       </div>
+      <ToastContainer />
     </section>
   );
 };
