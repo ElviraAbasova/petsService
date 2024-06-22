@@ -34,7 +34,6 @@ const BestSeller = () => {
       e.preventDefault(); 
       dispatch(Addfav(elem));
     
-    
   }
    const handleColor = (id) =>{
       return fav.find(elem=> elem._id==id)
