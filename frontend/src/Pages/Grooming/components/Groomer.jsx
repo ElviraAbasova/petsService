@@ -5,14 +5,14 @@ import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData } from "../../../Service/requests";
-import {AddGroomers } from "../../../Redux/Slices/datasSlice";
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css';
+import { AddGroomers } from "../../../Redux/Slices/groomerSlice";
 
 const Groomer = () => {
   const [loading, setLoading] = useState(true); 
 
-  const groomers = useSelector((state) => state.datas.groomers);
+  const groomers = useSelector((state) => state.groomer.arr);
   const dispatch = useDispatch();
 
   useEffect(() => {

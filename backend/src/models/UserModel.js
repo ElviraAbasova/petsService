@@ -58,6 +58,11 @@ const UserSchema = mongoose.Schema({
         type: Number,
         required: true,
         trim: true
+    },
+    password:{
+        type: String,
+        required: true,
+        trim: true
     }
 })
 

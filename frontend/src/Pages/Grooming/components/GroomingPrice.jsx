@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import paw from "../../../assets/images/pngwing.com (29).png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData } from "../../../Service/requests";
-import { AddGrooming } from "../../../Redux/Slices/datasSlice";
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css';
+import { AddGroomings } from "../../../Redux/Slices/groomingSlice";
 const GroomingPrice = () => {
   const [loading, setLoading] = useState(true);
 
-  const prices = useSelector((state) => state.datas.grooming);
+  const prices = useSelector((state) => state.grooming.arr);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAllData("grooming").then((res) => {
-      dispatch(AddGrooming(res));
+      dispatch(AddGroomings(res));
       setLoading(false); 
     });
   }, [dispatch]);

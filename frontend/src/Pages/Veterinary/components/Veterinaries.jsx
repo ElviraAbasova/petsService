@@ -3,15 +3,15 @@ import paw from "../../../assets/images/pngwing.com (29).png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { AddVeterinars } from "../../../Redux/Slices/datasSlice";
 import { Link } from "react-router-dom";
 import { getAllData } from "../../../Service/requests";
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css';
+import { AddVeterinars } from "../../../Redux/Slices/veterinarSlice";
 const Veterinaries = () => {
   const [loading, setLoading] = useState(true); 
 
-  const veterinars = useSelector((state) => state.datas.veterinars);
+  const veterinars = useSelector((state) => state.veterinar.arr);
   const dispatch = useDispatch();
 
   useEffect(() => {

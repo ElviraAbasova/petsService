@@ -6,15 +6,15 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData } from "../../../Service/requests";
-import { AddProducts } from "../../../Redux/Slices/datasSlice";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Addfav } from "../../../Redux/Slices/favoriteSlice";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddBasket } from "../../../Redux/Slices/basketSlice";
+import { AddProducts } from "../../../Redux/Slices/productSlice";
 const BestSeller = () => {
-  const datas = useSelector((state) => state.datas.products);
+  const datas = useSelector((state) => state.product.arr);
   const fav = useSelector((state) => state.favorite.arr);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);

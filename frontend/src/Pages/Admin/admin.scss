@@ -2,10 +2,50 @@ $color_1: #ffffff;
 $background-color_1: #f47107;
 $background-color_2: #fbf0e8;
 $background-color_3: #ffe2cb;
+#select{
+  padding-top: 10rem;
+  .container{
+    .title{
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    .buttons{
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(2,auto);
+      gap: 3rem  8rem ;
 
+      justify-content: center;
+      button{
+        cursor: pointer;
+        transition: 0.4s all ease-in-out;
+        border: none;
+        padding: 1.5rem 1rem;
+        background-color: #8D19E8;
+        color: white;
+        width: 20rem;
+        border-radius:  1rem;
+      }
+      button:hover{
+        background-color: #f47107;
+      }
+      .button:nth-child(2),.button:nth-child(3){
+        background-color: #f47107;
+      }
+      .button:nth-child(2):hover,.button:nth-child(3):hover{
+        background-color: #8D19E8;
+
+      }
+      .button:last-child{
+        grid-column: span 2; 
+        justify-self: center;
+      }
+    }
+  }
+}
 
 #admin{
-    padding-top: 10rem;
+    padding-top: 5rem;
     .container{
         padding: 0 1rem;
         .custom-table {
@@ -88,7 +128,7 @@ $background-color_3: #ffe2cb;
       background-color: rgba(0, 0, 0, 0.5);
       .modal-content {
         background-color: #fefefe;
-        margin: 2.5% auto;
+        margin: 2.3% auto;
         padding: 20px;
         border: 1px solid #888;
         width: 50%;
@@ -117,6 +157,7 @@ $background-color_3: #ffe2cb;
         margin-top: 10px;
         resize: none;
       }
+
       .infos {
         margin-top: 3rem;
         display: flex;
@@ -146,7 +187,7 @@ $background-color_3: #ffe2cb;
             border: 1px solid #f47107;
             border-radius: 0.6rem;
             background-color: whitesmoke;
-            padding: 1rem;
+            padding: 0.8rem;
           }
         }
       }
