@@ -112,12 +112,20 @@
                 }
                 .stars{
                     display: flex;
-                    gap: 0.3rem;
+                    gap: 0.8rem;
                     color: gray;
                     font-size: 1.4rem;
+                    
                     .star{
-                    color: #ffcb46;
-
+                        color: #ffcb46;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                    }
+        
+                    p {
+                        color: #9a9a9a;
+                        font-size: 1.4rem;
                     }
                 }
             }
@@ -204,6 +212,176 @@
             }
             
         }
+        .commentsSide{
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title{
+                font-size: 2rem;
+            }
+            .comments{
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                margin-top: 3rem;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                padding: 2.5rem;
+                gap: 2rem;
+                .comment{
+                
+                    display: flex;
+                    gap: 1.5rem;
+                    .profile{
+                        max-width: 5rem;
+                        max-height: 5rem;
+                        overflow: hidden;
+                        border-radius: 50%;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .right{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        .stars{
+                            display: flex;
+                            gap: 0.6rem;
+                            font-size: 1.3rem;
+                            color: #ffcb46;
+                            p{
+                                color: black;
+                            }
+                        }
+                        .from{
+                            display: flex;
+                            gap: 1rem;
+                            align-items: center;
+                            h5{
+                                font-size: 1.5rem;
+                            }
+                            p{
+                                color: gray;
+                                font-size: 1.3rem;
+                            }
+                        }
+                        .commentText{
+                            margin-top: 1rem;
+                            font-size: 1.3rem;
+                            color: rgb(109, 109, 109);
+                        }
+                    }
+                }
+                form{
+                    
+                    margin-top: 3rem;
+                    .ratingStar{
+                      
+                        font-size: 1.5rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        $color_1: #666;
+                        $color_2: #e58e09;
+                        $color_3: #ff9e0b;
+                        $color_4: #ffa723;
+                        
+                        .rating {
+                            padding-bottom: 0.4rem;
+                            &:not(:checked) {
+                                >input {
+                                    position: absolute;
+                                    appearance: none;
+                                }
+                                >label {
+                                    float: right;
+                                    cursor: pointer;
+                                    font-size: 25px;
+                                    color: $color_1;
+                                    &:before {
+                                        content: '★';
+                                    }
+                                    &:hover {
+                                        color: $color_3;
+                                        ~ {
+                                            label {
+                                                color: $color_3;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            >input {
+                                &:checked {
+                                    + {
+                                        label {
+                                            &:hover {
+                                                color: $color_2;
+                                                ~ {
+                                                    label {
+                                                        color: $color_2;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ~ {
+                                        label {
+                                            &:hover {
+                                                color: $color_2;
+                                                ~ {
+                                                    label {
+                                                        color: $color_2;
+                                                    }
+                                                }
+                                            }
+                                            color: $color_4;
+                                        }
+                                    }
+                                }
+                            }
+                            >label {
+                                &:hover {
+                                    ~ {
+                                        input {
+                                            &:checked {
+                                                ~ {
+                                                    label {
+                                                        color: $color_2;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    textarea{
+                        outline: #e58e09;
+                        margin-top: 2rem;
+                        padding: 1.5rem;
+                        width: 100%;
+                        min-height: 20rem;
+                        resize: none;
+
+                    }
+                    button{
+                        margin-top: 1rem;
+                        font-size: 1.3rem;
+                        border-radius: 1rem;
+                        border: none;
+                        padding: 1rem;
+                        color: white;
+                        background-color: #8d19e8;
+                    }
+
+                }
+            }
+
+        }
          
     }
 }
@@ -255,6 +433,48 @@
                             font-size: 1.2rem;
                             p{
                                 font-size: 1.2rem;
+                            }
+                        }
+                    }
+                }
+            }
+            .commentsSide{
+              
+                .title{
+                    font-size: 1.6rem;
+                }
+                .comments{
+                  
+                    .comment{
+                    
+                        
+                        .profile{
+                            max-width: 4rem;
+                            max-height: 4rem;
+                       
+                        }
+                        .right{
+                            
+                            .stars{
+                              
+                                font-size: 1.2rem;
+ 
+                               
+                            }
+                            .from{
+                            
+                                h5{
+                                    font-size: 1.4rem;
+                                }
+                                p{
+                
+                                    font-size: 1.2rem;
+                                }
+                            }
+                            .commentText{
+         
+                                font-size: 1.2rem;
+                              
                             }
                         }
                     }
@@ -358,6 +578,88 @@
 
                
                 
+            }
+            .commentsSide{
+              
+                .title{
+                    font-size: 1.5rem;
+                }
+                .comments{
+                  
+                    .comment{
+                    
+                        
+                        .profile{
+                            max-width: 4rem;
+                            max-height: 4rem;
+                       
+                        }
+                        .right{
+                            
+                            .stars{
+                              
+                                font-size: 1.1rem;
+ 
+                               
+                            }
+                            .from{
+                            
+                                h5{
+                                    font-size: 1.3rem;
+                                }
+                                p{
+                
+                                    font-size: 1.1rem;
+                                }
+                            }
+                            .commentText{
+         
+                                font-size: 1.1rem;
+                              
+                            }
+                        }
+                    }
+                    form{
+                    
+                
+                        .ratingStar{
+                          
+                            font-size: 1.2rem;
+                           
+                            
+                            .rating {
+                                padding-bottom: 0.4rem;
+                                &:not(:checked) {
+                                   
+                                    >label {
+                
+                                        font-size: 1.8rem;
+    
+                                     
+                                  
+                                    }
+                                }
+                              
+                             
+                                
+                            }
+                            
+                        }
+                        textarea{
+        
+                            min-height: 15rem;
+            
+    
+                        }
+                        button{
+    
+                            font-size: 1.1rem;
+    
+                        }
+    
+                    }
+                }
+               
             }
         }
     }

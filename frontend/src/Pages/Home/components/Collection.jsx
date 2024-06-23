@@ -3,7 +3,15 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { FilterCategory } from "../../../Redux/Slices/productSlice";
+import { useDispatch } from "react-redux";
 const Collection = () => {
+  const dispatch = useDispatch()
+  const handleShop = (category) => {
+    setTimeout(() => {
+      dispatch(FilterCategory(category));
+    }, 150); 
+  };
   return (
     <section id='collection'>
         <div className="container">
@@ -16,28 +24,28 @@ const Collection = () => {
                
                 <h4>Animal Food</h4>
                 <div className="shop">
-                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
+                <Link to="/shop" onClick={()=>handleShop("food")} className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Toy</h4>
                 <div className="shop">
-                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
+                <Link to="/shop" onClick={()=>handleShop("toys")} className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Clothes</h4>
                 <div className="shop">
-                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
+                <Link to="/shop" onClick={()=>handleShop("clothes")} className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
                 </div>
                 <div className="card">
                 <h4>Pet Medical</h4>
                 <div className="shop">
-                <Link to="/shop" target="_parent" className='link'>Shop now</Link>
+                <Link to="/shop" onClick={()=>handleShop("medical")}  className='link'>Shop now</Link>
                 <FontAwesomeIcon icon={faCaretRight} />
                 </div>
            

@@ -9,8 +9,21 @@ import { faMobileScreenButton, faPhone } from '@fortawesome/free-solid-svg-icons
 import "../footer.scss"
 import { faFacebookF, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux"
+import { FilterDiscount, FilterSeller } from "../../Redux/Slices/productSlice"
 
 const Footer = () => {
+  const dispatch = useDispatch()
+  const handleLink = () => {
+    setTimeout(() => {
+      dispatch(FilterDiscount(1));
+    }, 150); 
+  };
+  const handleViewAll = () => {
+    setTimeout(() => {
+      dispatch(FilterSeller(30));
+    }, 150); 
+  };
   return (
     <footer>
       <div className="container">
@@ -46,19 +59,18 @@ const Footer = () => {
         <div className="col">
           <h5>USEFUL LINKS</h5>
           <ul>
-            <li><Link to="/shop" target="_parent" className="link">New Products</Link></li>
-            <li><Link to="/shop" target="_parent" className="link">Discounts</Link></li>
-            <li><Link to="/shop" target="_parent" className="link">Best Sellers</Link></li>
-            <li><Link to="/contact" target="_parent" className="link">Pet Store Location</Link></li>
+            <li><Link to="/shop" onClick={handleLink}  className="link">Discounts</Link></li>
+            <li><Link to="/shop" onClick={handleViewAll} className="link">Best Sellers</Link></li>
+            <li><Link to="/contact" className="link">Pet Store Location</Link></li>
           </ul>
         </div>
         <div className="col">
           <h5>MY ACCOUNT</h5>
           <ul>
-            <li><Link to="/profile" target="_parent" className="link">MY Profile</Link></li>
-            <li><Link to="/profile" target="_parent" className="link">My Order History</Link></li>
-            <li><Link to="/favorite" target="_parent" className="link">My Wishlist</Link></li>
-            <li><Link to="/basket" target="_parent" className="link">Shopping Card</Link></li>
+            <li><Link to="/profile" className="link">MY Profile</Link></li>
+            <li><Link to="/profile" className="link">My Order History</Link></li>
+            <li><Link to="/favorite" className="link">My Wishlist</Link></li>
+            <li><Link to="/basket"  className="link">Shopping Card</Link></li>
           </ul>
         </div>
         <div className="col">

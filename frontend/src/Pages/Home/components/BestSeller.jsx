@@ -12,7 +12,7 @@ import { Addfav } from "../../../Redux/Slices/favoriteSlice";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddBasket } from "../../../Redux/Slices/basketSlice";
-import { AddProducts } from "../../../Redux/Slices/productSlice";
+import { AddProducts, FilterSeller } from "../../../Redux/Slices/productSlice";
 const BestSeller = () => {
   const datas = useSelector((state) => state.product.arr);
   const fav = useSelector((state) => state.favorite.arr);
@@ -43,6 +43,11 @@ const BestSeller = () => {
     dispatch(AddBasket(elem));
    
   }
+  const handleViewAll = () => {
+    setTimeout(() => {
+      dispatch(FilterSeller(30));
+    }, 150); 
+  };
   return (
     <section id="bestseller">
       <div className="container">
@@ -90,12 +95,10 @@ const BestSeller = () => {
                   <h4 className='price'>${Math.round((card.price - (card.price * card.discount / 100)) * 100) / 100}</h4>
                   <div className="oldPrice">${card.price}</div>
                 </div>
-                <p className='about'>{card.description}</p>
+                <p className='about'>{card.title}</p>
                 <div className="stars">
                   <div className="star">
-                    {Array.from({ length: card.rating }, (_, index) => (
-                      <FontAwesomeIcon icon={faStar} key={index} />
-                    ))}
+                  <p>{card.rating}</p>  <FontAwesomeIcon icon={faStar} />
                   </div>
                   <p>({card.comments.length} reviews)</p>
                 </div>
@@ -103,7 +106,7 @@ const BestSeller = () => {
             ))
           )}
         </div>
-        <Link to="/shop" target="_parent" className="viewAll">
+        <Link to="/shop" onClick={handleViewAll} className="viewAll">
           View All
         </Link>
       </div>

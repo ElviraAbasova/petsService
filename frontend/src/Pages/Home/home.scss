@@ -327,6 +327,11 @@
                     color: #ffcb46;
                     font-size: 1.2rem;
                     gap: 1rem;
+                    .star{
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                    }
         
                     p {
                         color: #9a9a9a;
