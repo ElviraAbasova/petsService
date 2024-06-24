@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import glass from "../../assets/images/zooming-magnifying-glass-svgrepo-com.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "./detail.scss";
@@ -8,6 +8,7 @@ import {
   faBasketShopping,
   faHeart,
   faStar,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -19,15 +20,28 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Addfav } from "../../Redux/Slices/favoriteSlice";
 import { AddFromDetail } from "../../Redux/Slices/basketSlice";
+import { getAllData, patchData } from "../../Service/requests";
+import { AddUsers } from "../../Redux/Slices/userSlice";
+import { UpdateProducts } from "../../Redux/Slices/productSlice";
 
 const Detail = () => {
+  let profile = JSON.parse(localStorage.getItem("user"))
   const data = useSelector((state) => state.product.arr);
+  const users = useSelector((state) => state.user.arr);
+  const comment = useRef()
   const { id } = useParams();
   let find = data.find((elem) => elem._id == id);
   const fav = useSelector((state) => state.favorite.arr);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-
+  const [selectedRating, setSelectedRating] = useState(1);
+   
+  useEffect(() => {
+    getAllData("users").then((res) => {
+      dispatch(AddUsers(res));
+    
+    });
+  }, [dispatch]);
   const handleFav = (elem, e) => {
     e.preventDefault();
     dispatch(Addfav(elem));
@@ -52,7 +66,54 @@ const Detail = () => {
   const handleColor = (id) => {
     return fav.find((elem) => elem._id == id);
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!comment.current.value.trim()) {
+      toast.error("Please enter a non-empty comment.");
+      return;
+    }
 
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+  
+    const newComment = {
+      _id: profile._id,
+      comment: comment.current.value,
+      rating: selectedRating,
+      date: formattedDate, 
+    };
+  
+    try {
+      const updatedProduct = { ...find, comments: [...find.comments, newComment] };
+      dispatch(UpdateProducts(updatedProduct));
+      await patchData("products", find._id, {
+        comments: [...find.comments, newComment],
+      });
+  
+      toast.success("Comment submitted successfully!");
+      comment.current.value = "";
+      setSelectedRating(1)
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+      toast.error("Failed to submit comment. Please try again.");
+    }
+  };
+
+  const handleDeleteComment= async(comment)=>{
+    try {
+      const updatedComments = find.comments.filter(
+        (elem) => elem !== comment
+      );
+      const updatedProduct = { ...find, comments: updatedComments };
+      dispatch(UpdateProducts(updatedProduct));
+      await patchData("products", find._id, { comments: updatedComments });
+      toast("Comment deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+      toast.error("Failed to delete comment. Please try again.");
+    }
+
+  } 
   return (
     <section id="detail">
       <div className="container">
@@ -61,7 +122,7 @@ const Detail = () => {
             <FontAwesomeIcon icon={faArrowLeft} />
             Go Back
           </Link>
-          Home/Category/Food
+
         </div>
         <div className="detail">
           <div className="left">
@@ -162,89 +223,98 @@ const Detail = () => {
           </div>
         </div>
         <div className="commentsSide">
-          <h3 className="title">Review (0)</h3>
+          <h3 className="title">Review ({find.comments.length})</h3>
           <div className="comments">
-            <div className="comment">
-              <div className="profile">
-                <img
-                  src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="right">
-                <div className="stars">
-                  <p>4</p>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className="from">
-                  <h5>Elvira Abasova</h5>
-                  <p className="date">May 8, 2024</p>
-                </div>
-                <p className="commentText">
-                  I am 6 feet tall and 220 lbs. This shirt fit me perfectly in
-                  the chest and shoulders. My only complaint is that it is so
-                  long! I like to wear polo shirts untucked. This shirt goes
-                  completely past my rear end. If I wore it with ordinary
-                  shorts, you probably wouldnt be able to see the shorts at all
-                  – completely hidden by the shirt. It needs to be 4 to 5 inches
-                  shorter in terms of length to suit me. I have many RL polo
-                  shirts, and this one is by far the longest. I dont understand
-                  why.
-                </p>
-              </div>
-            </div>
-            <div className="comment">
-              <div className="profile">
-                <img
-                  src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="right">
-                <div className="stars">
-                  <p>4</p>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className="from">
-                  <h5>Elvira Abasova</h5>
-                  <p className="date">May 8, 2024</p>
-                </div>
-                <p className="commentText">
-                  I am 6 feet tall and 220 lbs. This shirt fit me perfectly in
-                  the chest and shoulders. My only complaint is that it is so
-                  long! I like to wear polo shirts untucked. This shirt goes
-                  completely past my rear end. If I wore it with ordinary
-                  shorts, you probably wouldnt be able to see the shorts at all
-                  – completely hidden by the shirt. It needs to be 4 to 5 inches
-                  shorter in terms of length to suit me. I have many RL polo
-                  shirts, and this one is by far the longest. I dont understand
-                  why.
-                </p>
-              </div>
-            </div>
-            <form action="">
+          {find.comments.length === 0 ? (
+              <p style={{ fontSize:"1.4rem", color:"gray"}} >No comments yet.</p>
+            ) : (
+              find.comments.map((elem) => {
+                const user = users.find((el) => el._id === elem._id);
+                return user ? (
+                  <div className="comment" key={elem._id}>
+                    <div className="profile">
+                      <img src={user.image} alt="" />
+                    </div>
+                    <div className="right">
+                      <div className="stars">
+                        <p>{elem.rating}</p>
+                        <FontAwesomeIcon icon={faStar} />
+                      </div>
+                      <div className="from">
+                        <h5>
+                          {user.name} {user.surname}
+                        </h5>
+                        <p className="date">{elem.date}</p>
+                        {profile._id == user._id ? (
+                          <FontAwesomeIcon
+                            onClick={() => handleDeleteComment(elem)}
+                            icon={faTrashCan}
+                            style={{
+                              color: "red",
+                              fontSize: "1.3rem",
+                              cursor: "pointer",
+                            }}
+                          />
+                        ) : null}
+                      </div>
+                      <p className="commentText">{elem.comment}</p>
+                    </div>
+                  </div>
+                ) : null;
+              })
+            )}
+            <form onSubmit={handleSubmit} action="">
               <div className="ratingStar">
                 <p>Your Rating</p>
                 <div className="rating">
-                  <input defaultValue={5} name="rate" id="star5" type="radio" />
-                  <label title="text" htmlFor="star5" />
-                  <input defaultValue={4} name="rate" id="star4" type="radio" />
-                  <label title="text" htmlFor="star4" />
+                  <input
+                    defaultValue={5}
+                    name="rate"
+                    id="star5"
+                    type="radio"
+                    onChange={() => setSelectedRating(5)}
+                    checked={selectedRating === 5}
+                  />
+                  <label title="5 stars" htmlFor="star5" />
+                  <input
+                    defaultValue={4}
+                    name="rate"
+                    id="star4"
+                    type="radio"
+                    onChange={() => setSelectedRating(4)}
+                    checked={selectedRating === 4}
+                  />
+                  <label title="4 stars" htmlFor="star4" />
                   <input
                     defaultValue={3}
                     name="rate"
                     id="star3"
                     type="radio"
-                    defaultChecked=""
+                    onChange={() => setSelectedRating(3)}
+                    checked={selectedRating === 3}
                   />
-                  <label title="text" htmlFor="star3" />
-                  <input defaultValue={2} name="rate" id="star2" type="radio" />
-                  <label title="text" htmlFor="star2" />
-                  <input defaultValue={1} name="rate" id="star1" type="radio" />
-                  <label title="text" htmlFor="star1" />
+                  <label title="3 stars" htmlFor="star3" />
+                  <input
+                    defaultValue={2}
+                    name="rate"
+                    id="star2"
+                    type="radio"
+                    onChange={() => setSelectedRating(2)}
+                    checked={selectedRating === 2}
+                  />
+                  <label title="2 stars" htmlFor="star2" />
+                  <input
+                    defaultValue={1}
+                    name="rate"
+                    id="star1"
+                    type="radio"
+                    onChange={() => setSelectedRating(1)}
+                    checked={selectedRating === 1}
+                  />
+                  <label title="1 star" htmlFor="star1" />
                 </div>
               </div>
-              <textarea placeholder="Your Review"></textarea>
+              <textarea ref={comment} placeholder="Your Review"></textarea>
                <button type="submit">Submit</button>
             </form>
           </div>

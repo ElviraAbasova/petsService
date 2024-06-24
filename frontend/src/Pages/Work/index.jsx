@@ -4,6 +4,8 @@ import profile from "../../assets/images/c74eeb4e048db1ec522bd7ab2b5f611d.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 const Work = () => {
+  let profile = JSON.parse(localStorage.getItem("user"))
+
     const [DetailModal, setDetailModal] = useState(false); 
     const [EditModal, setEditModal] = useState(false); 
 
@@ -26,21 +28,21 @@ const Work = () => {
     <section id="work">
       <div className="container">
         <div className="title">
-          <h2>Veterinary Work Page</h2>
+          <h2 style={{textTransform:"capitalize"}}>{profile.user} Work Page</h2>
 
           <FontAwesomeIcon icon={faUserDoctor} />
         </div>
         <div className="work">
           <div className="top">
             <div className="profile">
-              <img src={profile} alt="profile" />
+              <img src={profile.image} alt="profile" />
             </div>
             <div className="about">
               <div className="edit">
-                <h3>Elvira Abasova</h3>
+                <h3>{`${profile.name} ${profile.surname}`}</h3>
                 <FontAwesomeIcon icon={faPenToSquare} onClick={openEditModal} />
               </div>
-              <h5>Veterinary</h5>
+              <h5 style={{textTransform:"capitalize"}}>{profile.user}</h5>
             </div>
           </div>
 

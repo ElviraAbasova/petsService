@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require("dotenv/config");
 const routes = require("./src/routers/Router");
+const AuthRouter = require("./src/routers/AuthRouter");
+
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -13,6 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 require("./src/config/db");
 app.use("/api", routes);
+app.use("/api", AuthRouter);
 
 const server = http.createServer(app);
 const io = new Server(server, {

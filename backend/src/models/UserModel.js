@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-
 const UserSchema = mongoose.Schema({
 	name: {
         type: String,
@@ -39,7 +38,8 @@ const UserSchema = mongoose.Schema({
     user: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        default: "user"
     },
     basket: {
         type: Array,

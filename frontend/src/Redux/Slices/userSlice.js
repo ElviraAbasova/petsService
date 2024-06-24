@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   arr: [],
+
+
 }
 
 export const userSlice = createSlice({
@@ -25,7 +27,7 @@ export const userSlice = createSlice({
       if(!find){
         state.arr=[...state.arr,action.payload]
       }
-    },
+    }
   },
 })
 

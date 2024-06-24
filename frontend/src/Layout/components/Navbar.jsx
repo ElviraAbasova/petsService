@@ -18,6 +18,9 @@ import io from "socket.io-client";
 const socket = io("http://localhost:3000");
 
 const Navbar = () => {
+  let user = JSON.parse(localStorage.getItem("user"))
+
+  
   const [select, setSelect] = useState(false);
   const [menu, setMenu] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -131,7 +134,7 @@ const Navbar = () => {
         </ul>
 
         <div className="LogoBar">
-          <Link to="/login" className={`logo ${location.pathname === "/login" ? "choose" : ""}`}>
+          <Link to={user ? "/profile" : "/login"} className={`logo ${location.pathname === "/login" ? "choose" : ""}`}>
             <FontAwesomeIcon className="user" icon={faUser} />
           </Link>
           <Link to="/favorite" className={`logo ${location.pathname === "/favorite" ? "choose" : ""}`}>

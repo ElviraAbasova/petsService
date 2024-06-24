@@ -27,6 +27,7 @@ import {
   FilterSeller,
   FilterTags,
 } from "../../../Redux/Slices/productSlice";
+
 const ShopCards = () => {
   const filter = useSelector((state) => state.product.filter);
   const datas = useSelector((state) => state.product.arr);
@@ -44,6 +45,7 @@ const ShopCards = () => {
       dispatch(AddProducts(res));
       setLoading(false);
     });
+   
   }, [dispatch]);
 
   const onSliderChange = (value) => {
