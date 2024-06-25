@@ -16,7 +16,7 @@ import {
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Addfav } from "../../Redux/Slices/favoriteSlice";
 import { AddFromDetail } from "../../Redux/Slices/basketSlice";
@@ -25,12 +25,14 @@ import { AddUsers } from "../../Redux/Slices/userSlice";
 import { UpdateProducts } from "../../Redux/Slices/productSlice";
 
 const Detail = () => {
+  const navigate = useNavigate()
   let profile = JSON.parse(localStorage.getItem("user"))
   const data = useSelector((state) => state.product.arr);
   const users = useSelector((state) => state.user.arr);
   const comment = useRef()
   const { id } = useParams();
   let find = data.find((elem) => elem._id == id);
+  console.log(find);
   const fav = useSelector((state) => state.favorite.arr);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -67,6 +69,9 @@ const Detail = () => {
     return fav.find((elem) => elem._id == id);
   };
   const handleSubmit = async (e) => {
+    if(profile == null){
+      navigate("/login")
+    }
     e.preventDefault();
     if (!comment.current.value.trim()) {
       toast.error("Please enter a non-empty comment.");
@@ -245,7 +250,7 @@ const Detail = () => {
                           {user.name} {user.surname}
                         </h5>
                         <p className="date">{elem.date}</p>
-                        {profile._id == user._id ? (
+                        {profile && profile._id == user._id ? (
                           <FontAwesomeIcon
                             onClick={() => handleDeleteComment(elem)}
                             icon={faTrashCan}

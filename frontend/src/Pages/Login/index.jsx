@@ -10,6 +10,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import { AddUsers} from "../../Redux/Slices/userSlice";
 import { getAllData, postData } from "../../Service/requests";
+import axios from "axios";
 
 const Login = () => {
     
@@ -23,24 +24,35 @@ const Login = () => {
           }, [dispatch]);
         const users = useSelector(state=>state.user.arr)
         console.log(users);
-        const handleSubmit = (values) => {
-            const user = users.find(elem=> (elem.email == values.username || elem.username == values.username) && elem.password == values.password)
-            if(user){
-                // postData("login", { username: user.username, email: user.email,useId: user._id })
-                if(user.user == "groomer" || user.user == "veterinar" ){
-                   navigate("/work")
-                }
-                else{
-                    navigate("/")
-                }
+        const handleSubmit =async (values) => {
+            const user = users.find(elem => (elem.email === values.username || elem.username === values.username) && elem.password === values.password);
 
-                localStorage.setItem("user", JSON.stringify(user));
-              
+            if (user) {
+                try {
+                    axios.post("http://localhost:3000/auth/login", values)
+                    .then((res) => {
+                        localStorage.setItem("token", res.data.token);
+            
+                    })
+                    .catch((error) => {
+                        console.error("Error during login:", error);
+                        alert("Error during login");
+                    });
+    
+                    if (user.user === "groomer" || user.user === "veterinar") {
+                        navigate("/work");
+                    } else {
+                        navigate("/");
+                    }
+    
+                    localStorage.setItem("user", JSON.stringify(user));
+                } catch (error) {
+                    console.error("Error during login:", error);
+                    alert("Error during login");
+                }
+            } else {
+                alert("Invalid username or password");
             }
-            else{
-                alert("Error")
-            }
-
         };
     
         return (

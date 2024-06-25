@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 require("./src/config/db");
 app.use("/api", routes);
-app.use("/api", AuthRouter);
+app.use("/auth", AuthRouter);
 
 const server = http.createServer(app);
 const io = new Server(server, {
