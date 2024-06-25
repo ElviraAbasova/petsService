@@ -5,11 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faGear, faTruck } from "@fortawesome/free-solid-svg-icons";
 import "./profile.scss";
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   let user = JSON.parse(localStorage.getItem("user"))
   const [right, setRight] = useState("Info");
 
+  const handleLogOut=()=>{
+    
+    localStorage.setItem("user", JSON.stringify(null));
+  }
   const rightSide = () => {
     switch (right) {
       case "Info":
@@ -25,7 +30,7 @@ const Profile = () => {
             </div>
             <div className="info">
               <label htmlFor="username">Username</label>
-              <input value="elviraa" type="text" id="username" disabled />
+              <input value={user.username} type="text" id="username" disabled />
             </div>
             <div className="info">
               <label htmlFor="email">Email</label>
@@ -255,12 +260,14 @@ const Profile = () => {
   return (
     <section id="profile">
       <div className="container">
+       
         <div className="title">
           <h3>My Profile</h3>
           <img src={paw} alt="paw" />
         </div>
         <div className="profile">
           <div className="left">
+          <Link onClick={handleLogOut} to="/login" className="logOut">Log Out</Link>
             <div className="top">
               <div className="profileBox">
                 <img src={profile} alt="" />

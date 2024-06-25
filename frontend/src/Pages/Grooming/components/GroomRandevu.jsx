@@ -1,8 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import paw from "../../../assets/images/pngwing.com (29).png";
 import cat from "../../../assets/images/c74eeb4e048db1ec522bd7ab2b5f611d.jpg";
-
+import { getAllData, patchData } from "../../../Service/requests";
+import { AddGroomers } from "../../../Redux/Slices/groomerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 const GroomRandevu = () => {
+  const [pet, setPet] = useState("");
+  const [name, setName] = useState("");
+  const [petName, setPetName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [groomer, setGroomer] = useState("");
+  const [packag, setPackag] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  
+  const groomers = useSelector((state) => state.groomer.arr);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllData("groomers").then((res) => {
+      dispatch(AddGroomers(res));
+    });
+  }, [dispatch]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let obj = {
+      pet,
+      name,
+      petName,
+      phone,
+      email,
+      packag,
+      date,
+      time,
+    };
+
+    const find = groomers.find(elem => elem.name.toUpperCase() === groomer.toUpperCase());
+    if (find) {
+      const updated = { ...find, randevus: [...find.randevus, obj] };
+      await patchData("groomers", find._id, updated);
+      toast.success("Randevu is successfully!");
+    }
+    
+    setPet("");
+    setName("");
+    setPetName("");
+    setPhone("");
+    setEmail("");
+    setGroomer("");
+    setPackag("");
+    setDate("");
+    setTime("");
+  };
+
+  const today = new Date().toISOString().split("T")[0]; 
+
+  const generateTimeOptions = () => {
+    const options = [];
+    for (let hour = 9; hour <= 23; hour++) {
+      const hourString = hour.toString().padStart(2, '0');
+      options.push(<option key={hourString} value={`${hourString}:00`}>{`${hourString}:00`}</option>);
+    }
+    return options;
+  };
   return (
     <section id="groomRandevu">
       <div className="container">
@@ -14,136 +77,186 @@ const GroomRandevu = () => {
           <div className="left">
             <img src={cat} alt="cat" />
           </div>
-         
-            <form action="">
-              <div className="row">
-                <p>Choose Pet</p>
-                <div className="radios">
-                  <label className="radio-button">
-                    <input
-                      type="radio"
-                      name="example-radio"
-                      defaultValue="option1"
-                    />
-                    <span className="radio" />
-                    Cat
-                  </label>
-                  <label className="radio-button">
-                    <input
-                      type="radio"
-                      name="example-radio"
-                      defaultValue="option2"
-                    />
-                    <span className="radio" />
-                    Dog
-                  </label>
-                </div>
-              </div>
-              <div className="names">
-                <div className="row">
-                  <label htmlFor="name">Your Name</label>
+          <form onSubmit={handleSubmit} action="">
+            <div className="row">
+              <p>Choose Pet</p>
+              <div className="radios">
+                <label className="radio-button">
                   <input
-                    placeholder="Your Name"
-                    className="input"
-                    name="name"
-                    type="text"
-                  />
-                </div>
-                <div className="row">
-                  <label htmlFor="pet">Pet Name</label>
-                  <input
-                    placeholder="Pet Name"
-                    className="input"
+                    required
+                    type="radio"
                     name="pet"
-                    type="text"
+                    value="cat"
+                    checked={pet === "cat"}
+                    onChange={(e) => setPet(e.target.value)}
                   />
-                </div>
-              </div>
-              <div className="names">
-                <div className="row">
-                  <label htmlFor="phone">Your Phone</label>
+                  <span className="radio" />
+                  Cat
+                </label>
+                <label className="radio-button">
                   <input
-                    placeholder="Your Phone"
-                    className="input"
-                    name="phone"
-                    type="tel"
+                  required
+                    type="radio"
+                    name="pet"
+                    value="dog"
+                    checked={pet === "dog"}
+                    onChange={(e) => setPet(e.target.value)}
                   />
-                </div>
-                <div className="row">
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    placeholder="Your Email"
-                    className="input"
-                    name="email"
-                    type="email"
-                  />
-                </div>
+                  <span className="radio" />
+                  Dog
+                </label>
               </div>
-              <div className="radio-input">
+            </div>
+            <div className="names">
+              <div className="row">
+                <label htmlFor="name">Your Name</label>
                 <input
-                  defaultValue="groom-1"
-                  name="groom-radio"
-                  id="groom-1"
-                  type="radio"
+                required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your Name"
+                  className="input"
+                  name="name"
+                  type="text"
                 />
-                <label htmlFor="groom-1">Miranda Halim</label>
-                <input
-                  defaultValue="groom-2"
-                  name="groom-radio"
-                  id="groom-2"
-                  type="radio"
-                />
-                <label htmlFor="groom-2">Rosalina William</label>
-                <input
-                  defaultValue="groom-3"
-                  name="groom-radio"
-                  id="groom-3"
-                  type="radio"
-                />
-                <label htmlFor="groom-3">Yokolili Y. Yankee</label>
               </div>
-              <div className="radio-input">
+              <div className="row">
+                <label htmlFor="petName">Pet Name</label>
                 <input
-                  defaultValue="value-1"
-                  name="value-radio"
-                  id="value-1"
-                  type="radio"
+                required
+                  value={petName}
+                  onChange={(e) => setPetName(e.target.value)}
+                  placeholder="Pet Name"
+                  className="input"
+                  name="petName"
+                  type="text"
                 />
-                <label htmlFor="value-1">Basic</label>
-                <input
-                  defaultValue="value-2"
-                  name="value-radio"
-                  id="value-2"
-                  type="radio"
-                />
-                <label htmlFor="value-2">Advanced</label>
-                <input
-                  defaultValue="value-3"
-                  name="value-radio"
-                  id="value-3"
-                  type="radio"
-                />
-                <label htmlFor="value-3">Pro</label>
               </div>
-              <div className="names">
-                <div className="row">
-                  <label htmlFor="date">Select Date</label>
-                  <input className="input" name="date" type="date" />
-                </div>
-                <div className="row">
-                  <label htmlFor="time">Select Time</label>
-                  <input className="input" name="time" type="time" />
-                </div>
+            </div>
+            <div className="names">
+              <div className="row">
+                <label htmlFor="phone">Your Phone</label>
+                <input
+                required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Your Phone"
+                  className="input"
+                  name="phone"
+                  type="tel"
+                />
               </div>
-              
-
-              <button type="submit" className="submit">
-                Send Randevu
-              </button>
-            </form>
-          </div>
+              <div className="row">
+                <label htmlFor="email">Your Email</label>
+                <input
+                required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your Email"
+                  className="input"
+                  name="email"
+                  type="email"
+                />
+              </div>
+            </div>
+            <div className="radio-input">
+              <input
+              required
+                value="Miranda"
+                name="groomer"
+                id="groom-1"
+                type="radio"
+                checked={groomer === "Miranda"}
+                onChange={(e) => setGroomer(e.target.value)}
+              />
+              <label htmlFor="groom-1">Miranda Halim</label>
+              <input
+              required
+                value="Rosalina"
+                name="groomer"
+                id="groom-2"
+                type="radio"
+                checked={groomer === "Rosalina"}
+                onChange={(e) => setGroomer(e.target.value)}
+              />
+              <label htmlFor="groom-2">Rosalina William</label>
+              <input
+              required
+                value="Kate"
+                name="groomer"
+                id="groom-3"
+                type="radio"
+                checked={groomer === "Kate"}
+                onChange={(e) => setGroomer(e.target.value)}
+              />
+              <label htmlFor="groom-3">Kate Browni</label>
+            </div>
+            <div className="radio-input">
+              <input
+              required
+                value="Basic"
+                name="packag"
+                id="value-1"
+                type="radio"
+                checked={packag === "Basic"}
+                onChange={(e) => setPackag(e.target.value)}
+              />
+              <label htmlFor="value-1">Basic</label>
+              <input
+              required
+                value="Advanced"
+                name="packag"
+                id="value-2"
+                type="radio"
+                checked={packag === "Advanced"}
+                onChange={(e) => setPackag(e.target.value)}
+              />
+              <label htmlFor="value-2">Advanced</label>
+              <input
+              required
+                value="Pro"
+                name="packag"
+                id="value-3"
+                type="radio"
+                checked={packag === "Pro"}
+                onChange={(e) => setPackag(e.target.value)}
+              />
+              <label htmlFor="value-3">Pro</label>
+            </div>
+            <div className="names">
+              <div className="row">
+                <label htmlFor="date">Select Date</label>
+                <input
+                required
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="input"
+                  name="date"
+                  type="date"
+                  min={today}
+                />
+              </div>
+              <div className="row">
+                <label htmlFor="time">Select Time</label>
+                <select
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="input"
+                  name="time"
+                  required
+                >
+                  <option value="">Select Time</option>
+                  {generateTimeOptions()}
+                </select>
+              </div>
+            </div>
+            <button type="submit" className="submit">
+              Send Randevu
+            </button>
+          </form>
         </div>
-   
+      </div>
+      <ToastContainer />
     </section>
   );
 };

@@ -29,7 +29,6 @@ const Login = () => {
                 // postData("login", { username: user.username, email: user.email,useId: user._id })
                 if(user.user == "groomer" || user.user == "veterinar" ){
                    navigate("/work")
-                    
                 }
                 else{
                     navigate("/")

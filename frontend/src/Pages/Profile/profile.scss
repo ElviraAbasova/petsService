@@ -23,6 +23,15 @@
         padding: 9rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         width: 35%;
+        .logOut{
+          cursor: pointer;
+          text-decoration: none;
+          background-color: red;
+          padding: 0.8rem;
+          color: white;
+          border-radius: 1rem;
+          border: none
+        }
         .top {
           display: flex;
           flex-direction: column;

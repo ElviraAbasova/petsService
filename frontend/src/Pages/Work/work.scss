@@ -21,6 +21,17 @@ $background-color_3: #c2e7ed;
                 font-size: 3rem;
                 color: black;
             }
+            .logOut{
+              margin-left: 7rem;  
+              cursor: pointer;
+              text-decoration: none;
+              background-color: red;
+              padding: 0.8rem;
+              color: white;
+              border-radius: 1rem;
+              border: none;
+              font-size:1.4rem
+            }
         }
         .work{
             display: flex;
@@ -31,6 +42,8 @@ $background-color_3: #c2e7ed;
                 display: flex;
                 align-items: center;
                 gap: 3rem;
+                
+                
                 .profile{
                     max-width: 20rem;
                     max-height: 20rem;
@@ -40,6 +53,7 @@ $background-color_3: #c2e7ed;
                     img{
                         width: 100%;
                     }
+                    
                 }
                 .about{
                     display: flex;
@@ -79,6 +93,7 @@ $background-color_3: #c2e7ed;
                 }
               
                 td {
+                  text-transform: capitalize;
                   padding: 12px 15px;
                   text-align: center; 
                   button{
