@@ -179,7 +179,8 @@ const Detail = () => {
         <div className="detail">
           <div className="left">
             <img src={find.image} alt="post" />
-            <div className="disc">-{find.discount}%</div>
+            {find.discount != 0 ? (   <div className="disc">-{find.discount}%</div>) : null}
+         
             <div className="scope">
               <img src={glass} className="glassImg" alt="glass" />
             </div>
@@ -204,7 +205,8 @@ const Detail = () => {
                   (find.price - (find.price * find.discount) / 100) * 100
                 ) / 100}
               </h4>
-              <h4 className="old">${find.price}</h4>
+              {find.discount != 0 ? (   <h4 className="old">${find.price}</h4>) : null}
+           
             </div>
             <div className="stars">
               <div className="star">

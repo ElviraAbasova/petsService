@@ -223,13 +223,13 @@ const ShopCards = () => {
           </div>
           <div
             className="row"
-            onClick={() => dispatch(FilterCategory("Clothings"))}
+            onClick={() => dispatch(FilterCategory("Clothes"))}
           >
             <div className="title">
               <FontAwesomeIcon icon={faPaw} />
-              <h4>Clothings</h4>
+              <h4>Clothes</h4>
             </div>
-            <span>({handleCategoryCount("Clothing")})</span>
+            <span>({handleCategoryCount("Clothes")})</span>
           </div>
           <div className="row" onClick={() => dispatch(FilterCategory("Toys"))}>
             <div className="title">
@@ -247,6 +247,16 @@ const ShopCards = () => {
               <h4>Cleaning</h4>
             </div>
             <span>({handleCategoryCount("Cleaning")})</span>
+          </div>
+          <div
+            className="row"
+            onClick={() => dispatch(FilterCategory("Medical"))}
+          >
+            <div className="title">
+              <FontAwesomeIcon icon={faPaw} />
+              <h4>Medical</h4>
+            </div>
+            <span>({handleCategoryCount("Medical")})</span>
           </div>
           <div
             className="row"
@@ -394,7 +404,8 @@ const ShopCards = () => {
                       Add to Card
                     </div>
                   </div>
-                  <div className="disc">-{card.discount}%</div>
+                  {card.discount != 0 ? (<div className="disc">-{card.discount}%</div> ): null}
+        
                 </div>
                 <div className="prices">
                   <h4 className="price">
@@ -403,7 +414,8 @@ const ShopCards = () => {
                       (card.price - (card.price * card.discount) / 100) * 100
                     ) / 100}
                   </h4>
-                  <div className="oldPrice">${card.price}</div>
+                  {card.discount != 0 ? ( <div className="oldPrice">${card.price}</div>): null}
+                 
                 </div>
                 <p className="about">{card.title}</p>
                 <div className="stars">

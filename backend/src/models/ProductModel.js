@@ -44,7 +44,8 @@ const ProductSchema = mongoose.Schema({
     },
     discount: {
         type: Number,
-        trim: true
+        trim: true,
+        default: 0
     },
     seller: {
         type: Number,

@@ -76,6 +76,7 @@ const ProductPanel = () => {
 
   const handleSavePost = async (e) => {
     e.preventDefault()
+    
     let obj ={
       title: title.current.value,
       image: image.current.value,
@@ -167,7 +168,7 @@ const ProductPanel = () => {
               &times;
             </span>
             <h3>Edit</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSave(currentProduct._id,e)} className="infos">
               <div className="info">
                 <label htmlFor="image">Image</label>
                 <input required ref={image} type="text" id="image" defaultValue={currentProduct.image} />
@@ -204,10 +205,10 @@ const ProductPanel = () => {
                 <label htmlFor="stock">Stock</label>
                 <input required  ref={stock} type="number" min="0" id="stock" defaultValue={currentProduct.stock}  />
               </div>
-              <button className="save" onClick={(e)=>handleSave(currentProduct._id,e)}>
+              <button className="save" >
                 Save
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}
@@ -219,7 +220,7 @@ const ProductPanel = () => {
               &times;
             </span>
             <h3>Post</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSavePost(e)} className="infos">
             <div className="info">
                 <label htmlFor="image">Image</label>
                 <input required  ref={image} type="text" id="image" />
@@ -256,8 +257,8 @@ const ProductPanel = () => {
                 <label htmlFor="stock">Stock</label>
                 <input required  ref={stock} type="number" min="0" id="stock"/>
               </div>
-              <button className="save" onClick={(e)=>handleSavePost(e)}>Save</button>
-            </div>
+              <button className="save" >Save</button>
+            </form>
           </div>
         </div>
       )}

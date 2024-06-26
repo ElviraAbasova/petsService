@@ -12,6 +12,7 @@ import back from '../../assets/images/home-n1-footer-0.png';
 import pets from '../../assets/images/c-s-1.png';
 import './login.scss';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,13 +30,21 @@ const Login = () => {
 
     if (user) {
       try {
-        if (user.user === "groomer" || user.user === "veterinar") {
-          navigate("/work");
-        } else {
-          navigate("/");
+        const res = await axios.post("http://localhost:3000/auth/login", {
+          usernameOrEmail: values.username,
+          password: values.password
+        });
+  
+        if (res.status === 200) {
+          const token = res.data;
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("user", JSON.stringify(user));
+          if (user.role === "groomer" || user.role === "veterinar") {
+            navigate("/work");
+          } else {
+            navigate("/");
+          }
         }
-
-        localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
         console.error("Error during login:", error);
       }

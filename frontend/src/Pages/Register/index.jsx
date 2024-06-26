@@ -9,9 +9,10 @@ import back from '../../assets/images/home-n1-footer-0.png';
 import pets from '../../assets/images/home-n1-footer-1.png';
 import './register.scss';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllData, postData } from '../../Service/requests';
+import { getAllData} from '../../Service/requests';
 import { AddUsers, UpdateUser } from '../../Redux/Slices/userSlice';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -32,14 +33,22 @@ const Register = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     const user = users.find(elem => elem.email === values.email || elem.username === values.username);
     if (!user) {
-      await postData("users", values);
-      Swal.fire({
-        icon: 'success',
-        title: 'Registered successfully',
-      });
-      dispatch(UpdateUser(values))
-      navigate("/login")
-
+      try {
+        await axios.post('http://localhost:3000/auth/register', values); 
+        Swal.fire({
+          icon: 'success',
+          title: 'Registered successfully',
+        });
+        dispatch(UpdateUser(values));
+        navigate("/login");
+      } catch (error) {
+        console.error('Error during registration:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration failed',
+          text: 'An error occurred while registering. Please try again later.',
+        });
+      }
     } else {
       Swal.fire({
         icon: 'error',
@@ -128,7 +137,6 @@ const Register = () => {
                       id='password'
                       name='password'
                       required
-                      
                     />
                     <FontAwesomeIcon
                      

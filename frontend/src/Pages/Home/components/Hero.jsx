@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import meal from "../../../assets/images/rev_home2_01.png";
 import dogs from "../../../assets/images/rev_home2_2.png";
@@ -10,15 +13,28 @@ import back2 from "../../../assets/images/rev_home7_15.png";
 import dog from "../../../assets/images/rev_home3 (1).png";
 import back3 from "../../../assets/images/rev_home3_6.png";
 import "../home.scss";
+import { FilterCategory } from "../../../Redux/Slices/productSlice";
+import { useDispatch } from "react-redux";
 
 const Hero = () => {
+  const dispatch = useDispatch()
   const slides = [
     {
       content: (
         <>
           <h2>Best Foods For Your Pets</h2>
           <p>Help your dog maintain a healthier weight with </p>
-          <Link to="/shop" className="shop">Shop Now</Link>
+          <Link
+            onClick={() =>
+              setTimeout(() => {
+                dispatch(FilterCategory("food"));
+              }, 200)
+            }
+            to="/shop"
+            className="shop"
+          >
+            Shop Now
+          </Link>
         </>
       ),
       mealImg: meal,
@@ -31,7 +47,13 @@ const Hero = () => {
         <>
           <h2>Comfortable Beds For Your Pets</h2>
           <p>Keep your pets happy and healthy with our treats</p>
-          <Link to="/shop" className="shop">Shop Now</Link>
+          <Link  onClick={() =>
+              setTimeout(() => {
+                dispatch(FilterCategory("bed"));
+              }, 200)
+            } to="/shop" className="shop">
+            Shop Now
+          </Link>
         </>
       ),
       dogsImg: cat,
@@ -43,7 +65,13 @@ const Hero = () => {
         <>
           <h2>New & Exclusive Pet Clothings</h2>
           <p>Give your pets the best with our options</p>
-          <Link to="/shop" className="shop">Shop Now</Link>
+          <Link onClick={() =>
+              setTimeout(() => {
+                dispatch(FilterCategory("clothes"));
+              }, 200)
+            }  to="/shop" className="shop">
+            Shop Now
+          </Link>
         </>
       ),
       dogsImg: dog,
@@ -62,7 +90,9 @@ const Hero = () => {
   const handlePrevClick = () => {
     setFadeProp("fade-out");
     setTimeout(() => {
-      setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+      setCurrentSlide((prevSlide) =>
+        prevSlide === 0 ? slides.length - 1 : prevSlide - 1
+      );
       setFadeProp("fade-in");
     }, 500);
   };
@@ -70,7 +100,9 @@ const Hero = () => {
   const handleNextClick = () => {
     setFadeProp("fade-out");
     setTimeout(() => {
-      setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
+      setCurrentSlide((prevSlide) =>
+        prevSlide === slides.length - 1 ? 0 : prevSlide + 1
+      );
       setFadeProp("fade-in");
     }, 500);
   };

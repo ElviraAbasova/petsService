@@ -146,7 +146,7 @@ const VeterinarPanel = () => {
               &times;
             </span>
             <h3>Edit</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSave(currentData._id,e)} className="infos">
               <div className="info">
                 <label htmlFor="image">Image</label>
                 <input required ref={image} type="text" id="image" defaultValue={currentData.image} />
@@ -171,10 +171,10 @@ const VeterinarPanel = () => {
                 <label htmlFor="twitter">Twitter</label>
                 <input required  ref={twitter} type="text" id="twitter" defaultValue={currentData.twitter} />
               </div>
-              <button className="save" onClick={(e)=>handleSave(currentData._id,e)}>
+              <button className="save" >
                 Save
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}
@@ -186,7 +186,7 @@ const VeterinarPanel = () => {
               &times;
             </span>
             <h3>Post</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSavePost(e)} className="infos">
             <div className="info">
                 <label htmlFor="image">Image</label>
                 <input required ref={image} type="text" id="image"  />
@@ -211,8 +211,8 @@ const VeterinarPanel = () => {
                 <label htmlFor="twitter">Twitter</label>
                 <input required  ref={twitter} type="text" id="twitter"/>
               </div>
-              <button className="save" onClick={(e)=>handleSavePost(e)}>Save</button>
-            </div>
+              <button className="save" >Save</button>
+            </form>
           </div>
         </div>
       )}

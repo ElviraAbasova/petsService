@@ -131,7 +131,7 @@ const GroomingPanel = () => {
               &times;
             </span>
             <h3>Edit</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSave(currentData._id,e)} className="infos">
               <div className="info">
                 <label htmlFor="name">name</label>
                 <input required  ref={name} type="text" id="name" defaultValue={currentData.package} />
@@ -144,10 +144,10 @@ const GroomingPanel = () => {
                 <label htmlFor="aboutt">About</label>
                 <input required   ref={about} type="text" id="aboutt" defaultValue={currentData.about} />
               </div>
-              <button className="save" onClick={(e)=>handleSave(currentData._id,e)}>
+              <button className="save" >
                 Save
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}
@@ -159,7 +159,7 @@ const GroomingPanel = () => {
               &times;
             </span>
             <h3>Post</h3>
-            <div className="infos">
+            <form onSubmit={(e)=>handleSavePost(e)} className="infos">
             <div className="info">
                 <label htmlFor="name">name</label>
                 <input required  ref={name} type="text" id="name"  />
@@ -172,8 +172,8 @@ const GroomingPanel = () => {
                 <label htmlFor="aboutt">About</label>
                 <input required   ref={about} type="text" id="aboutt"  />
               </div>
-              <button className="save" onClick={(e)=>handleSavePost(e)}>Save</button>
-            </div>
+              <button className="save" >Save</button>
+            </form>
           </div>
         </div>
       )}

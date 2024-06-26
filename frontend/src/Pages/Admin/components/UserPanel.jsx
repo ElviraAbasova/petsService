@@ -117,7 +117,7 @@ const UserPanel = () => {
 
   return (
     <section id="admin">
-      <div className="container">
+      <div className="container" >
         {loading ? (
           <div
             style={{
@@ -195,7 +195,7 @@ const UserPanel = () => {
               &times;
             </span>
             <h3>Edit</h3>
-            <div className="infos">
+            <form className="infos"  onSubmit={(e) => handleSave(currentUser._id, e)}>
               <div className="info">
                 <label htmlFor="image">Image</label>
                 <input
@@ -342,11 +342,11 @@ const UserPanel = () => {
               </div>
               <button
                 className="save"
-                onClick={(e) => handleSave(currentUser._id, e)}
+               
               >
                 Save
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}
@@ -358,7 +358,7 @@ const UserPanel = () => {
               &times;
             </span>
             <h3>Post</h3>
-            <div className="infos">
+            <form className="infos" onSubmit={(e) => handleSavePost(e)}>
               <div className="info">
                 <label htmlFor="image">Image</label>
                 <input required ref={image} type="text" id="image" />
@@ -404,7 +404,7 @@ const UserPanel = () => {
                   <label htmlFor="female">Female</label>
                 </div>
               </div>
-              <div className="info">
+              <div className="info"> 
                 <label htmlFor="user">User</label>
                 <div>
                   <input
@@ -449,10 +449,10 @@ const UserPanel = () => {
                 <label htmlFor="balance">Balance</label>
                 <input required ref={balance} type="number" id="balance" min={0} />
               </div>
-              <button className="save" onClick={(e) => handleSavePost(e)}>
+              <button className="save" >
                 Save
               </button>
-            </div>
+            </form>
           </div>
         </div>
       )}

@@ -79,8 +79,8 @@ const BestSeller = () => {
   }
   const handleViewAll = () => {
     setTimeout(() => {
-      dispatch(FilterSeller(30));
-    }, 150); 
+      dispatch(FilterSeller(10));
+    }, 200); 
   };
   return (
     <section id="bestseller">
@@ -123,11 +123,11 @@ const BestSeller = () => {
                       Add to Card
                     </div>
                   </div>
-                  <div className="disc">-{card.discount}%</div>
+                  {card.discount != 0 ? (<div className="disc">-{card.discount}%</div> ): null}
                 </div>
                 <div className="prices">
                   <h4 className='price'>${Math.round((card.price - (card.price * card.discount / 100)) * 100) / 100}</h4>
-                  <div className="oldPrice">${card.price}</div>
+                  {card.discount != 0 ? ( <div className="oldPrice">${card.price}</div>): null}
                 </div>
                 <p className='about'>{card.title}</p>
                 <div className="stars">
