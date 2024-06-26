@@ -18,9 +18,8 @@ import io from "socket.io-client";
 const socket = io("http://localhost:3000");
 
 const Navbar = () => {
-  let user = JSON.parse(localStorage.getItem("user"))
+  let user = JSON.parse(localStorage.getItem("user"));
 
-  
   const [select, setSelect] = useState(false);
   const [menu, setMenu] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -30,7 +29,6 @@ const Navbar = () => {
 
   const fav = useSelector((state) => state.favorite.arr);
   const basket = useSelector((state) => state.basket.arr);
-
 
   const openMenu = () => {
     setMenu(!menu);
@@ -74,13 +72,12 @@ const Navbar = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
-  
-  const handleCount=()=>{
+
+  const handleCount = () => {
     return basket.reduce((acc, elem) => {
       return acc + elem.count;
     }, 0);
-  }
-
+  };
 
   return (
     <nav>
@@ -113,12 +110,18 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faChevronDown} />
             {select && (
               <ul className="dropdown">
-                <li className={location.pathname === "/grooming" ? "choose" : ""}>
+                <li
+                  className={location.pathname === "/grooming" ? "choose" : ""}
+                >
                   <Link to="/grooming" className="link" onClick={closeMenu}>
                     Grooming
                   </Link>
                 </li>
-                <li className={location.pathname === "/veterinary" ? "choose" : ""}>
+                <li
+                  className={
+                    location.pathname === "/veterinary" ? "choose" : ""
+                  }
+                >
                   <Link to="/veterinary" className="link" onClick={closeMenu}>
                     Veterinary
                   </Link>
@@ -126,22 +129,37 @@ const Navbar = () => {
               </ul>
             )}
           </li>
-          <li className={location.pathname === "/admin" ? "choose" : ""}>
-            <Link to="/admin" className="link" onClick={closeMenu}>
-              Admin
-            </Link>
-          </li>
+          {user && user.user.toUpperCase() === "ADMIN" ? (
+            <li className={location.pathname === "/admin" ? "choose" : ""}>
+              <Link to="/admin" className="link" onClick={closeMenu}>
+                Admin
+              </Link>
+            </li>
+          ) : null}
         </ul>
 
         <div className="LogoBar">
-          <Link to={user ? "/profile" : "/login"} className={`logo ${location.pathname === "/login" ? "choose" : ""}`}>
+          <Link
+            to={user ? "/profile" : "/login"}
+            className={`logo ${location.pathname === "/login" ? "choose" : ""}`}
+          >
             <FontAwesomeIcon className="user" icon={faUser} />
           </Link>
-          <Link to="/favorite" className={`logo ${location.pathname === "/favorite" ? "choose" : ""}`}>
+          <Link
+            to="/favorite"
+            className={`logo ${
+              location.pathname === "/favorite" ? "choose" : ""
+            }`}
+          >
             <FontAwesomeIcon className="like" icon={faHeart} />
             <div className="number">{fav.length}</div>
           </Link>
-          <Link to="/basket" className={`logo ${location.pathname === "/basket" ? "choose" : ""}`}>
+          <Link
+            to="/basket"
+            className={`logo ${
+              location.pathname === "/basket" ? "choose" : ""
+            }`}
+          >
             <FontAwesomeIcon className="shop" icon={faCartShopping} />
             <div className="number">{handleCount()}</div>
           </Link>
@@ -162,7 +180,12 @@ const Navbar = () => {
           </div>
           <div className="chatBody">
             {chat.map((msg, index) => (
-              <div key={index} className={`chatMessage ${msg.id === socket.id ? "right" : "left"}`}>
+              <div
+                key={index}
+                className={`chatMessage ${
+                  msg.id === socket.id ? "right" : "left"
+                }`}
+              >
                 {msg.message}
               </div>
             ))}

@@ -23,8 +23,9 @@ import { AddFromDetail } from "../../Redux/Slices/basketSlice";
 import { getAllData, patchData } from "../../Service/requests";
 import { AddUsers } from "../../Redux/Slices/userSlice";
 import { UpdateProducts } from "../../Redux/Slices/productSlice";
-
+import Swal from "sweetalert2";
 const Detail = () => {
+ 
   const navigate = useNavigate()
   let profile = JSON.parse(localStorage.getItem("user"))
   const data = useSelector((state) => state.product.arr);
@@ -46,13 +47,47 @@ const Detail = () => {
   }, [dispatch]);
   const handleFav = (elem, e) => {
     e.preventDefault();
-    dispatch(Addfav(elem));
+    if (!profile) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to favorites.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      dispatch(Addfav(elem));
+    }
   };
 
   const handleBasket = (elem, e) => {
     e.preventDefault();
-    dispatch(AddFromDetail({ ...elem, count: count }));
+    if(!profile){
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to basket.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
+    else{
+      dispatch(AddFromDetail({ ...elem, count: count }));
     setCount(1);
+    }
+    
   };
 
   const IncBasket = (e) => {
@@ -70,7 +105,19 @@ const Detail = () => {
   };
   const handleSubmit = async (e) => {
     if(profile == null){
-      navigate("/login")
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to comment",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
     }
     e.preventDefault();
     if (!comment.current.value.trim()) {

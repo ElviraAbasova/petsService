@@ -10,7 +10,7 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData, patchData } from "../../../Service/requests";
 import Skeleton from "react-loading-skeleton";
@@ -27,8 +27,11 @@ import {
   FilterSeller,
   FilterTags,
 } from "../../../Redux/Slices/productSlice";
+import Swal from "sweetalert2";
 
 const ShopCards = () => {
+  let user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
   const filter = useSelector((state) => state.product.filter);
   const datas = useSelector((state) => state.product.arr);
 
@@ -45,7 +48,6 @@ const ShopCards = () => {
       dispatch(AddProducts(res));
       setLoading(false);
     });
-   
   }, [dispatch]);
 
   const onSliderChange = (value) => {
@@ -83,29 +85,67 @@ const ShopCards = () => {
 
   const handleFav = async (elem, e) => {
     e.preventDefault();
-    dispatch(Addfav(elem));
+
+    if (!user) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to favorites.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      dispatch(Addfav(elem));
+    }
   };
+
   const handleColor = (id) => {
-    return fav.find((elem) => elem._id == id);
+    return fav.find((elem) => elem._id === id);
   };
+
   const handleBasket = async (elem, e) => {
     e.preventDefault();
-    dispatch(AddBasket(elem));
+    if (!user) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to basket.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      dispatch(AddBasket(elem));
+    }
   };
+
   const handleDiscCount = (disc) => {
     return datas.filter((elem) => elem.discount >= disc).length;
   };
+
   const handleRatingCount = (min, max) => {
     return datas.filter((elem) => elem.rating >= min && elem.rating < max)
       .length;
   };
+
   const handleCategoryCount = (category) => {
-    return datas.filter((elem) => elem.category == category).length;
+    return datas.filter((elem) => elem.category === category).length;
   };
+
   const handleBestCount = () => {
     return datas.filter((elem) => elem.seller >= 30).length;
   };
-
   return (
     <div className="shops">
       <div className="leftSide">

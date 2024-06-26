@@ -5,6 +5,7 @@ import { getAllData, patchData } from "../../../Service/requests";
 import { AddGroomers } from "../../../Redux/Slices/groomerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 const GroomRandevu = () => {
   const [pet, setPet] = useState("");
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ const GroomRandevu = () => {
   const [packag, setPackag] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  
+  let user = JSON.parse(localStorage.getItem("user"));
   const groomers = useSelector((state) => state.groomer.arr);
   const dispatch = useDispatch();
 
@@ -37,23 +38,39 @@ const GroomRandevu = () => {
       date,
       time,
     };
-
-    const find = groomers.find(elem => elem.name.toUpperCase() === groomer.toUpperCase());
-    if (find) {
-      const updated = { ...find, randevus: [...find.randevus, obj] };
-      await patchData("groomers", find._id, updated);
-      toast.success("Randevu is successfully!");
+    if (!user) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to get Randevu.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      const find = groomers.find(elem => elem.name.toUpperCase() === groomer.toUpperCase());
+      if (find) {
+        const updated = { ...find, randevus: [...find.randevus, obj] };
+        await patchData("groomers", find._id, updated);
+        toast.success("Randevu is successfully!");
+      }
+      
+      setPet("");
+      setName("");
+      setPetName("");
+      setPhone("");
+      setEmail("");
+      setGroomer("");
+      setPackag("");
+      setDate("");
+      setTime("");
     }
-    
-    setPet("");
-    setName("");
-    setPetName("");
-    setPhone("");
-    setEmail("");
-    setGroomer("");
-    setPackag("");
-    setDate("");
-    setTime("");
+   
   };
 
   const today = new Date().toISOString().split("T")[0]; 

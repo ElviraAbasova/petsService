@@ -13,7 +13,9 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddBasket } from "../../../Redux/Slices/basketSlice";
 import { AddProducts, FilterSeller } from "../../../Redux/Slices/productSlice";
+import Swal from "sweetalert2";
 const BestSeller = () => {
+  let user = JSON.parse(localStorage.getItem("user"));
   const datas = useSelector((state) => state.product.arr);
   const fav = useSelector((state) => state.favorite.arr);
   const dispatch = useDispatch();
@@ -32,7 +34,23 @@ const BestSeller = () => {
     .slice(0, 4);
     const handleFav = async(elem, e) => {
       e.preventDefault(); 
-      dispatch(Addfav(elem));
+      if (!user) {
+        Swal.fire({
+          title: "Login Required",
+          text: "You need to log in to add to favorites.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#f47107",
+          cancelButtonColor: "#8D19E8",
+          confirmButtonText: "Log in",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/login");
+          }
+        });
+      } else {
+        dispatch(Addfav(elem));
+      }
     
   }
    const handleColor = (id) =>{
@@ -40,7 +58,23 @@ const BestSeller = () => {
   }
   const handleBasket = async(elem, e) => {
     e.preventDefault(); 
-    dispatch(AddBasket(elem));
+    if (!user) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to add to basket.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      dispatch(AddBasket(elem));
+    }
    
   }
   const handleViewAll = () => {

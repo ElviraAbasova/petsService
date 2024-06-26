@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./basket.scss";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { DecBasket, DeleteAllBas, DeleteBasket, IncBasket } from "../../Redux/Slices/basketSlice";
 import { ToastContainer} from 'react-toastify';
 
+
 const Basket = () => {
+
   const basket = useSelector((state) => state.basket.arr);
   const dispatch = useDispatch()
   const handleInc=(elem,e)=>{
@@ -29,13 +31,15 @@ const Basket = () => {
   }
   const handleSum = () => {
     return Math.round(basket.reduce((acc, elem) => {
-      return acc + elem.count * elem.price;
+      return acc + (elem.count * (elem.price*(100-elem.discount)/100));
+
     }, 0) * 100) / 100;
   };
   const handleDeleteAll=()=>{
      dispatch(DeleteAllBas())
 
   }
+
   return (
     <section id="basket">
       <div className="container">
@@ -67,7 +71,7 @@ const Basket = () => {
                  <div className="col">
                    <div className="total">
                      <h5>Total:</h5>
-                     <h5>${data.count * (Math.round((data.price - (data.price * data.discount / 100)) * 100) / 100)}</h5>
+                     <h5>${Math.round((data.count*(data.price - (data.price * data.discount / 100))) * 100) / 100}</h5>
                    </div>
                  </div>
                  <button onClick={(e)=> handleDel(data,e)} className="button">
@@ -122,7 +126,7 @@ const Basket = () => {
                </div>
                <div className="row">
                  <h5>Shipping</h5>
-                 <h4>$ 4.99</h4>
+                 <h4>$ 5</h4>
                </div>
              </div>
              <div className="bottom">
@@ -130,7 +134,7 @@ const Basket = () => {
                  <h5>Total</h5>
                  <h4>$ {handleSum()+5}</h4>
                </div>
-               <button>Check out</button>
+               <button >Check out</button>
                <button onClick={handleDeleteAll} style={{backgroundColor:"red"}}>Delete All</button>
 
              </div>
@@ -140,6 +144,7 @@ const Basket = () => {
         ):(
           <h3 style={{ color: "gray", fontSize: "2.5rem", textAlign:"center" }}>Empty</h3>
         )}
+  
        
       </div>
       <ToastContainer/>

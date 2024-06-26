@@ -61,6 +61,18 @@
                         outline: 1px solid #F47107;
                         
                     }
+                    .password-input{
+                        position: relative;
+                        #password{
+                            width: 100%;
+                        }
+                        .toggle-password{
+                            position: absolute;
+                            right: 5%;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                    }
                 }
                 .forgot{
                     text-decoration: none;

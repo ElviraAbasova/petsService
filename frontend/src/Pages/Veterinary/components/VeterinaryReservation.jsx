@@ -5,7 +5,7 @@ import { getAllData, patchData } from "../../../Service/requests";
 import { useDispatch, useSelector } from 'react-redux';
 import { AddVeterinars } from '../../../Redux/Slices/veterinarSlice';
 import { ToastContainer, toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 const VeterinaryReservation = () => {
   const [category, setCategory] = useState("");
   const [petName, setPetName] = useState("");
@@ -18,7 +18,7 @@ const VeterinaryReservation = () => {
   const [vet, setVet] = useState("");
   const [info, setInfo] = useState("");
 
-
+  let user = JSON.parse(localStorage.getItem("user"));
   const veterinars = useSelector((state) => state.veterinar.arr);
   const dispatch = useDispatch();
 
@@ -42,8 +42,22 @@ const VeterinaryReservation = () => {
       time,
       info,
     };
-
-    const find = veterinars.find(elem => elem.name.toUpperCase() === vet.toUpperCase());
+    if (!user) {
+      Swal.fire({
+        title: "Login Required",
+        text: "You need to log in to get Randevu.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#f47107",
+        cancelButtonColor: "#8D19E8",
+        confirmButtonText: "Log in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    } else {
+      const find = veterinars.find(elem => elem.name.toUpperCase() === vet.toUpperCase());
     if (find) {
       const updated = { ...find, randevus: [...find.randevus, obj] };
       await patchData("veterinars", find._id, updated);
@@ -60,6 +74,9 @@ const VeterinaryReservation = () => {
     setTime("");
     setVet("");
     setInfo("");
+    }
+
+    
   };
 
   const today = new Date().toISOString().split("T")[0]; 

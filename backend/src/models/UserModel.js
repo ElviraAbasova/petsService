@@ -13,7 +13,8 @@ const UserSchema = mongoose.Schema({
     image: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        default: "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg"
     },
     email: {
         type: String,
@@ -57,7 +58,8 @@ const UserSchema = mongoose.Schema({
     balance:{
         type: Number,
         required: true,
-        trim: true
+        trim: true,
+        default: 0
     },
     password:{
         type: String,

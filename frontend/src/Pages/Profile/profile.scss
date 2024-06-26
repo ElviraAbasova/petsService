@@ -106,6 +106,15 @@
               background-color: whitesmoke;
               padding: 0.6rem 1rem;
             }
+            .password-input{
+              position: relative;
+              .toggle-password{
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
           }
         }
         $background-color_1: #282828;

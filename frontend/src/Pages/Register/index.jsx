@@ -1,14 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import Swal from 'sweetalert2';
 import RegisterSchema from './schema/RegisterSchema';
 import back from '../../assets/images/home-n1-footer-0.png';
 import pets from '../../assets/images/home-n1-footer-1.png';
 import './register.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllData, postData } from '../../Service/requests';
+import { AddUsers, UpdateUser } from '../../Redux/Slices/userSlice';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  
+  useEffect(() => {
+    getAllData("users").then((res) => {
+      dispatch(AddUsers(res));
+    });
+  }, [dispatch]);
+  
+  const users = useSelector(state => state.user.arr);
+  const navigate = useNavigate()
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const user = users.find(elem => elem.email === values.email || elem.username === values.username);
+    if (!user) {
+      await postData("users", values);
+      Swal.fire({
+        icon: 'success',
+        title: 'Registered successfully',
+      });
+      dispatch(UpdateUser(values))
+      navigate("/login")
+
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot register',
+        text: 'Email or Username already exists',
+      });
+    }
+    setSubmitting(false);
+  };
+
   return (
     <section id="register">
       <div className="container">
@@ -28,13 +69,10 @@ const Register = () => {
               password: '',
             }}
             validationSchema={RegisterSchema}
-            onSubmit={(values) => {
-
-              console.log('Form values:', values);
-            }}
+            onSubmit={handleSubmit}
           >
-            {({ handleSubmit }) => (
-              <Form onSubmit={handleSubmit}>
+            {({ isSubmitting }) => (
+              <Form>
                 <div className="info">
                   <div className="row">
                     <label htmlFor="name">Name</label>
@@ -50,7 +88,7 @@ const Register = () => {
                 <div className="info">
                   <div className="row">
                     <label htmlFor="date">Date</label>
-                    <Field type="date" id="date" name="date" required />
+                    <Field max="2015-12-31" type="date" id="date" name="date" required />
                     <ErrorMessage style={{color:"red"}} name="date" component="div" className="error" />
                   </div>
                   <div className="radio-button-container">
@@ -62,7 +100,7 @@ const Register = () => {
                       </label>
                     </div>
                     <div className="radio-button">
-                      <Field type="radio" className="radio-button__input" id="radio2" name="gender" value="Female" />
+                      <Field  type="radio" className="radio-button__input" id="radio2" name="gender" value="Female" />
                       <label className="radio-button__label" htmlFor="radio2">
                         <span className="radio-button__custom" />
                         Female
@@ -82,11 +120,26 @@ const Register = () => {
                   <ErrorMessage style={{color:"red"}} name="username" component="div" className="error" />
                 </div>
                 <div className="row">
-                  <label htmlFor="password">Password</label>
-                  <Field type="password" id="password" name="password" required />
-                  <ErrorMessage style={{color:"red"}} name="password" component="div" className="error" />
+                <label htmlFor='password'>Password</label>
+                  <div className='password-input'>
+                    <Field
+                      
+                      type={showPassword ? 'text' : 'password'}
+                      id='password'
+                      name='password'
+                      required
+                      
+                    />
+                    <FontAwesomeIcon
+                     
+                     icon={showPassword ? faEyeSlash : faEye}
+                      className='toggle-password'
+                      onClick={togglePasswordVisibility}
+                    />
+                  </div>
+                  <ErrorMessage style={{ color: 'red' }} name='password' component='div' className='error' />
                 </div>
-                <button type="submit" className="button">Register</button>
+                <button type="submit" className="button" disabled={isSubmitting}>Register</button>
               </Form>
             )}
           </Formik>
