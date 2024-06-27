@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddVeterinars } from '../../../Redux/Slices/veterinarSlice';
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import SmoothScrollComponent from '../../../hook/SmoothScrollComponent';
 const VeterinaryReservation = () => {
   const [category, setCategory] = useState("");
   const [petName, setPetName] = useState("");
@@ -32,6 +33,7 @@ const VeterinaryReservation = () => {
     e.preventDefault();
 
     let obj = {
+      id: user && user._id,
       category,
       petName,
       name,
@@ -42,10 +44,11 @@ const VeterinaryReservation = () => {
       time,
       info,
     };
+
     if (!user) {
       Swal.fire({
         title: "Login Required",
-        text: "You need to log in to get Randevu.",
+        text: "You need to log in to make a reservation.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#f47107",
@@ -53,30 +56,38 @@ const VeterinaryReservation = () => {
         confirmButtonText: "Log in",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login");
+          navigate("/login"); 
         }
       });
     } else {
-      const find = veterinars.find(elem => elem.name.toUpperCase() === vet.toUpperCase());
-    if (find) {
-      const updated = { ...find, randevus: [...find.randevus, obj] };
-      await patchData("veterinars", find._id, updated);
-      toast.success("Randevu is successfully!");
-    }
+      const find = veterinars.find((elem) => elem.name.toUpperCase() === vet.toUpperCase());
 
-    setCategory("");
-    setPetName("");
-    setName("");
-    setSurname("");
-    setPhone("");
-    setEmail("");
-    setDate("");
-    setTime("");
-    setVet("");
-    setInfo("");
-    }
+      if (find) {
+       
+        const existingAppointment = find.randevus.find(
+          (appointment) => appointment.date === date && appointment.time === time
+        );
 
-    
+        if (existingAppointment && existingAppointment.status === "Accepted") {
+          toast.error("This time slot is already booked and confirmed. Please choose another time.");
+          return;
+        }
+
+        const updated = { ...find, randevus: [...find.randevus, obj] };
+        await patchData("veterinarians", find._id, updated);
+        toast.success("Appointment booked successfully!");
+      }
+      setCategory("");
+      setPetName("");
+      setName("");
+      setSurname("");
+      setPhone("");
+      setEmail("");
+      setDate("");
+      setTime("");
+      setVet("");
+      setInfo("");
+    }
   };
 
   const today = new Date().toISOString().split("T")[0]; 
@@ -88,10 +99,11 @@ const VeterinaryReservation = () => {
     }
     return options;
   };
+  const fadeIn = SmoothScrollComponent();
 
   return (
     <div id="veterinaryRandevu">
-      <div className="container">
+      <div  ref={fadeIn.ref}  className="container">
         <div className="title">
           <h3>Get A Randevu</h3>
           <img src={paw} alt="paw" />

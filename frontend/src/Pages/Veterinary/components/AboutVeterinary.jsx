@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect, useRef } from "react";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 
 const AboutVeterinary = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -45,7 +46,7 @@ const AboutVeterinary = () => {
   }, [hasAnimated]);
 
   const startCounting = () => {
-    const duration = 2000; 
+    const duration = 2000;
     const incrementInterval = 20;
     const steps = duration / incrementInterval;
 
@@ -73,9 +74,16 @@ const AboutVeterinary = () => {
   const handleVideoClose = () => {
     setIsVideoPlaying(false);
   };
+  const fadeIn = SmoothScrollComponent();
 
   return (
-    <section id="aboutVeterinary" ref={sectionRef}>
+    <section
+      ref={(el) => {
+        sectionRef.current = el;
+        fadeIn.ref.current = el;
+      }}
+      id="aboutVeterinary"
+    >
       <div className="left">
         {isVideoPlaying ? (
           <>
@@ -108,11 +116,11 @@ const AboutVeterinary = () => {
       </div>
       <div className="abselutes">
         <div className="col">
-          <h4>{Math.floor(counts.happyClients)+1}K+</h4>
+          <h4>{Math.floor(counts.happyClients) + 1}K+</h4>
           <h5>Happy Clients</h5>
         </div>
         <div className="col">
-          <h4>{Math.floor(counts.memberActive)+1}K+</h4>
+          <h4>{Math.floor(counts.memberActive) + 1}K+</h4>
           <h5>Member Active</h5>
         </div>
         <div className="col">
@@ -120,7 +128,7 @@ const AboutVeterinary = () => {
           <h5>Client Ratings</h5>
         </div>
         <div className="col">
-          <h4>{Math.floor(counts.expertTeam)+1}</h4>
+          <h4>{Math.floor(counts.expertTeam) + 1}</h4>
           <h5>Expert Team</h5>
         </div>
       </div>

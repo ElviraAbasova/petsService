@@ -127,10 +127,11 @@ const GroomingPanel = () => {
       {editModal && currentData && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleCloseEdit}>
-              &times;
-            </span>
-            <h3>Edit</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleCloseEdit} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form onSubmit={(e)=>handleSave(currentData._id,e)} className="infos">
               <div className="info">
                 <label htmlFor="name">name</label>
@@ -155,10 +156,11 @@ const GroomingPanel = () => {
       {postModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleClosePost}>
-              &times;
-            </span>
-            <h3>Post</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleClosePost} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form onSubmit={(e)=>handleSavePost(e)} className="infos">
             <div className="info">
                 <label htmlFor="name">name</label>

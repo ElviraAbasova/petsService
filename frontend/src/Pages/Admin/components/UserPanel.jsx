@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash, faX } from "@fortawesome/free-solid-svg-icons";
 import {
   deleteDataById,
   getAllData,
@@ -191,10 +191,11 @@ const UserPanel = () => {
       {editModal && currentUser && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleCloseEdit}>
-              &times;
-            </span>
-            <h3>Edit</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleCloseEdit} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form className="infos"  onSubmit={(e) => handleSave(currentUser._id, e)}>
               <div className="info">
                 <label htmlFor="image">Image</label>
@@ -354,10 +355,11 @@ const UserPanel = () => {
       {postModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleClosePost}>
-              &times;
-            </span>
-            <h3>Post</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleClosePost} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form className="infos" onSubmit={(e) => handleSavePost(e)}>
               <div className="info">
                 <label htmlFor="image">Image</label>

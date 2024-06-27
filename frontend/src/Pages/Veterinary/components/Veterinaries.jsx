@@ -8,6 +8,7 @@ import { getAllData } from "../../../Service/requests";
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css';
 import { AddVeterinars } from "../../../Redux/Slices/veterinarSlice";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const Veterinaries = () => {
   const [loading, setLoading] = useState(true); 
 
@@ -20,9 +21,10 @@ const Veterinaries = () => {
       setLoading(false); 
     });
   }, [dispatch]);
+  const fadeIn = SmoothScrollComponent();
   return (
     <section id="veterinaries">
-      <div className="container">
+      <div ref={fadeIn.ref}  className="container">
         <div className="title">
           <h3>Our Team</h3>
           <img src={paw} alt="paw" />

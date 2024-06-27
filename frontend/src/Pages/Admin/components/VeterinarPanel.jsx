@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash, faX } from '@fortawesome/free-solid-svg-icons';
 import { deleteDataById, getAllData, patchData, postData } from '../../../Service/requests';
 import { AddVeterinars, DeleteVeterinar, PostVeterinar, UpdateVeterinar } from '../../../Redux/Slices/veterinarSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -142,10 +142,11 @@ const VeterinarPanel = () => {
       {editModal && currentData && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleCloseEdit}>
-              &times;
-            </span>
-            <h3>Edit</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleCloseEdit} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form onSubmit={(e)=>handleSave(currentData._id,e)} className="infos">
               <div className="info">
                 <label htmlFor="image">Image</label>
@@ -182,10 +183,11 @@ const VeterinarPanel = () => {
       {postModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleClosePost}>
-              &times;
-            </span>
-            <h3>Post</h3>
+          <div className="title">
+            <FontAwesomeIcon className="close" onClick={handleClosePost} icon={faX} />
+           
+           <h3>Edit</h3>
+            </div>
             <form onSubmit={(e)=>handleSavePost(e)} className="infos">
             <div className="info">
                 <label htmlFor="image">Image</label>

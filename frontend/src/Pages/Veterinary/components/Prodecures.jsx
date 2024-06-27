@@ -9,11 +9,13 @@ import {
   faSyringe,
   faTooth,
 } from "@fortawesome/free-solid-svg-icons";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 
 const Prodecures = () => {
+  const fadeIn = SmoothScrollComponent();
   return (
     <section id="procedures">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h3>Our Procedures</h3>
           <img src={paw} alt="paw" />

@@ -6,6 +6,7 @@ import { AddGroomers } from "../../../Redux/Slices/groomerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const GroomRandevu = () => {
   const [pet, setPet] = useState("");
   const [name, setName] = useState("");
@@ -29,6 +30,7 @@ const GroomRandevu = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let obj = {
+      id: user && user._id,
       pet,
       name,
       petName,
@@ -38,10 +40,11 @@ const GroomRandevu = () => {
       date,
       time,
     };
+
     if (!user) {
       Swal.fire({
         title: "Login Required",
-        text: "You need to log in to get Randevu.",
+        text: "You need to log in to make an appointment.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#f47107",
@@ -49,17 +52,27 @@ const GroomRandevu = () => {
         confirmButtonText: "Log in",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login");
+          navigate("/login"); 
         }
       });
     } else {
-      const find = groomers.find(elem => elem.name.toUpperCase() === groomer.toUpperCase());
+      const find = groomers.find((elem) => elem.name.toUpperCase() === groomer.toUpperCase());
       if (find) {
+        const existingAppointment = find.randevus.find(
+          (appointment) => appointment.date === date && appointment.time === time
+        );
+
+        if (existingAppointment && existingAppointment.status === "Accepted") {
+          toast.error("This time slot is already booked and confirmed. Please choose another time.");
+          return;
+        }
+
         const updated = { ...find, randevus: [...find.randevus, obj] };
         await patchData("groomers", find._id, updated);
-        toast.success("Randevu is successfully!");
+        toast.success("Appointment booked successfully!");
       }
-      
+
+
       setPet("");
       setName("");
       setPetName("");
@@ -70,9 +83,7 @@ const GroomRandevu = () => {
       setDate("");
       setTime("");
     }
-   
   };
-
   const today = new Date().toISOString().split("T")[0]; 
 
   const generateTimeOptions = () => {
@@ -83,9 +94,10 @@ const GroomRandevu = () => {
     }
     return options;
   };
+  const fadeIn = SmoothScrollComponent();
   return (
     <section id="groomRandevu">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h3>Get A Randevu</h3>
           <img src={paw} alt="paw" />
@@ -126,7 +138,7 @@ const GroomRandevu = () => {
             </div>
             <div className="names">
               <div className="row">
-                <label htmlFor="name">Your Name</label>
+                <label htmlFor="name">Your Name, Lastname</label>
                 <input
                 required
                   value={name}

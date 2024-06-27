@@ -24,6 +24,7 @@ import { getAllData, patchData } from "../../Service/requests";
 import { AddUsers } from "../../Redux/Slices/userSlice";
 import { UpdateProducts } from "../../Redux/Slices/productSlice";
 import Swal from "sweetalert2";
+import SmoothScrollComponent from "../../hook/SmoothScrollComponent";
 const Detail = () => {
  
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [selectedRating, setSelectedRating] = useState(1);
+  const fadeIn = SmoothScrollComponent();
    
   useEffect(() => {
     getAllData("users").then((res) => {
@@ -168,9 +170,9 @@ const Detail = () => {
   } 
   return (
     <section id="detail">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="top">
-          <Link className="back" to="/" target="_parent">
+          <Link className="back" to="/" onClick={()=> window.scrollTo(0, 0)}>
             <FontAwesomeIcon icon={faArrowLeft} />
             Go Back
           </Link>

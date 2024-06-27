@@ -65,7 +65,7 @@ const Register = () => {
         <div className="login">
           <div className="top">
             <h3>Register</h3>
-            <Link className="register" to="/login">Log in</Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} className="register" to="/login">Log in</Link>
           </div>
           <Formik
             initialValues={{

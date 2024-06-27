@@ -1,9 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import React, { useState } from "react";
-
+import React, { useRef, useState } from "react";
+import axios from "axios"
 const ShopMap = () => {
   const [loading, setLoading] = useState(true);
+  const name = useRef()
+  const surname = useRef()
+  const email = useRef()
+  const message= useRef()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let obj = {
+      name: name.current.value,
+      surname: surname.current.value,
+      email: email.current.value,
+      message: message.current.value
+    };
+
+    try {
+      await axios.post('http://localhost:3000/send', obj);
+      alert('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email', error);
+      alert('Failed to send email');
+    }
+  };
+
 
   return (
     <div className="contacts">
@@ -55,24 +77,24 @@ const ShopMap = () => {
       </div>
       <div className="contactform">
         <h4>Send a message</h4>
-        <form action="">
+        <form onSubmit={handleSubmit} action="">
           <div className="top">
             <div className="form">
               <label htmlFor="name">First Name</label>
-              <input id="name" type="text" placeholder="First Name" />
+              <input required ref={name} id="name" type="text" placeholder="First Name" />
             </div>
             <div className="form">
               <label htmlFor="last">Last Name</label>
-              <input type="text" id="last" placeholder="Last Name" />
+              <input  required ref={surname}  type="text" id="last" placeholder="Last Name" />
             </div>
           </div>
           <div className="form">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Email" />
+            <input  required ref={email}  type="email" id="email" placeholder="Email" />
           </div>
           <div className="form">
             <label htmlFor="message">Message</label>
-            <textarea id="message" placeholder="Message" style={{ width: "100%", height: "20rem" }}></textarea>
+            <textarea  required ref={message}  id="message" placeholder="Message" style={{ width: "100%", height: "20rem" }}></textarea>
           </div>
           <button>
             <FontAwesomeIcon icon={faEnvelope} />

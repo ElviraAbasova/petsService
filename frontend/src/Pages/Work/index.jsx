@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./work.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket, faPenToSquare, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData, patchData } from "../../Service/requests";
 import { AddVeterinars } from "../../Redux/Slices/veterinarSlice";
 import { AddGroomers } from "../../Redux/Slices/groomerSlice";
-
+import { AddUsers } from "../../Redux/Slices/userSlice";
+import CircleLoader from "react-spinners/CircleLoader";
 const Work = () => {
   const dispatch = useDispatch();
   let profile = JSON.parse(localStorage.getItem("user"));
@@ -15,7 +16,16 @@ const Work = () => {
   const worker = workers.find((elem) => elem.name === profile.name);
   const [status, setStatus] = useState("");
   const [detail, setDetail] = useState(""); 
+  const users = useSelector(state=> state.user.arr)
+  console.log(users);
+  useEffect(() => {
+    getAllData("users").then((res) => {
+      dispatch(AddUsers(res));
+      setLoading(false);
 
+    });
+  }, [dispatch]);
+  
   useEffect(() => {
     if (profile.user.toLowerCase() === "groomer") {
       getAllData("groomers").then((res) => {
@@ -32,6 +42,8 @@ const Work = () => {
 
   const [DetailModal, setDetailModal] = useState(false);
   const [EditModal, setEditModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
 
   const openDetailModal = (detail) => {
     setDetail(detail); 
@@ -52,6 +64,7 @@ const Work = () => {
 
   const handleLogOut = () => {
     localStorage.setItem("user", JSON.stringify(null));
+   window.scrollTo(0, 0)
   };
 
   const updateStatus = (index, newStatus) => {
@@ -69,6 +82,12 @@ const Work = () => {
     });
   };
 
+  const handleUser=(id)=>{
+    const user = users && users.find(elem => elem._id === id);
+    return user ? user : { image: '' };
+  
+  }
+
   return (
     <section id="work">
       <div className="container">
@@ -78,7 +97,7 @@ const Work = () => {
           </h2>
           <FontAwesomeIcon icon={faUserDoctor} />
           <Link onClick={handleLogOut} to="/login" className="logOut">
-            Log Out
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
           </Link>
         </div>
         <div className="work">
@@ -94,10 +113,24 @@ const Work = () => {
               <h5 style={{ textTransform: "capitalize" }}>{profile.user}</h5>
             </div>
           </div>
+        {loading ? (
+           <div
+           style={{
+             display: "flex",
+             alignItems: "center",
+             justifyContent: "center",
+             marginTop:"3rem"
+           }}
+         >
+           <CircleLoader color="#53a8b6" size={120} />
+         </div>
+        ): (
+         
           <table className="bottom">
             <thead>
               <tr>
                 <th>Customer</th>
+                <th>Name Surname</th>
                 <th>Pet</th>
                 <th>Phone</th>
                 <th>Email</th>
@@ -111,6 +144,7 @@ const Work = () => {
               {worker &&
                 worker.randevus.map((elem, index) => (
                   <tr key={index}>
+                    <td className="firstRow"><div className="user"><img src={handleUser(elem.id).image} alt="" /></div></td>
                     <td>{`${elem.name} ${elem.surname ? elem.surname : ""}`}</td>
                     <td>{`${elem.pet ? elem.pet : elem.category}-${elem.petName}`}</td>
                     <td>{elem.phone}</td>
@@ -165,7 +199,11 @@ const Work = () => {
                 ))}
             </tbody>
           </table>
-        </div>
+      
+
+        )}
+          </div>
+        
       </div>
       {DetailModal && (
         <div className="modal">

@@ -5,6 +5,7 @@ import { getAllData } from "../../../Service/requests";
 import Skeleton from 'react-loading-skeleton'; 
 import 'react-loading-skeleton/dist/skeleton.css';
 import { AddGroomings } from "../../../Redux/Slices/groomingSlice";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const GroomingPrice = () => {
   const [loading, setLoading] = useState(true);
 
@@ -17,9 +18,10 @@ const GroomingPrice = () => {
       setLoading(false); 
     });
   }, [dispatch]);
+  const fadeIn = SmoothScrollComponent();
   return (
     <section id="groomPrice">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h3>Price Table</h3>
           <img src={paw} alt="paw" />

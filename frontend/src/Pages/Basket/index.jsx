@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { DecBasket, DeleteAllBas, DeleteBasket, IncBasket } from "../../Redux/Slices/basketSlice";
 import { ToastContainer} from 'react-toastify';
+import SmoothScrollComponent from "../../hook/SmoothScrollComponent";
 
 
 const Basket = () => {
-
+  const fadeIn = SmoothScrollComponent();
   const basket = useSelector((state) => state.basket.arr);
   const dispatch = useDispatch()
   const handleInc=(elem,e)=>{
@@ -42,7 +43,7 @@ const Basket = () => {
 
   return (
     <section id="basket">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h2>Shopping Card </h2>
           <h2>{handleCount()} items</h2>
@@ -52,7 +53,7 @@ const Basket = () => {
            <div className="leftSide">
              {basket && basket.map(data=>{
                return(
-                 <Link key={data._id} to={`/${data._id}`}   className="product">
+                 <Link key={data._id} to={`/${data._id}`} onClick={()=> window.scrollTo(0, 0)}  className="product">
                  <div className="col">
                    <div className="imgBox">
                      <img src={data.image} alt="product" />

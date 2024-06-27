@@ -8,11 +8,13 @@ import Services from './components/Services'
 import About from './components/About'
 import Blog from './components/Blog'
 
+
 const Home = () => {
+
   return (
     <>
-    <Hero/>
-    <Services/>
+    <Hero />
+    <Services />
     <BestSeller/>
     <Categories/>
     <Collection/>

@@ -3,10 +3,13 @@ import main from "../../../assets/images/home-n2-bg9.png"
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const Blog = () => {
+  const fadeIn = SmoothScrollComponent();
   return (
+    
     <section id="blog">
-      <div className="container">
+      <div ref={fadeIn.ref}  className="container">
         <div className="title">
           <h3>About Us</h3>
           <img src={paw} alt="" />

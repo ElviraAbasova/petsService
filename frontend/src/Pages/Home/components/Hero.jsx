@@ -16,7 +16,9 @@ import "../home.scss";
 import { FilterCategory } from "../../../Redux/Slices/productSlice";
 import { useDispatch } from "react-redux";
 
+
 const Hero = () => {
+  
   const dispatch = useDispatch()
   const slides = [
     {
@@ -25,11 +27,12 @@ const Hero = () => {
           <h2>Best Foods For Your Pets</h2>
           <p>Help your dog maintain a healthier weight with </p>
           <Link
-            onClick={() =>
+            onClick={() => {
+              window.scrollTo(0, 800);
               setTimeout(() => {
                 dispatch(FilterCategory("food"));
-              }, 200)
-            }
+              }, 200);
+            }}
             to="/shop"
             className="shop"
           >
@@ -47,10 +50,14 @@ const Hero = () => {
         <>
           <h2>Comfortable Beds For Your Pets</h2>
           <p>Keep your pets happy and healthy with our treats</p>
-          <Link  onClick={() =>
-              setTimeout(() => {
-                dispatch(FilterCategory("bed"));
-              }, 200)
+          <Link  onClick={() =>{
+             window.scrollTo(0, 800);
+             setTimeout(() => {
+              dispatch(FilterCategory("bed"));
+            }, 200)
+          }
+          
+             
             } to="/shop" className="shop">
             Shop Now
           </Link>
@@ -66,10 +73,15 @@ const Hero = () => {
           <h2>New & Exclusive Pet Clothings</h2>
           <p>Give your pets the best with our options</p>
           <Link onClick={() =>
-              setTimeout(() => {
-                dispatch(FilterCategory("clothes"));
-              }, 200)
-            }  to="/shop" className="shop">
+          {
+            window.scrollTo(0, 800);
+            setTimeout(() => {
+              dispatch(FilterCategory("clothes"));
+            }, 200)
+          } 
+
+          }
+              to="/shop" className="shop">
             Shop Now
           </Link>
         </>
@@ -174,6 +186,7 @@ const Hero = () => {
 
   return (
     <section
+   
       id="hero"
       className={fadeProp}
       style={{ backgroundColor: slides[currentSlide].color }}

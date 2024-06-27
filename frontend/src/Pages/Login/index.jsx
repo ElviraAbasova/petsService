@@ -39,7 +39,7 @@ const Login = () => {
           const token = res.data;
           localStorage.setItem("token", JSON.stringify(token));
           localStorage.setItem("user", JSON.stringify(user));
-          if (user.role === "groomer" || user.role === "veterinar") {
+          if (user.user === "groomer" || user.user === "veterinar") {
             navigate("/work");
           } else {
             navigate("/");
@@ -70,7 +70,7 @@ const Login = () => {
         <div className='login'>
           <div className='top'>
             <h3>Log in</h3>
-            <Link to='/register' className='register'>
+            <Link onClick={()=> window.scrollTo(0, 0)} to='/register' className='register'>
               Register
             </Link>
           </div>

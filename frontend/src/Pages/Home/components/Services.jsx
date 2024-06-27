@@ -4,19 +4,21 @@ import veterinary from "../../../assets/images/international-cat-day_13563284.pn
 import grooming from "../../../assets/images/hairdresser_9152547.png"
 import React from 'react';
 import { Link } from "react-router-dom";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 
 const Services = () => {
+  const fadeIn = SmoothScrollComponent();
 
 
   return (
     <section id='services'>
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h3>Our Services</h3>
           <img src={paw} alt="paw" />
         </div>
         <div className="services">
-          <Link to="/shop" target="_parent" className="service">
+          <Link onClick={()=> window.scrollTo(0, 0)} to="/shop" className="service">
             <div className="icon">
               <img src={shop} alt="shop" />
             </div>
@@ -24,7 +26,7 @@ const Services = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi.</p>
             <div className="number"> 1 </div>
           </Link>
-          <Link to="/veterinary" target="_parent" className="service">
+          <Link onClick={()=> window.scrollTo(0, 0)} to="/veterinary" className="service">
             <div className="icon">
               <img src={veterinary} alt="veterinary" />
             </div>
@@ -32,7 +34,7 @@ const Services = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi.</p>
             <div className="number"> 2 </div>
           </Link>
-          <Link to="/grooming" target="_parent" className="service">
+          <Link onClick={()=> window.scrollTo(0, 0)} to="/grooming"  className="service">
             <div className="icon">
               <img src={grooming} alt="grooming" />
             </div>

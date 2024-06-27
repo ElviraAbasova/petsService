@@ -9,8 +9,10 @@ import farm from "../../../assets/images/cow-psfohs0pnac1xe9ymq2x8gqkffat8oej993
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FilterPet } from "../../../Redux/Slices/productSlice";
+import SmoothScrollComponent from '../../../hook/SmoothScrollComponent';
 
 const Categories = () => {
+  const fadeIn = SmoothScrollComponent();
   const dispatch = useDispatch();
   const [delayActive, setDelayActive] = useState(false);
 
@@ -22,11 +24,12 @@ const Categories = () => {
         setDelayActive(false);
       }, 150); 
     }
+    window.scrollTo(0, 800);
   };
 
   return (
     <section id='categories'>
-      <div className="container">
+      <div ref={fadeIn.ref}  className="container">
         <div className="title">
           <h3>Shop By Pet</h3>
           <img src={paw} alt="paw" />

@@ -5,16 +5,19 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { FilterCategory } from "../../../Redux/Slices/productSlice";
 import { useDispatch } from "react-redux";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const Collection = () => {
   const dispatch = useDispatch()
   const handleShop = (category) => {
     setTimeout(() => {
       dispatch(FilterCategory(category));
     }, 150); 
+    window.scrollTo(0, 800);
   };
+  const fadeIn = SmoothScrollComponent();
   return (
     <section id='collection'>
-        <div className="container">
+        <div ref={fadeIn.ref}  className="container">
         <div className="title">
             <h3>Top Collection</h3>
              <img src={paw} alt="" />

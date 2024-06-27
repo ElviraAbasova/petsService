@@ -18,11 +18,13 @@ const Footer = () => {
     setTimeout(() => {
       dispatch(FilterDiscount(1));
     }, 150); 
+    window.scrollTo(0, 800)
   };
   const handleViewAll = () => {
     setTimeout(() => {
       dispatch(FilterSeller(30));
     }, 150); 
+   window.scrollTo(0, 800)
   };
   return (
     <footer>
@@ -61,24 +63,24 @@ const Footer = () => {
           <ul>
             <li><Link to="/shop" onClick={handleLink}  className="link">Discounts</Link></li>
             <li><Link to="/shop" onClick={handleViewAll} className="link">Best Sellers</Link></li>
-            <li><Link to="/contact" className="link">Pet Store Location</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 800)} to="/contact" className="link">Pet Store Location</Link></li>
           </ul>
         </div>
         <div className="col">
           <h5>MY ACCOUNT</h5>
           <ul>
-            <li><Link to="/profile" className="link">MY Profile</Link></li>
-            <li><Link to="/profile" className="link">My Order History</Link></li>
-            <li><Link to="/favorite" className="link">My Wishlist</Link></li>
-            <li><Link to="/basket"  className="link">Shopping Card</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/profile" className="link">MY Profile</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/profile" className="link">My Order History</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/favorite" className="link">My Wishlist</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/basket"  className="link">Shopping Card</Link></li>
           </ul>
         </div>
         <div className="col">
           <h5>SERVICES</h5>
           <ul>
-            <li><Link to="/shop" target="_parent" className="link">Shopping</Link></li>
-            <li><Link to="/grooming" target="_parent" className="link">Grooming</Link></li>
-            <li><Link to="/veterinary" target="_parent" className="link">Veterinary</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/shop" className="link">Shopping</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/grooming" className="link">Grooming</Link></li>
+            <li><Link onClick={()=> window.scrollTo(0, 0)} to="/veterinary" className="link">Veterinary</Link></li>
           </ul>
         </div>
         <div className="col">
@@ -87,10 +89,10 @@ const Footer = () => {
           Download Our App
           </div>
       <div className="apps">
-        <Link to="https://play.google.com/store/apps?hl=en_US&pli=1" target="_parent" className="app">
+        <Link to="https://play.google.com/store/apps?hl=en_US&pli=1" target="_black" className="app">
           <img src={playmarket} alt="playstore" />
         </Link>
-        <Link to="https://www.apple.com/app-store/" target="_parent" className="app">
+        <Link to="https://www.apple.com/app-store/" target="_blank" className="app">
           <img src={appstore} alt="appstore" />
         </Link>
       </div>

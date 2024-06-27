@@ -1,13 +1,15 @@
 import delivery from "../../../assets/images/p-b-3-1.png"
 import time from "../../../assets/images/p-b-4-1.png"
 import gift from "../../../assets/images/p-b-5-1.png"
-
 import React from 'react'
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent"
 
 const About = () => {
+    
+    const fadeIn = SmoothScrollComponent();
   return (
     <section id='about'>
-        <div className="container">
+        <div ref={fadeIn.ref} className="container">
             <div className="about">
                 <div className="aboutImg">
                     <img src={delivery} alt="delivery" />

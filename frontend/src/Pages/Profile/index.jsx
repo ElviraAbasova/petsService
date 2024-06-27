@@ -1,21 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import paw from "../../assets/images/pngwing.com (29).png";
-import profile from "../../assets/images/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
+  faArrowRightFromBracket,
+  faCamera,
   faEye,
   faEyeSlash,
   faGear,
+  faPen,
   faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./profile.scss";
 import { Link } from "react-router-dom";
+import { getAllData, patchData } from "../../Service/requests";
+import { useDispatch, useSelector } from "react-redux";
+import { AddVeterinars } from "../../Redux/Slices/veterinarSlice";
+import { AddGroomers } from "../../Redux/Slices/groomerSlice";
 
 const Profile = () => {
   let user = JSON.parse(localStorage.getItem("user"));
-  const [right, setRight] = useState("Info");
+
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const dispatch = useDispatch();
+  const veterinars = useSelector((state) => state.veterinar.arr);
+  const groomers = useSelector((state) => state.groomer.arr);
+  const [right, setRight] = useState(localStorage.getItem("selectedTab") || "Info");
+
+  useEffect(() => {
+    getAllData("veterinars").then((res) => {
+      dispatch(AddVeterinars(res));
+    });
+  }, [dispatch]);
+  useEffect(() => {
+    getAllData("groomers").then((res) => {
+      dispatch(AddGroomers(res));
+    });
+  }, [dispatch]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -23,7 +45,44 @@ const Profile = () => {
 
   const handleLogOut = () => {
     localStorage.setItem("user", JSON.stringify(null));
+    window.scrollTo(0, 0);
   };
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        setSelectedImage(reader.result);
+
+        try {
+          await patchData("users", user._id, { image: reader.result });
+          const updatedUser = { ...user, image: reader.result };
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const findAppointments = (arr) => {
+    return arr.flatMap((elem) =>
+      elem.randevus
+        .filter((el) => el.id === user._id)
+        .map((el) => ({
+          ...el,
+          docName: `${elem.name} ${elem.surname}`,
+          docType: arr === veterinars ? "Veterinarian" : "Groomer",
+        }))
+    );
+  };
+
+  const handleStatus = () => {
+    const vetAppointments = findAppointments(veterinars);
+    const groomerAppointments = findAppointments(groomers);
+    return [...vetAppointments, ...groomerAppointments];
+  };
+
   const rightSide = () => {
     switch (right) {
       case "Info":
@@ -193,43 +252,52 @@ const Profile = () => {
             )}
           </div>
         );
-      case "Notifications":
-        return (
-          <div className="messages">
-            <div className="message">
-              <div className="info__icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={24}
-                  viewBox="0 0 24 24"
-                  height={24}
-                  fill="none"
-                >
-                  <path
-                    fill="#393a37"
-                    d="m12 1.5c-5.79844 0-10.5 4.70156-10.5 10.5 0 5.7984 4.70156 10.5 10.5 10.5 5.7984 0 10.5-4.7016 10.5-10.5 0-5.79844-4.7016-10.5-10.5-10.5zm.75 15.5625c0 .1031-.0844.1875-.1875.1875h-1.125c-.1031 0-.1875-.0844-.1875-.1875v-6.375c0-.1031.0844-.1875.1875-.1875h1.125c.1031 0 .1875.0844.1875.1875zm-.75-8.0625c-.2944-.00601-.5747-.12718-.7808-.3375-.206-.21032-.3215-.49305-.3215-.7875s.1155-.57718.3215-.7875c.2061-.21032.4864-.33149.7808-.3375.2944.00601.5747.12718.7808.3375.206.21032.3215.49305.3215.7875s-.1155.57718-.3215.7875c-.2061.21032-.4864.33149-.7808.3375z"
-                  />
-                </svg>
-              </div>
-              <div className="info__title">lorem ipsum dolor sit amet</div>
-              <div className="info__close">
-                <svg
-                  height={20}
-                  viewBox="0 0 20 20"
-                  width={20}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z"
-                    fill="#393a37"
-                  />
-                </svg>
-              </div>
+        case "Notifications":
+          const appointments = handleStatus();
+          return (
+            <div className="messages">
+              {appointments.length === 0 ? (
+                <p style={{color:"gray", fontSize:"2rem"}}>
+                  No notifications
+                </p>
+              ) : (
+                appointments.map((appointment, index) => (
+                  appointment.status && (
+                    <div
+                      className="message"
+                      key={index}
+                      style={
+                        appointment.status === "Accepted"
+                          ? { backgroundColor: "rgb(80, 194, 80)" }
+                          : { backgroundColor: "red" }
+                      }
+                    >
+                      <div className="info__icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          viewBox="0 0 24 24"
+                          height={24}
+                          fill="none"
+                        >
+                          <path
+                            fill="#393a37"
+                            d="m12 1.5c-5.79844 0-10.5 4.70156-10.5 10.5 0 5.7984 4.70156 10.5 10.5 10.5 5.7984 0 10.5-4.7016 10.5-10.5 0-5.79844-4.7016-10.5-10.5-10.5zm.75 15.5625c0 .1031-.0844.1875-.1875.1875h-1.125c-.1031 0-.1875-.0844-.1875-.1875v-6.375c0-.1031.0844-.1875.1875-.1875h1.125c.1031 0 .1875.0844.1875.1875zm-.75-8.0625c-.2944-.00601-.5747-.12718-.7808-.3375-.206-.21032-.3215-.49305-.3215-.7875s.1155-.57718.3215-.7875c.2061-.21032.4864-.33149.7808-.3375.2944.00601.5747.12718.7808.3375.206.21032.3215.49305.3215.7875s-.1155.57718-.3215.7875c-.2061.21032-.4864.33149-.7808.3375z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="info__title">
+                        {appointment.docType} - {appointment.docName} is {appointment.status}
+                        {` your randevu`} {appointment.status === "Accepted" ? ` on ${appointment.date} at ${appointment.time}` : ` please choose another time`}
+                      </div>
+                      
+                    </div>
+                  )
+                ))
+              )}
             </div>
-            ;
-          </div>
-        );
-      case "Settings":
+          );
+            case "Settings":
         return (
           <div className="infos">
             <div className="info">
@@ -250,12 +318,7 @@ const Profile = () => {
             </div>
             <div className="info">
               <label htmlFor="balance">Balance</label>
-              <input
-                value={user.balance}
-                type="number"
-                id="username"
-                
-              />
+              <input value={user.balance} type="number" id="username" />
             </div>
             <div className="info">
               <label htmlFor="password">Password</label>
@@ -279,6 +342,9 @@ const Profile = () => {
         return null;
     }
   };
+  useEffect(() => {
+    localStorage.setItem("selectedTab", right);
+  }, [right]);
 
   return (
     <section id="profile">
@@ -290,11 +356,25 @@ const Profile = () => {
         <div className="profile">
           <div className="left">
             <Link onClick={handleLogOut} to="/login" className="logOut">
-              Log Out
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </Link>
             <div className="top">
               <div className="profileBox">
-                <img src={profile} alt="" />
+                <label htmlFor="fileInput">
+                  <img
+                    src={selectedImage || user.image}
+                    alt="Profile"
+                    className="profileImage"
+                  />
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleImageChange}
+                  />
+                  <FontAwesomeIcon icon={faCamera} className="camera" />
+                </label>
               </div>
               <h4>{`${user.name} ${user.surname}`}</h4>
             </div>

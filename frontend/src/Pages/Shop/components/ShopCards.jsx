@@ -377,7 +377,7 @@ const ShopCards = () => {
               </div>
             ))
           : currentCards.map((card) => (
-              <Link to={`/${card._id}`} className="card" key={card._id}>
+              <Link onClick={()=> window.scrollTo(0, 0)} to={`/${card._id}`} className="card" key={card._id}>
                 <div className="imgBox">
                   <img src={card.image} alt="product" />
                   <div className="transition">

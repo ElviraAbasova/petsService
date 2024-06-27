@@ -7,13 +7,15 @@ import trim from "../../../assets/images/dog_1351590.png"
 import clean from "../../../assets/images/hairdresser_7810354.png"
 import nail from "../../../assets/images/scissors_16057797.png"
 import dog from "../../../assets/images/dog-1.png"
+import SmoothScrollComponent from '../../../hook/SmoothScrollComponent'
 
 
 
 const Care = () => {
+    const fadeIn = SmoothScrollComponent();
   return (
     <section id='care'>
-        <div className="container">
+        <div ref={fadeIn.ref} className="container">
         <div className="title">
             <h3>Our Care</h3>
              <img src={paw} alt="paw" />

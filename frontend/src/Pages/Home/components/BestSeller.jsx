@@ -14,7 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AddBasket } from "../../../Redux/Slices/basketSlice";
 import { AddProducts, FilterSeller } from "../../../Redux/Slices/productSlice";
 import Swal from "sweetalert2";
+import SmoothScrollComponent from "../../../hook/SmoothScrollComponent";
 const BestSeller = () => {
+  const fadeIn = SmoothScrollComponent();
   let user = JSON.parse(localStorage.getItem("user"));
   const datas = useSelector((state) => state.product.arr);
   const fav = useSelector((state) => state.favorite.arr);
@@ -56,6 +58,9 @@ const BestSeller = () => {
    const handleColor = (id) =>{
       return fav.find(elem=> elem._id==id)
   }
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
   const handleBasket = async(elem, e) => {
     e.preventDefault(); 
     if (!user) {
@@ -81,10 +86,12 @@ const BestSeller = () => {
     setTimeout(() => {
       dispatch(FilterSeller(10));
     }, 200); 
+    window.scrollTo(0, 800);
   };
+
   return (
     <section id="bestseller">
-      <div className="container">
+      <div ref={fadeIn.ref} className="container">
         <div className="title">
           <h3>Best Sellers</h3>
           <img src={paw} alt="paw" />
@@ -111,7 +118,7 @@ const BestSeller = () => {
             ))
           ) : (
             bestSellers.map((card) => (
-              <Link key={card._id} to={`/${card._id}`} className="card">
+              <Link key={card._id} to={`/${card._id}`} className="card" onClick={handleLinkClick}>
                 <div className="imgBox">
                   <img src={card.image} alt="product" />
                   <div className="transition">

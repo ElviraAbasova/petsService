@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Addfav, DeleteAll } from '../../Redux/Slices/favoriteSlice';
 import { AddBasket } from '../../Redux/Slices/basketSlice';
 import { ToastContainer} from 'react-toastify';
+import SmoothScrollComponent from '../../hook/SmoothScrollComponent';
 
 const Favorite = () => {
     const dispatch = useDispatch();
@@ -25,10 +26,10 @@ const Favorite = () => {
         dispatch(AddBasket(elem));
        
       }
-
+      const fadeIn = SmoothScrollComponent();
     return (
         <section id='favorite'>
-            <div className="container">
+            <div ref={fadeIn.ref}  className="container">
                 <div className="title">
                     <h2>Wish List </h2>
                     <h2>{fav.length} items</h2>
@@ -37,7 +38,7 @@ const Favorite = () => {
                     <div className="favorite">
                         <div className="leftSide">
                             {fav.map(elem => (
-                                <Link key={elem.id} to={`/${elem._id}`}  className="product">
+                                <Link key={elem.id} to={`/${elem._id}`} onClick={()=> window.scrollTo(0, 0)}  className="product">
                                     <div className="col"> 
                                         <div className="imgBox">
                                             <img src={elem.image} alt="product" />

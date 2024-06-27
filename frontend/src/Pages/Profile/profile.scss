@@ -24,13 +24,14 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         width: 35%;
         .logOut{
+          padding: 0.5rem 2rem;
           cursor: pointer;
           text-decoration: none;
-          background-color: red;
-          padding: 0.8rem;
+          background-color: #f47107;
           color: white;
           border-radius: 1rem;
-          border: none
+          border: none;
+          font-size: 1.4rem;
         }
         .top {
           display: flex;
@@ -38,14 +39,28 @@
           align-items: center;
           gap: 2rem;
           .profileBox {
-            width: 10rem;
-            height: 10rem;
-            border-radius: 50%;
-            border: 2px dotted #f47107;
-            overflow: hidden;
+            width: 13rem;
+            height: 13rem;
+            
+           
+            position: relative;
             img {
+              border: 2px dotted #f47107;
+              border-radius: 50%;
               width: 100%;
               height: 100%;
+            }
+            .camera{
+              bottom: 0;
+              right: 0;
+              position: absolute;
+              font-size: 1.4rem;
+              background-color: #8D19E8 ;
+              color: white;
+              padding: 1rem;
+              border-radius: 1rem;
+              cursor: pointer;
+            
             }
           }
           h4 {
@@ -130,7 +145,7 @@
             transform: translateY(0px);
           }
         }
-        /* truck's tires */
+       
         @keyframes roadAnimation {
           0% {
             transform: translateX(0px);
@@ -233,6 +248,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 2rem;
        }
         .message{
           font-family: $font-family_1;
@@ -242,7 +258,6 @@
           flex-direction: row;
           align-items: center;
           justify-content: start;
-          background: rgb(80, 194, 80);
           border-radius: 8px;
           box-shadow: 0px 0px 5px -3px #111;
         }
