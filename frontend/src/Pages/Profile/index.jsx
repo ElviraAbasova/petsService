@@ -299,31 +299,32 @@ const Profile = () => {
           );
             case "Settings":
         return (
-          <div className="infos">
+          <form className="infos">
+            <div className="row">
             <div className="info">
               <label htmlFor="name">Name</label>
-              <input defaultValue={user.name} type="text" id="name" />
+              <input required defaultValue={user.name} type="text" id="name" />
             </div>
             <div className="info">
               <label htmlFor="surname">Surname</label>
-              <input defaultValue={user.surname} type="text" id="surname" />
+              <input required defaultValue={user.surname} type="text" id="surname" />
             </div>
-            <div className="info">
+            </div>
+          <div className="row">
+          <div className="info">
               <label htmlFor="username">Username</label>
-              <input defaultValue={user.username} type="text" id="username" />
+              <input required defaultValue={user.username} type="text" id="username" />
             </div>
             <div className="info">
               <label htmlFor="email">Email</label>
               <input defaultValue={user.email} type="email" id="email" />
             </div>
-            <div className="info">
-              <label htmlFor="balance">Balance</label>
-              <input value={user.balance} type="number" id="username" />
-            </div>
+          </div>
             <div className="info">
               <label htmlFor="password">Password</label>
               <div className="password-input">
                 <input
+                required
                   defaultValue={user.password}
                   type={showPassword ? "text" : "password"}
                   id="password"
@@ -335,8 +336,12 @@ const Profile = () => {
                 />
               </div>
             </div>
-            <button className="save">Save</button>
-          </div>
+            <div className="info">
+              <label htmlFor="balance">Balance</label>
+              <input required value={user.balance} type="number" id="username" />
+            </div>
+            <button type="submit" className="save">Save</button>
+          </form>
         );
       default:
         return null;
@@ -355,7 +360,7 @@ const Profile = () => {
         </div>
         <div className="profile">
           <div className="left">
-            <Link onClick={handleLogOut} to="/login" className="logOut">
+            <Link onClick={handleLogOut} to="/" className="logOut">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </Link>
             <div className="top">

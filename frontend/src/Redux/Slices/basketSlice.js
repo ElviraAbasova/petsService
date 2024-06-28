@@ -51,6 +51,7 @@ export const basketSlice = createSlice({
           state.arr= [...state.arr, action.payload];
         } else {
           control.count+=action.payload.count;
+
         }
         toast(`${action.payload.count} Items added to Basket!`, {
           style:{color:"#f47107",fontSize:"1.5rem",textAlign:"center"}
@@ -64,9 +65,16 @@ export const basketSlice = createSlice({
           style:{color:"red",fontSize:"1.5rem",textAlign:"center"}
         });
       },
+      Payment: (state) => {
+        state.arr=[]
+        localStorage.setItem("basket", JSON.stringify(state.arr))
+        toast.success("Your order has been confirmed");
+      },
+    
+    
   },
 });
 
-export const { AddBasket,DecBasket,IncBasket,DeleteBasket,AddFromDetail,DeleteAllBas} = basketSlice.actions;
+export const { AddBasket,DecBasket,IncBasket,DeleteBasket,AddFromDetail,DeleteAllBas,Payment} = basketSlice.actions;
 
 export default basketSlice.reducer;

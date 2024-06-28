@@ -1,4 +1,5 @@
 import Layout from "../Layout";
+import NoPage from "../Pages/404Page";
 import Admin from "../Pages/Admin";
 import Basket from "../Pages/Basket";
 import Contact from "../Pages/Contact";
@@ -12,6 +13,8 @@ import Register from "../Pages/Register";
 import Shop from "../Pages/Shop";
 import Veterinary from "../Pages/Veterinary";
 import Work from "../Pages/Work";
+import { ProtectedAdmin, ProtectedProfile, ProtectedWork } from "./protectedRouter";
+
 
 export const routes = [
   {
@@ -44,7 +47,9 @@ export const routes = [
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <ProtectedProfile element={<Profile />} profile={true} />
+        ),
       },
       {
         path: "/grooming",
@@ -56,8 +61,11 @@ export const routes = [
       },
       {
         path: "/admin",
-        element: <Admin />,
+        element: (
+          <ProtectedAdmin element={<Admin />} adminOnly={true} />
+        ),
       },
+     
     ],
   },
   {
@@ -70,6 +78,12 @@ export const routes = [
   },
   {
     path: "/work",
-    element: <Work />,
+    element: (
+      <ProtectedWork element={<Work/>} worker={true} />
+    ),
+  },
+  {
+    path: "/404",
+    element: <NoPage/>, 
   },
 ];

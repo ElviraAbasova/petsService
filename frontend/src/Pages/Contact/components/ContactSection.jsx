@@ -2,6 +2,7 @@ import React from 'react'
 import ContactInfos from './ContactInfos'
 import ShopMap from './ShopMap'
 import SmoothScrollComponent from '../../../hook/SmoothScrollComponent';
+import { ToastContainer } from 'react-toastify';
 
 const ContactSection = () => {
   const fadeIn = SmoothScrollComponent();
@@ -11,6 +12,7 @@ const ContactSection = () => {
             <ContactInfos/>
             <ShopMap/>
         </div>
+        <ToastContainer />
     </section>
   )
 }

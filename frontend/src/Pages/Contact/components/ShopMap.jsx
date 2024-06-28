@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import React, { useRef, useState } from "react";
 import axios from "axios"
+import { toast } from "react-toastify";
 const ShopMap = () => {
   const [loading, setLoading] = useState(true);
   const name = useRef()
@@ -19,10 +20,10 @@ const ShopMap = () => {
 
     try {
       await axios.post('http://localhost:3000/send', obj);
-      alert('Email sent successfully');
+      toast.success("Your message sended successfully!");
     } catch (error) {
       console.error('Error sending email', error);
-      alert('Failed to send email');
+      toast.error("Failed to send your message");
     }
   };
 
@@ -102,6 +103,7 @@ const ShopMap = () => {
           </button>
         </form>
       </div>
+
     </div>
   );
 };
