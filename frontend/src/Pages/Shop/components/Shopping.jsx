@@ -3,6 +3,7 @@ import Search from './Search'
 import ShopCetgory from './ShopCetgory'
 import ShopCards from './ShopCards'
 import SmoothScrollComponent from '../../../hook/SmoothScrollComponent'
+import { ToastContainer } from 'react-toastify'
 
 
 const Shopping = () => {
@@ -14,6 +15,7 @@ const Shopping = () => {
             <ShopCetgory/>
             <ShopCards/>
         </div>
+      <ToastContainer />
        
     </section>
   )

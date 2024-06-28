@@ -118,7 +118,7 @@ const Profile = () => {
       case "My Orders":
         return (
           <div className="orders">
-            {user.orders ? (
+            {user.orders == [] ? (
               <div className="loader">
                 <div className="truckWrapper">
                   <div className="truckBody">
@@ -248,7 +248,27 @@ const Profile = () => {
                 </div>
               </div>
             ) : (
-              <p>No orders</p>
+              <div className="orders">
+              {user.orders.map(order => {
+                const totalSum = order.reduce((sum, elem) => {
+                  return sum + elem.count * (elem.price - (elem.price * elem.discount / 100));
+                }, 0);
+            
+                return (
+                  <div className="order">
+                    <div className="left">
+                      {order.map(elem => (
+                    <h5 key={elem.id}>{elem.title} - {elem.count} - {Math.round((elem.count * (elem.price - (elem.price * elem.discount / 100))) * 100) / 100} $</h5>
+                      ))}
+                    </div>
+                    <div className="right">
+                      <h4>SUM - {Math.round(totalSum * 100) / 100} $</h4>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
             )}
           </div>
         );

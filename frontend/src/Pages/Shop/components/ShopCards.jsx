@@ -84,6 +84,7 @@ const ShopCards = () => {
   };
 
   const handleFav = async (elem, e) => {
+    e.stopPropagation()
     e.preventDefault();
 
     if (!user) {
@@ -110,6 +111,7 @@ const ShopCards = () => {
   };
 
   const handleBasket = async (elem, e) => {
+    e.stopPropagation()
     e.preventDefault();
     if (!user) {
       Swal.fire({
@@ -131,6 +133,7 @@ const ShopCards = () => {
   };
 
   const handleDiscCount = (disc) => {
+    
     return datas.filter((elem) => elem.discount >= disc).length;
   };
 
@@ -443,7 +446,6 @@ const ShopCards = () => {
   </button>
 </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

@@ -36,6 +36,7 @@ const BestSeller = () => {
     .sort((a, b) => b.seller - a.seller)
     .slice(0, 4);
     const handleFav = async(elem, e) => {
+      e.stopPropagation()
       e.preventDefault(); 
       if (!user) {
         Swal.fire({
@@ -63,6 +64,7 @@ const BestSeller = () => {
     window.scrollTo(0, 0);
   };
   const handleBasket = async(elem, e) => {
+    e.stopPropagation()
     e.preventDefault(); 
     if (!user) {
       Swal.fire({

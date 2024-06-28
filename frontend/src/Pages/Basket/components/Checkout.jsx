@@ -77,8 +77,10 @@ const Checkout = ({ isOpen, onClose, sum }) => {
             title: 'Payment Successful',
             text: 'Your payment has been processed successfully',
         });
-        const orders = [...user.orders, [...basket,sum]];
+        const orders = [...user.orders, [...basket]];
         patchData("users", user._id, {...user, orders: orders })
+        let update={...user,orders:orders}
+        localStorage.setItem("user", JSON.stringify(update));
         basket.forEach(item => {
             const product = datas.find(p => p._id === item._id);
             if (product) {

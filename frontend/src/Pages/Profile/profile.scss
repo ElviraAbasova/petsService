@@ -24,6 +24,7 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         width: 35%;
         .logOut{
+          margin: 1rem 0;
           padding: 0.5rem 2rem;
           cursor: pointer;
           text-decoration: none;
@@ -288,6 +289,39 @@
             fill: #fff;
           }
         }
+        .orders{
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          .order{
+            width: 100%;
+            display: flex;
+  
+            .left{
+              padding: 2rem;
+              width: 70%;
+              font-size: 1.4rem;
+              
+              
+            }
+            .right{
+              padding: 2rem;
+              width: 30%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+             background-color: #f47107;
+     
+              border-radius: 1rem 0;
+              
+              h4{
+                color: white;
+                font-size: 1.3rem;
+              }
+            }
+
+          }
+        }
       }
     }
   }
@@ -351,6 +385,29 @@
               font-size: 1.2rem;
             }
           }
+          .orders{
+      
+            .order{
+        
+              .left{
+                padding: 1rem;
+                width: 80%;
+                font-size: 1.2rem;
+                
+                
+              }
+              .right{
+                padding: 1rem;
+                width: 20%;
+                
+                h4{
+                  color: white;
+                  font-size: 1.2rem;
+                }
+              }
+  
+            }
+          }
         }
       }
     }
@@ -367,6 +424,23 @@
           width: 90%;
           .message{
             padding: 0.7rem;
+          }
+          .orders{
+    
+            .order{
+              flex-direction: column;
+              align-items: center;
+        
+              .left{
+                width: 90%;
+  
+              }
+              .right{
+                width: 90%;
+
+              }
+  
+            }
           }
         }
         .left {
