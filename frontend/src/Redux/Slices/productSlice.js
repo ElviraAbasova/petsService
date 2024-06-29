@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   arr: [],
   filter: [],
+
 };
 
 export const productSlice = createSlice({
@@ -12,6 +13,7 @@ export const productSlice = createSlice({
     AddProducts: (state, action) => {
       state.arr = action.payload;
       state.filter = action.payload;
+      
     },
 
     DeleteProducts: (state, action) => {
@@ -93,6 +95,22 @@ export const productSlice = createSlice({
       const searchTerm = action.payload.toLowerCase().trim();
       state.filter = state.arr.filter(elem => elem.title.toLowerCase().includes(searchTerm));
     },
+    ResetData: (state) => {
+      state.filter = state.arr;
+    },
+    SortAZ: (state) => {
+      state.filter = state.arr.sort((a,b)=> a.title.localeCompare(b.title));
+    },
+    SortZA: (state) => {
+      state.filter = state.arr.sort((a,b)=> b.title.localeCompare(a.title));
+    },
+    SortLH: (state) => {
+      state.filter = state.arr.sort((a,b)=> a.price-b.price);
+    },
+    SortHL: (state) => {
+      state.filter = state.arr.sort((a,b)=> b.price-a.price);
+    },
+    
   },
 });
 
@@ -108,7 +126,12 @@ export const {
   FilterRating,
   FilterTags,
   FilterPrice,
-  SearchProduct
+  SearchProduct,
+  ResetData,
+  SortAZ,
+  SortZA,
+  SortHL,
+  SortLH
 } = productSlice.actions;
 
 export default productSlice.reducer;

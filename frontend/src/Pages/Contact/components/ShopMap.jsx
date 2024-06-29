@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import React, { useRef, useState } from "react";
-import emailjs from "emailjs-com"; // EmailJS kütüphanesi
+import emailjs from "emailjs-com"; 
 import { toast } from "react-toastify";
 
 const ShopMap = () => {
@@ -14,29 +14,25 @@ const ShopMap = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // EmailJS ile kullanılacak parametreler ve form verisi
     const templateParams = {
       name: name.current.value,
       surname: surname.current.value,
       email: email.current.value,
       message: message.current.value,
-      reply_to: email.current.value  // Kullanıcının kendi e-posta adresini "reply-to" olarak ayarla
+      reply_to: email.current.value  
     };
   
     try {
-      // Email gönderme işlemi
       await emailjs.send(
-        'service_7nxm06n', // EmailJS'de oluşturduğunuz servis ID'si
-        'template_v71vrvs', // EmailJS'de oluşturduğunuz template ID'si
+        'service_7nxm06n', 
+        'template_v71vrvs', 
         templateParams,
-        'BICDGqrcabRKWdXvt' // EmailJS'de oluşturduğunuz kullanıcı ID'si
+        'BICDGqrcabRKWdXvt' 
       );
   
-      // Başarılı bildirimi
       toast.success("Your message sent successfully!");
     } catch (error) {
       console.error('Error sending email', error);
-      // Hata bildirimi
       toast.error("Failed to send your message");
     }
   };

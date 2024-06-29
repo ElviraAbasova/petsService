@@ -181,7 +181,7 @@ const ProductPanel = () => {
               </div>
               <div className="info">
                 <label htmlFor="price">Price</label>
-                <input required   ref={price} type="number" min="0" id="price" defaultValue={currentProduct.price} />
+                <input required   ref={price} type="text" min="0" id="price" defaultValue={currentProduct.price} />
               </div>
               <div className="info">
                 <label htmlFor="discount">Discount</label>
@@ -234,7 +234,7 @@ const ProductPanel = () => {
               </div>
               <div className="info">
                 <label htmlFor="price">Price</label>
-                <input required  ref={price} type="number" min="0" id="price"  />
+                <input required  ref={price} type="text" min="0" id="price"  />
               </div>
               <div className="info">
                 <label htmlFor="discount">Discount</label>

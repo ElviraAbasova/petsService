@@ -26,6 +26,11 @@ import {
   FilterRating,
   FilterSeller,
   FilterTags,
+  ResetData,
+  SortAZ,
+  SortHL,
+  SortLH,
+  SortZA,
 } from "../../../Redux/Slices/productSlice";
 import Swal from "sweetalert2";
 
@@ -149,7 +154,36 @@ const ShopCards = () => {
   const handleBestCount = () => {
     return datas.filter((elem) => elem.seller >= 30).length;
   };
+  const handleReset = () => {
+    dispatch(ResetData())
+   
+  };
+  const handleSortChange = (e) => {
+    const sortType = e.target.value;
+    if (sortType === 'az') {
+      dispatch(SortAZ()); 
+    } else if (sortType === 'price-asc') {
+      dispatch(SortLH()); 
+    }else if (sortType === 'price-desc') {
+      dispatch(SortHL()); 
+    }else if (sortType === 'za') {
+      dispatch(SortZA()); 
+    }
+   
+  };
   return (
+    <>
+   <div className="top">
+      <button onClick={handleReset}>Reset</button>
+      <select onChange={handleSortChange}>
+        <option >Sort</option>
+        <option value="az">A-Z</option>
+        <option value="za">Z-A</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+      </select>
+    </div>
+
     <div className="shops">
       <div className="leftSide">
         <div className="filters">
@@ -380,7 +414,8 @@ const ShopCards = () => {
               </div>
             ))
           : currentCards.map((card) => (
-              <Link onClick={()=> window.scrollTo(0, 0)} to={`/${card._id}`} className="card" key={card._id}>
+            card.stock > 0 && (
+              <Link onClick={()=> window.scrollTo(0, 0)} to={`/detail/${card._id}`} className="card" key={card._id}>
                 <div className="imgBox">
                   <img src={card.image} alt="product" />
                   <div className="transition">
@@ -428,7 +463,7 @@ const ShopCards = () => {
                   <p>({card.comments.length} reviews)</p>
                 </div>
               </Link>
-            ))}
+            )))}
       <div className="arrows" style={{ display: totalPages > 1 ? 'block' : 'none' }}>
   <button
     className="arrow next"
@@ -447,6 +482,7 @@ const ShopCards = () => {
 </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -120,7 +120,8 @@ const BestSeller = () => {
               </div>
             ))
           ) : (
-            bestSellers.map((card) => (
+            bestSellers.map((card) =>(
+              card.stock > 0 &&  (
               <Link key={card._id} to={`detail/${card._id}`} className="card" onClick={handleLinkClick}>
                 <div className="imgBox">
                   <img src={card.image} alt="product" />
@@ -147,7 +148,7 @@ const BestSeller = () => {
                   <p>({card.comments.length} reviews)</p>
                 </div>
               </Link>
-            ))
+            )))
           )}
         </div>
         <Link to="/shop" onClick={handleViewAll} className="viewAll">
