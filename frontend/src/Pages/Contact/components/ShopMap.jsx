@@ -1,32 +1,46 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import React, { useRef, useState } from "react";
-import axios from "axios"
+import emailjs from "emailjs-com"; // EmailJS kütüphanesi
 import { toast } from "react-toastify";
+
 const ShopMap = () => {
   const [loading, setLoading] = useState(true);
-  const name = useRef()
-  const surname = useRef()
-  const email = useRef()
-  const message= useRef()
+  const name = useRef();
+  const surname = useRef();
+  const email = useRef();
+  const message = useRef();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let obj = {
+  
+    // EmailJS ile kullanılacak parametreler ve form verisi
+    const templateParams = {
       name: name.current.value,
       surname: surname.current.value,
       email: email.current.value,
-      message: message.current.value
+      message: message.current.value,
+      reply_to: email.current.value  // Kullanıcının kendi e-posta adresini "reply-to" olarak ayarla
     };
-
+  
     try {
-      await axios.post('http://localhost:3000/send', obj);
-      toast.success("Your message sended successfully!");
+      // Email gönderme işlemi
+      await emailjs.send(
+        'service_7nxm06n', // EmailJS'de oluşturduğunuz servis ID'si
+        'template_v71vrvs', // EmailJS'de oluşturduğunuz template ID'si
+        templateParams,
+        'BICDGqrcabRKWdXvt' // EmailJS'de oluşturduğunuz kullanıcı ID'si
+      );
+  
+      // Başarılı bildirimi
+      toast.success("Your message sent successfully!");
     } catch (error) {
       console.error('Error sending email', error);
+      // Hata bildirimi
       toast.error("Failed to send your message");
     }
   };
-
+  
 
   return (
     <div className="contacts">
@@ -78,7 +92,7 @@ const ShopMap = () => {
       </div>
       <div className="contactform">
         <h4>Send a message</h4>
-        <form onSubmit={handleSubmit} action="">
+        <form onSubmit={handleSubmit}>
           <div className="top">
             <div className="form">
               <label htmlFor="name">First Name</label>
@@ -86,24 +100,23 @@ const ShopMap = () => {
             </div>
             <div className="form">
               <label htmlFor="last">Last Name</label>
-              <input  required ref={surname}  type="text" id="last" placeholder="Last Name" />
+              <input required ref={surname} type="text" id="last" placeholder="Last Name" />
             </div>
           </div>
           <div className="form">
             <label htmlFor="email">Email</label>
-            <input  required ref={email}  type="email" id="email" placeholder="Email" />
+            <input required ref={email} type="email" id="email" placeholder="Email" />
           </div>
           <div className="form">
             <label htmlFor="message">Message</label>
-            <textarea  required ref={message}  id="message" placeholder="Message" style={{ width: "100%", height: "20rem" }}></textarea>
+            <textarea required ref={message} id="message" placeholder="Message" style={{ width: "100%", height: "20rem" }}></textarea>
           </div>
-          <button>
+          <button type="submit">
             <FontAwesomeIcon icon={faEnvelope} />
             Send Message
           </button>
         </form>
       </div>
-
     </div>
   );
 };

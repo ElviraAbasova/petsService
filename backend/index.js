@@ -31,6 +31,7 @@ app.post('/send', (req, res) => {
   SendMail(mailOptions);
   res.status(200).send('Email sent');
 });
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -43,7 +44,6 @@ io.on("connection", (socket) => {
   socket.on("send_message", (data) => {
     io.emit("receive_message", data); 
   });
-
 });
 
 server.listen(PORT, () => {

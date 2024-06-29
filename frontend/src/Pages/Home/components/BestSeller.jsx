@@ -121,7 +121,7 @@ const BestSeller = () => {
             ))
           ) : (
             bestSellers.map((card) => (
-              <Link key={card._id} to={`/${card._id}`} className="card" onClick={handleLinkClick}>
+              <Link key={card._id} to={`detail/${card._id}`} className="card" onClick={handleLinkClick}>
                 <div className="imgBox">
                   <img src={card.image} alt="product" />
                   <div className="transition">

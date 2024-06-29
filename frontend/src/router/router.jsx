@@ -1,6 +1,8 @@
+import { Navigate } from "react-router-dom";
 import Layout from "../Layout";
 import NoPage from "../Pages/404Page";
 import Admin from "../Pages/Admin";
+import AsistanChat from "../Pages/AsistanChat/Index";
 import Basket from "../Pages/Basket";
 import Contact from "../Pages/Contact";
 import Detail from "../Pages/Detail";
@@ -13,7 +15,7 @@ import Register from "../Pages/Register";
 import Shop from "../Pages/Shop";
 import Veterinary from "../Pages/Veterinary";
 import Work from "../Pages/Work";
-import { ProtectedAdmin, ProtectedProfile, ProtectedWork } from "./protectedRouter";
+import { ProtectedAdmin, ProtectedAsistan, ProtectedProfile, ProtectedWork } from "./protectedRouter";
 
 
 export const routes = [
@@ -42,7 +44,7 @@ export const routes = [
         element: <Favorite />,
       },
       {
-        path: "/:id",
+        path: "/detail/:id",
         element: <Detail />,
       },
       {
@@ -85,5 +87,15 @@ export const routes = [
   {
     path: "/404",
     element: <NoPage/>, 
+  },
+  {
+    path: "*", 
+    element: <Navigate to="/404" replace />,
+  },
+  {
+    path: "/assistan",
+    element: (
+      <ProtectedAsistan element={<AsistanChat/>} adminOnly={true} />
+    ),
   },
 ];

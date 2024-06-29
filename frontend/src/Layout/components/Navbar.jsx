@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../navbar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   faCartShopping,
   faBars,
@@ -39,6 +39,7 @@ const Navbar = () => {
   };
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
     window.scrollTo({
