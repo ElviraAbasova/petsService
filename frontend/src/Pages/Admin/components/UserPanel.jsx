@@ -142,7 +142,6 @@ const UserPanel = () => {
                   <th>Gender</th>
                   <th>User</th>
                   <th>Date</th>
-                  <th>Balance</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -166,7 +165,6 @@ const UserPanel = () => {
                       <td>{item.gender}</td>
                       <td>{item.user}</td>
                       <td>{new Date(item.date).toISOString().split("T")[0]}</td>
-                      <td>{item.balance}</td>
                       <td>
                         <FontAwesomeIcon
                           className="edit"

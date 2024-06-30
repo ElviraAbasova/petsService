@@ -32,6 +32,7 @@ const Profile = () => {
   const editName = useRef()
   const editSurname = useRef()
   const editUsername = useRef()
+  const editEmail = useRef()
   const editPassword= useRef()
 
 
@@ -96,6 +97,7 @@ const Profile = () => {
     const newName = editName.current.value;
     const newSurname = editSurname.current.value;
     const newUsername = editUsername.current.value;
+    const newEmail = editEmail.current.value;
     const newPassword = editPassword.current.value;
   
     try {
@@ -104,6 +106,7 @@ const Profile = () => {
         surname: newSurname,
         username: newUsername,
         password: newPassword,
+        email: newEmail
       });
       const updatedUser = {
         ...user,
@@ -111,6 +114,7 @@ const Profile = () => {
         surname: newSurname,
         username: newUsername,
         password: newPassword,
+        email: newEmail
       };
 
      
@@ -154,7 +158,7 @@ const Profile = () => {
       case "My Orders":
         return (
           <div className="orders">
-            {user.orders = [] ? (
+            {user.orders == [] ? (
               <div className="loader">
                 <div className="truckWrapper">
                   <div className="truckBody">
@@ -298,7 +302,7 @@ const Profile = () => {
                       ))}
                     </div>
                     <div className="right">
-                      <h4>SUM - {Math.round(totalSum * 100) / 100} $</h4>
+                      <h4>SUM - {(Math.round(totalSum * 100) / 100)+5} $</h4>
                     </div>
                   </div>
                 );
@@ -373,7 +377,7 @@ const Profile = () => {
             </div>
             <div className="info">
               <label htmlFor="email">Email</label>
-              <input ref={editUsername}  defaultValue={user.email} type="email" id="email" />
+              <input ref={editEmail}  defaultValue={user.email} type="email" id="email" />
             </div>
           </div>
             <div className="info">

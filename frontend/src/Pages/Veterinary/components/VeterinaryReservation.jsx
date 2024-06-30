@@ -22,6 +22,7 @@ const VeterinaryReservation = () => {
   let user = JSON.parse(localStorage.getItem("user"));
   const veterinars = useSelector((state) => state.veterinar.arr);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     getAllData("veterinars").then((res) => {
@@ -61,7 +62,7 @@ const VeterinaryReservation = () => {
       });
     } else {
       const find = veterinars.find((elem) => elem.name.toUpperCase() === vet.toUpperCase());
-
+      
       if (find) {
        
         const existingAppointment = find.randevus.find(
@@ -74,7 +75,7 @@ const VeterinaryReservation = () => {
         }
 
         const updated = { ...find, randevus: [...find.randevus, obj] };
-        await patchData("veterinarians", find._id, updated);
+        await patchData("veterinars", find._id, updated);
         toast.success("Appointment booked successfully!");
       }
       setCategory("");

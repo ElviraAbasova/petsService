@@ -46,7 +46,7 @@ const Favorite = () => {
                                         <h4>{elem.title}</h4>
                                     </div>
                                     <div className="col">        
-                                        <h5>${elem.price}</h5>
+                                        <h5>${Math.round((elem.price - (elem.price * elem.discount / 100)) * 100) / 100}</h5>
                                     </div>
                                     <button onClick={(e) => handleBasket(elem, e)}  className="col">       
                                         <FontAwesomeIcon className='basketIcon' icon={faBasketShopping} />

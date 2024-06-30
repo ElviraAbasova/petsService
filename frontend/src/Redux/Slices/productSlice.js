@@ -105,10 +105,10 @@ export const productSlice = createSlice({
       state.filter = state.arr.sort((a,b)=> b.title.localeCompare(a.title));
     },
     SortLH: (state) => {
-      state.filter = state.arr.sort((a,b)=> a.price-b.price);
+      state.filter = state.arr.sort((a,b)=> (a.price-(a.price*a.discount)/100)-(b.price-(b.price*b.discount)/100));
     },
     SortHL: (state) => {
-      state.filter = state.arr.sort((a,b)=> b.price-a.price);
+      state.filter = state.arr.sort((a,b)=> (b.price-(b.price*b.discount)/100)-(a.price-(a.price*a.discount)/100));
     },
     
   },

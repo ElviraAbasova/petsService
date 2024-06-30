@@ -152,7 +152,7 @@ const ShopCards = () => {
   };
 
   const handleBestCount = () => {
-    return datas.filter((elem) => elem.seller >= 30).length;
+    return datas.filter((elem) => elem.seller >= 10).length;
   };
   const handleReset = () => {
     dispatch(ResetData())
@@ -209,7 +209,7 @@ const ShopCards = () => {
             </div>
             <span>({handleDiscCount(1)})</span>
           </div>
-          <div className="row" onClick={() => dispatch(FilterSeller(30))}>
+          <div className="row" onClick={() => dispatch(FilterSeller(10))}>
             <div className="title">
               <FontAwesomeIcon icon={faPaw} />
               <h4>Best Sellers</h4>

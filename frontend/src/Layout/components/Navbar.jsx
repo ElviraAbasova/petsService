@@ -191,7 +191,7 @@ const Navbar = () => {
           }`}
         >
           <div className="chatName">
-            {msg.id === socket.id ? user.name : "Asistan"}
+            {msg.id === socket.id ? "Me:" : "Asistan:"}
           </div>
           <div className="chatText">{msg.message}</div>
         </div>

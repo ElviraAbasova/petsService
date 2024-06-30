@@ -171,13 +171,7 @@ const Detail = () => {
   return (
     <section id="detail">
       <div ref={fadeIn.ref} className="container">
-        <div className="top">
-          <Link className="back" to="/" onClick={()=> window.scrollTo(0, 0)}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-            Go Back
-          </Link>
-
-        </div>
+      
         <div className="detail">
           <div className="left">
             <img src={find.image} alt="post" />

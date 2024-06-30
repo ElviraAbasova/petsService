@@ -21,14 +21,14 @@ return element;
 };
 
 
-export const ProtectedWork = ({ element, worker=false }) => {
+export const ProtectedWork = ({ element, worker = false }) => {
   let user = JSON.parse(localStorage.getItem("user"));
 
-if (worker && user?.user.toLowerCase() !== "groomer" || "veterinar" ) {
-  return <Navigate to="/" />;
-}
+  if (worker && user?.user.toLowerCase() !== "groomer" && user?.user.toLowerCase() !== "veterinar") {
+    return <Navigate to="/" />;
+  }
 
-return element;
+  return element;
 };
 
 export const ProtectedProfile = ({ element, profile=false }) => {

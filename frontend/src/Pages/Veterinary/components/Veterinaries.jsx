@@ -52,13 +52,13 @@ const Veterinaries = () => {
                 <div className="about">
                   <h4>{veterinar.name + " " + veterinar.surname}</h4>
                   <div className="icons">
-                    <Link to={veterinar.facebook} className="icon">
+                    <Link to={veterinar.facebook} target="_blank" className="icon">
                       <FontAwesomeIcon icon={faFacebook} />
                     </Link>
-                    <Link to={veterinar.instagram} className="icon">
+                    <Link to={veterinar.instagram} target="_blank"  className="icon">
                       <FontAwesomeIcon icon={faInstagram} />
                     </Link>
-                    <Link to={veterinar.twitter} className="icon">
+                    <Link to={veterinar.twitter} target="_blank"  className="icon">
                       <FontAwesomeIcon icon={faTwitter} />
                     </Link>
                   </div>

@@ -41,7 +41,7 @@ const Work = () => {
   }, [dispatch, profile.user]);
 
   const [DetailModal, setDetailModal] = useState(false);
-  const [EditModal, setEditModal] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
 
@@ -54,13 +54,6 @@ const Work = () => {
     setDetailModal(false);
   };
 
-  const openEditModal = () => {
-    setEditModal(true);
-  };
-
-  const closeEditModal = () => {
-    setEditModal(false);
-  };
 
   const handleLogOut = () => {
     localStorage.setItem("user", JSON.stringify(null));
@@ -108,7 +101,7 @@ const Work = () => {
             <div className="about">
               <div className="edit">
                 <h3>{`${profile.name} ${profile.surname}`}</h3>
-                <FontAwesomeIcon icon={faPenToSquare} onClick={openEditModal} />
+
               </div>
               <h5 style={{ textTransform: "capitalize" }}>{profile.user}</h5>
             </div>
@@ -216,43 +209,7 @@ const Work = () => {
           </div>
         </div>
       )}
-      {EditModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeEditModal}>
-              &times;
-            </span>
-            <h3>Edit</h3>
-            <div className="infos">
-              <div className="info">
-                <label htmlFor="name">Name</label>
-                <input defaultValue={profile.name} type="text" id="name" />
-              </div>
-              <div className="info">
-                <label htmlFor="surname">Surname</label>
-                <input defaultValue={profile.surname} type="text" id="surname" />
-              </div>
-              <div className="info">
-                <label htmlFor="username">Username</label>
-                <input defaultValue={profile.username} type="text" id="username" />
-              </div>
-              <div className="info">
-                <label htmlFor="email">Email</label>
-                <input
-                  defaultValue={profile.email}
-                  type="email"
-                  id="email"
-                />
-              </div>
-              <div className="info">
-                <label htmlFor="password">Password</label>
-                <input defaultValue={profile.password} type="password" id="password" />
-              </div>
-              <button className="save">Save</button>
-            </div>
-          </div>
-        </div>
-      )}
+  
     </section>
   );
 };

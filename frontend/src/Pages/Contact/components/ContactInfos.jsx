@@ -10,7 +10,7 @@ const ContactInfos = () => {
   return (
     <div className="infos">
         
-        <div className="info">
+        <Link  to={'mailto:petshop@gmail.com'}  className="info">
             <div className="icon">
                 <img src={mail} alt="mail" />
                 </div>
@@ -20,8 +20,8 @@ const ContactInfos = () => {
                 </div>
                 
             
-        </div>
-        <div className="info">
+        </Link>
+        <Link to={"https://www.google.com/maps?ll=40.37104,49.840818&z=16&t=m&hl=en&gl=AZ&mapclient=embed&cid=6976176797929721972"} target='_blank' className="info">
             <div className="icon">
                 <img src={location} alt="phone" />
                 </div>
@@ -32,8 +32,8 @@ const ContactInfos = () => {
                
                
             
-        </div>
-        <div className="info">
+        </Link>
+        <Link to={"tel:+1234567"} className="info">
             <div className="icon">
                 <img src={phone} alt="phone" />
                 </div>
@@ -44,7 +44,7 @@ const ContactInfos = () => {
                 
 
             
-        </div>
+        </Link>
     </div>
   )
 }

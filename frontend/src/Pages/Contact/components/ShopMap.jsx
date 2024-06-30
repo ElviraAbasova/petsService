@@ -31,6 +31,13 @@ const ShopMap = () => {
       );
   
       toast.success("Your message sent successfully!");
+      name.current.value=""
+      surname.current.value=""
+      email.current.value=""
+      message.current.value=""
+
+
+
     } catch (error) {
       console.error('Error sending email', error);
       toast.error("Failed to send your message");
