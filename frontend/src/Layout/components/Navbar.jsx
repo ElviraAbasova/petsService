@@ -83,9 +83,12 @@ const Navbar = () => {
   return (
     <nav>
       <div className="container">
+        <Link to="/">
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
+        </Link>
+
         <ul className={menu ? "show" : ""}>
           <li className={location.pathname === "/" ? "choose" : ""}>
             <Link to="/" className="link" onClick={closeMenu}>
@@ -174,34 +177,38 @@ const Navbar = () => {
         <FontAwesomeIcon icon={faCommentDots} />
       </div>
       {showChat && (
-        <div className="chatModal">
-          <div className="chatHeader">
-            <h4>Chat</h4>
-            <button onClick={() => setShowChat(false)}>Close</button>
+  <div className="chatModal">
+    <div className="chatHeader">
+      <h4>Chat</h4>
+      <button onClick={() => setShowChat(false)}>Close</button>
+    </div>
+    <div className="chatBody">
+      {chat.map((msg, index) => (
+        <div
+          key={index}
+          className={`chatMessage ${
+            msg.id === socket.id ? "right" : "left"
+          }`}
+        >
+          <div className="chatName">
+            {msg.id === socket.id ? user.name : "Asistan"}
           </div>
-          <div className="chatBody">
-            {chat.map((msg, index) => (
-              <div
-                key={index}
-                className={`chatMessage ${
-                  msg.id === socket.id ? "right" : "left"
-                }`}
-              >
-                {msg.message}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-          <form className="chatFooter" onSubmit={sendMessage}>
-            <input
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button type="submit">Send</button>
-          </form>
+          <div className="chatText">{msg.message}</div>
         </div>
-      )}
+      ))}
+      <div ref={messagesEndRef} />
+    </div>
+    <form className="chatFooter" onSubmit={sendMessage}>
+      <input
+        type="text"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+)}
+
     </nav>
   );
 };

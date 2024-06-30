@@ -221,6 +221,7 @@ $background-color_3: #ffe2cb;
     
 #admin{
     .container{
+      
         .custom-table {
 
           
@@ -247,14 +248,23 @@ $background-color_3: #ffe2cb;
 }
 
 @media only screen and (max-width: 576px) {
+  #select{
+    .container{
+      .buttons{
+        grid-template-columns: repeat(1, auto) ;
+        .button:last-child{
+          grid-column: span 1; 
+          justify-self: center;
+        }
+      }
+    }
+  }
   #admin{
+  
     .container{
         .custom-table {
+         
 
-          
-          
- 
-          
             tr {
               font-size: 1.2rem;
               th {

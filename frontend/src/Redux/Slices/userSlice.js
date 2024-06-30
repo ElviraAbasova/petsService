@@ -22,6 +22,13 @@ export const userSlice = createSlice({
         state.arr[index] = action.payload;
       }
     },
+    UpdatePass: (state, action) => {
+      const { email, password } = action.payload;
+      const user = state.arr.find((user) => user.email === email);
+      if (user) {
+        user.password = password;
+      }
+    },
     PostUser: (state, action) => {
       const find = state.arr.find(elem=>elem._id==action.payload._id)
       if(!find){
@@ -31,6 +38,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const { AddUsers,DeleteUser,UpdateUser,PostUser } = userSlice.actions
+export const { AddUsers,DeleteUser,UpdateUser,PostUser,UpdatePass } = userSlice.actions
 
 export default userSlice.reducer

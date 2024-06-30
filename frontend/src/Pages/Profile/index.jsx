@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import paw from "../../assets/images/pngwing.com (29).png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faUser } from "@fortawesome/free-regular-svg-icons";
@@ -17,6 +17,8 @@ import { getAllData, patchData } from "../../Service/requests";
 import { useDispatch, useSelector } from "react-redux";
 import { AddVeterinars } from "../../Redux/Slices/veterinarSlice";
 import { AddGroomers } from "../../Redux/Slices/groomerSlice";
+import { UpdateUser } from "../../Redux/Slices/userSlice";
+import Swal from 'sweetalert2';
 
 const Profile = () => {
   let user = JSON.parse(localStorage.getItem("user"));
@@ -27,6 +29,12 @@ const Profile = () => {
   const veterinars = useSelector((state) => state.veterinar.arr);
   const groomers = useSelector((state) => state.groomer.arr);
   const [right, setRight] = useState(localStorage.getItem("selectedTab") || "Info");
+  const editName = useRef()
+  const editSurname = useRef()
+  const editUsername = useRef()
+  const editPassword= useRef()
+
+
 
   useEffect(() => {
     getAllData("veterinars").then((res) => {
@@ -83,6 +91,42 @@ const Profile = () => {
     return [...vetAppointments, ...groomerAppointments];
   };
 
+  const handleSaveSettings = async (e) => {
+    e.preventDefault()
+    const newName = editName.current.value;
+    const newSurname = editSurname.current.value;
+    const newUsername = editUsername.current.value;
+    const newPassword = editPassword.current.value;
+  
+    try {
+      await patchData("users", user._id, {
+        name: newName,
+        surname: newSurname,
+        username: newUsername,
+        password: newPassword,
+      });
+      const updatedUser = {
+        ...user,
+        name: newName,
+        surname: newSurname,
+        username: newUsername,
+        password: newPassword,
+      };
+
+     
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      dispatch(UpdateUser(user))
+      Swal.fire({
+        icon: 'success',
+        title: 'Profile Successful',
+        text: 'Your profile is successfully edited',
+    });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
   const rightSide = () => {
     switch (right) {
       case "Info":
@@ -104,21 +148,13 @@ const Profile = () => {
               <label htmlFor="email">Email</label>
               <input value={user.email} type="email" id="email" disabled />
             </div>
-            <div className="info">
-              <label htmlFor="balance">Balance</label>
-              <input
-                value={user.balance}
-                type="number"
-                id="username"
-                disabled
-              />
-            </div>
+        
           </div>
         );
       case "My Orders":
         return (
           <div className="orders">
-            {user.orders == [] ? (
+            {user.orders = [] ? (
               <div className="loader">
                 <div className="truckWrapper">
                   <div className="truckBody">
@@ -319,31 +355,32 @@ const Profile = () => {
           );
             case "Settings":
         return (
-          <form className="infos">
+          <form onSubmit={handleSaveSettings} className="infos">
             <div className="row">
             <div className="info">
               <label htmlFor="name">Name</label>
-              <input required defaultValue={user.name} type="text" id="name" />
+              <input ref={editName}  required defaultValue={user.name} type="text" id="name" />
             </div>
             <div className="info">
               <label htmlFor="surname">Surname</label>
-              <input required defaultValue={user.surname} type="text" id="surname" />
+              <input ref={editSurname}  required defaultValue={user.surname} type="text" id="surname" />
             </div>
             </div>
           <div className="row">
           <div className="info">
               <label htmlFor="username">Username</label>
-              <input required defaultValue={user.username} type="text" id="username" />
+              <input ref={editUsername}  required defaultValue={user.username} type="text" id="username" />
             </div>
             <div className="info">
               <label htmlFor="email">Email</label>
-              <input defaultValue={user.email} type="email" id="email" />
+              <input ref={editUsername}  defaultValue={user.email} type="email" id="email" />
             </div>
           </div>
             <div className="info">
               <label htmlFor="password">Password</label>
               <div className="password-input">
                 <input
+                ref={editPassword} 
                 required
                   defaultValue={user.password}
                   type={showPassword ? "text" : "password"}
@@ -356,10 +393,7 @@ const Profile = () => {
                 />
               </div>
             </div>
-            <div className="info">
-              <label htmlFor="balance">Balance</label>
-              <input required value={user.balance} type="number" id="username" />
-            </div>
+      
             <button type="submit" className="save">Save</button>
           </form>
         );

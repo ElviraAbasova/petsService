@@ -85,6 +85,61 @@ const register = async (req, res) => {
     });
   }
 };
+const resetPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Email not found. Please check your email address.",
+      });
+    }
+
+
+    res.status(200).json({
+      success: true,
+      message: "Email found. Password reset instructions sent to your email.",
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error. Please try again later.",
+    });
+  }
+};
+const updatePassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found. Please check your email address.",
+      });
+    }
+
+    user.password = newPassword; 
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Password updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error. Please try again later.",
+    });
+  }
+};
+
 const getAllData = async (req, res) => {
   try {
     const users = await User.find();
@@ -165,6 +220,8 @@ const deleteDataById = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   getAllData,
   getDataById,
@@ -173,5 +230,7 @@ module.exports = {
   patchDataById,
   putDataById,
   login,
-  register
+  register,
+  resetPassword,
+  updatePassword
 };

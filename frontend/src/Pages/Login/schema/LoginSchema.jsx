@@ -7,4 +7,15 @@ const LoginSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
-export default LoginSchema;
+const ResetPasswordSchema = Yup.object().shape({
+  newPassword: Yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters long')
+    .matches(/[a-zA-Z]/, 'Password must contain at least one letter')
+    .matches(/[0-9]/, 'Password must contain at least one number'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
+});
+
+export { LoginSchema, ResetPasswordSchema };

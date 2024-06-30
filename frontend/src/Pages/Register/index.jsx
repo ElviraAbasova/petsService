@@ -102,14 +102,14 @@ const Register = () => {
                   </div>
                   <div className="radio-button-container">
                     <div className="radio-button">
-                      <Field type="radio" className="radio-button__input" id="radio1" name="gender" value="Male" />
+                      <Field type="radio" className="radio-button__input" id="radio1" name="gender" value="male" />
                       <label className="radio-button__label" htmlFor="radio1">
                         <span className="radio-button__custom" />
                         Male
                       </label>
                     </div>
                     <div className="radio-button">
-                      <Field  type="radio" className="radio-button__input" id="radio2" name="gender" value="Female" />
+                      <Field  type="radio" className="radio-button__input" id="radio2" name="gender" value="female" />
                       <label className="radio-button__label" htmlFor="radio2">
                         <span className="radio-button__custom" />
                         Female
